@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\test\\test\\test\\WAREHOUSE.csproj": {}
+    "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\WAREHOUSE\\WAREHOUSE.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\test\\test\\test\\WAREHOUSE.csproj": {
+    "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\WAREHOUSE\\WAREHOUSE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\test\\test\\test\\WAREHOUSE.csproj",
+        "projectUniqueName": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\WAREHOUSE\\WAREHOUSE.csproj",
         "projectName": "WAREHOUSE",
-        "projectPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\test\\test\\test\\WAREHOUSE.csproj",
+        "projectPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\WAREHOUSE\\WAREHOUSE.csproj",
         "packagesPath": "C:\\Users\\bruce\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\test\\test\\test\\obj\\",
+        "outputPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\WAREHOUSE\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\bruce\\AppData\\Roaming\\NuGet\\NuGet.Config",
