@@ -2,22 +2,24 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using WAREHOUSE.Models;
-using WAREHOUSE.Services;
-using WAREHOUSE.Repositories;
-using WAREHOUSE.Utils;
+using WareHouse.Core.Models;
+using WareHouse.Service.Interfaces;
+using WareHouse.Service.Implementations;
+using WareHouse.Repository.Interfaces;
+using WareHouse.Repository.Implementations;
+using WareHouse.Controller;
+using WareHouse.Core.Utils;
+using WareHouse;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Reflection;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Microsoft.AspNetCore.Mvc;
 
-//1. Delete Database
-//InitDatabase.DeleteDatabase();
+// InitDatabase
+//InitDatabase.ResetDb();
 
-//2. Create Database
-//InitDatabase.CreateDatabase();
-
-//3. Init Database
-//InitDatabase.Init();
 
 
 
@@ -69,8 +71,10 @@ builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IUserRepository, UserRepository>();
-builder.Services.AddSingleton<IHelpers, Helpers>();
-//builder.Services.AddHttpClient();
+builder.Services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest).AddApplicationPart(typeof(UserController).Assembly);
+builder.Services.AddHttpClient();
+
+
 
 var app = builder.Build();
 

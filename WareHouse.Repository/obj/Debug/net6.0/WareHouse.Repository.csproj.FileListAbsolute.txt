@@ -1,0 +1,15 @@
+C:\Users\bruce\OneDrive\Desktop\C#\New folder\WareHouse.Repository\obj\Debug\net6.0\WareHouse.Repository.csproj.AssemblyReference.cache
+C:\Users\bruce\OneDrive\Desktop\C#\New folder\WareHouse.Repository\obj\Debug\net6.0\WareHouse.Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bruce\OneDrive\Desktop\C#\New folder\WareHouse.Repository\obj\Debug\net6.0\WareHouse.Repository.AssemblyInfoInputs.cache
+C:\Users\bruce\OneDrive\Desktop\C#\New folder\WareHouse.Repository\obj\Debug\net6.0\WareHouse.Repository.AssemblyInfo.cs
+C:\Users\bruce\OneDrive\Desktop\C#\New folder\WareHouse.Repository\obj\Debug\net6.0\WareHouse.Repository.csproj.CoreCompileInputs.cache
+C:\Users\bruce\OneDrive\Desktop\C#\New folder\WareHouse.Repository\bin\Debug\net6.0\WareHouse.Repository.deps.json
+C:\Users\bruce\OneDrive\Desktop\C#\New folder\WareHouse.Repository\bin\Debug\net6.0\WareHouse.Repository.dll
+C:\Users\bruce\OneDrive\Desktop\C#\New folder\WareHouse.Repository\bin\Debug\net6.0\WareHouse.Repository.pdb
+C:\Users\bruce\OneDrive\Desktop\C#\New folder\WareHouse.Repository\bin\Debug\net6.0\WareHouse.Core.dll
+C:\Users\bruce\OneDrive\Desktop\C#\New folder\WareHouse.Repository\bin\Debug\net6.0\WareHouse.Core.pdb
+C:\Users\bruce\OneDrive\Desktop\C#\New folder\WareHouse.Repository\obj\Debug\net6.0\WareHouse.Repository.csproj.CopyComplete
+C:\Users\bruce\OneDrive\Desktop\C#\New folder\WareHouse.Repository\obj\Debug\net6.0\WareHouse.Repository.dll
+C:\Users\bruce\OneDrive\Desktop\C#\New folder\WareHouse.Repository\obj\Debug\net6.0\refint\WareHouse.Repository.dll
+C:\Users\bruce\OneDrive\Desktop\C#\New folder\WareHouse.Repository\obj\Debug\net6.0\WareHouse.Repository.pdb
+C:\Users\bruce\OneDrive\Desktop\C#\New folder\WareHouse.Repository\obj\Debug\net6.0\ref\WareHouse.Repository.dll
