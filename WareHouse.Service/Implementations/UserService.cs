@@ -77,8 +77,11 @@ namespace WareHouse.Service.Implementations
 
             userDto.Token = tokenString;
 
+<<<<<<< HEAD
             userDto.Message = Constant.AUTHENTICATION_SUCCESSFULLY;
 
+=======
+>>>>>>> crackertvn
             userDto.RoleId = user.RoleId;
 
             return userDto;

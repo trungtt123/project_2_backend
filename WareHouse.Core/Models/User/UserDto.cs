@@ -10,7 +10,6 @@ namespace WareHouse.Core.Models
         public string SurName { get; set; }
         public int RoleId { get; set; }
         public string Token { get; set; }
-        public string Message { get; set; }
 
     }
 }
