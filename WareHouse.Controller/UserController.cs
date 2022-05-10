@@ -26,11 +26,10 @@ namespace WareHouse.Controller
             if (user == null)
                 return BadRequest(new { message = Constant.USERNAME_OR_PASSWORD_IS_INCORRECT });
 
-<<<<<<< HEAD
-            return Ok(user);
-=======
+
+
             return Ok(new { message = Constant.AUTHENTICATION_SUCCESSFULLY, data = user});
->>>>>>> crackertvn
+
         }
         
         [HttpGet("getlistpermissions")]
