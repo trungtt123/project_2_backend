@@ -10,8 +10,6 @@ namespace WareHouse.Repository.Interfaces
 {
     public interface IUserRepository
     {
-        public bool CheckUserNameAlreadyExists(string userName);
-
         public UserEntity GetUser(string userName);
 
         public UserEntity CreateUser(UserEntity userData);

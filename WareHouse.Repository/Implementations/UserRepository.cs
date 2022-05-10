@@ -10,39 +10,42 @@ namespace WareHouse.Repository.Implementations
 {
     public class UserRepository : IUserRepository
     {
-        public bool CheckUserNameAlreadyExists(string username)
-        {
-            using var dbcontext = new MyDbContext();
-
-            var user = dbcontext.users.FirstOrDefault(o => o.UserName == username);
-
-            if (user == null) return false;
-
-            return true;
-        }
-
         public UserEntity GetUser(string userName)
         {
-            using var dbcontext = new MyDbContext();
+            try
+            {
+                using var dbcontext = new MyDbContext();
 
-            var user = new UserEntity();
+                var user = new UserEntity();
 
-            user = dbcontext.users.FirstOrDefault(o => o.UserName == userName);
+                user = dbcontext.users.FirstOrDefault(o => o.UserName == userName);
 
-            //userDto = mapper.Map<UserEntity, UserDto>(user);
-            return user;
+                //userDto = mapper.Map<UserEntity, UserDto>(user);
+                return user;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public UserEntity CreateUser(UserEntity userData)
         {
-            using var dbcontext = new MyDbContext();
+            try
+            {
+                using var dbcontext = new MyDbContext();
 
-            dbcontext.users.Add(userData);
+                dbcontext.users.Add(userData);
 
-            int number_rows = dbcontext.SaveChanges();
+                int number_rows = dbcontext.SaveChanges();
 
-            if (number_rows > 0) return userData;
-            return null;
+                if (number_rows > 0) return userData;
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
 
         }
         public List<UserEntity> AddUser(List<UserEntity> users)
@@ -107,9 +110,16 @@ namespace WareHouse.Repository.Implementations
         }
         public List<RoleEntity> GetListPermissions()
         {
-            using var dbcontext = new MyDbContext();
-            List<RoleEntity> arr = dbcontext.roles.ToList();
-            return arr;
+            try
+            {
+                using var dbcontext = new MyDbContext();
+                List<RoleEntity> arr = dbcontext.roles.ToList();
+                return arr;
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
         }
         public List<UserEntity> GetAllUsers()
         {
