@@ -77,8 +77,6 @@ namespace WareHouse.Service.Implementations
 
             userDto.Token = tokenString;
 
-            userDto.Message = Constant.AUTHENTICATION_SUCCESSFULLY;
-
             userDto.RoleId = user.RoleId;
 
             return userDto;
