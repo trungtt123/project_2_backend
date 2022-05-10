@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oDDeHG8w9iLmeBuvlXwcY2m72SM55zItOAhx1Je2CjFOqVIrFIy0mmhNQnzXe1LrDnBI1v/0YPpwmvN7Y+Vg4g==",
+  "dgSpecHash": "lkFQXYMQccrWwXFRE2qRSltGyIEbDdojdOK/DhmulqKx+ks6TQrVbJ4jYVu5pB/T7MWGLgCHhvFjJMpZxI+xEg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\WAREHOUSE\\WAREHOUSE.csproj",
+  "projectFilePath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WAREHOUSE\\WareHouse.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bruce\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\bruce\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
@@ -20,6 +20,7 @@
     "C:\\Users\\bruce\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\bruce\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\6.0.0\\microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\bruce\\.nuget\\packages\\microsoft.extensions.caching.memory\\6.0.1\\microsoft.extensions.caching.memory.6.0.1.nupkg.sha512",
+    "C:\\Users\\bruce\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.1\\microsoft.extensions.configuration.6.0.1.nupkg.sha512",
     "C:\\Users\\bruce\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\bruce\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
     "C:\\Users\\bruce\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",

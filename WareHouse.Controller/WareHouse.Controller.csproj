@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WareHouse.Core\WareHouse.Core.csproj" />
+    <ProjectReference Include="..\WareHouse.Service\WareHouse.Service.csproj" />
+  </ItemGroup>
+
+</Project>
