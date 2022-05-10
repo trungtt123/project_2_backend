@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wy/Tp0dTiUxNDM3kQ78fquXUfGwLJ5b6LZ6YGvhkJzbqwqkFmglO9okM+flzwiCLQR0Sdxd7XzwwaSX6VyAh6w==",
+  "dgSpecHash": "B8/5C/z6/LyTtCxPBVzxKxo9rtTf1zxCSP15YkrbYKm2q0+cRepxsj2jBKtgJ39jV0rgWqST439HFAncW8cYNQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\WareHouse.Controller\\WareHouse.Controller.csproj",
+  "projectFilePath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Controller\\WareHouse.Controller.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bruce\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\bruce\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
