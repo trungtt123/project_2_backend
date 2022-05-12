@@ -51,9 +51,10 @@ namespace WareHouse
             var user1 = new UserEntity
             {
                 UserName = "crackertvn",
-                PassWord = "$2a$11$ew1SDZWnBOiPna6ZHaTWHuhEELiDGAan8/6cvBI6gCgWZ17vJB0oG", //123456
+                Password = "$2a$11$ew1SDZWnBOiPna6ZHaTWHuhEELiDGAan8/6cvBI6gCgWZ17vJB0oG", //123456
                 SurName = "Trung",
                 GivenName = "Tran",
+                Email = "bruceleemax111@gmail.com",
                 RoleId = 1,
             };
 

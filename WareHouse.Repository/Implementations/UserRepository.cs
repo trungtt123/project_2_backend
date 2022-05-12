@@ -29,6 +29,25 @@ namespace WareHouse.Repository.Implementations
             }
         }
 
+        public UserEntity GetUser(int userId)
+        {
+            try
+            {
+                using var dbcontext = new MyDbContext();
+
+                var user = new UserEntity();
+
+                user = dbcontext.users.FirstOrDefault(o => o.UserId == userId);
+
+                //userDto = mapper.Map<UserEntity, UserDto>(user);
+                return user;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public UserEntity CreateUser(UserEntity userData)
         {
             try
@@ -46,61 +65,19 @@ namespace WareHouse.Repository.Implementations
             {
                 return null;
             }
-
         }
-        public List<UserEntity> AddUser(List<UserEntity> users)
+        public bool DeleteUser(int userId)
         {
             try
             {
                 using var dbcontext = new MyDbContext();
-                Console.WriteLine(users);
-                dbcontext.users.AddRange(users);
-                dbcontext.SaveChanges();
-                return users;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-            
-        }
-
-        public List<UserEntity> UpdateUser(List<UserEntity> newUsers)
-        {
-            try
-            {
-                using var dbcontext = new MyDbContext();
-                foreach (var newUser in newUsers)
-                {
-                    var user = dbcontext.users.FirstOrDefault(o => o.UserId == newUser.UserId);
-                    if (user != null)
-                    {
-                        user.SurName = newUser.SurName;
-                        user.GivenName = newUser.GivenName;
-                        user.RoleId = newUser.RoleId;
-                        dbcontext.SaveChanges();
-                    }
-                    else return null;
-                }
                 
-                return newUsers;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
-        public bool DeleteUser(List<int> listUserId)
-        {
-            try
-            {
-                using var dbcontext = new MyDbContext();
-                foreach (var userId in listUserId)
-                {
-                    var user = dbcontext.users.FirstOrDefault(o => o.UserId == userId);
-                    dbcontext.users.Remove(user);
-                }
+                var user = dbcontext.users.FirstOrDefault(o => o.UserId == userId);
+                
+                dbcontext.users.Remove(user);
+
                 dbcontext.SaveChanges();
+               
                 return true;
             }
             catch (Exception ex)
@@ -108,6 +85,32 @@ namespace WareHouse.Repository.Implementations
                 return false;
             }
         }
+        public bool UpdateUser(UserEntity newUserData)
+        {
+           
+            try
+            {
+                using var dbcontext = new MyDbContext();
+
+                var user = dbcontext.users.FirstOrDefault(o => o.UserId == newUserData.UserId);
+
+                if (user != null)
+                {
+                    user.SurName = newUserData.SurName;
+                    user.GivenName = newUserData.GivenName;
+                    user.RoleId = newUserData.RoleId;
+                    dbcontext.SaveChanges();
+                    return true;
+                }
+                else return false;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public List<RoleEntity> GetListPermissions()
         {
             try
@@ -134,7 +137,7 @@ namespace WareHouse.Repository.Implementations
                 return null;
             }
         }
-        public bool ChangePassWord(int userId, string newPassWord)
+        public bool ChangePassWord(int userId, string newPassword)
         {
             try
             {
@@ -142,7 +145,7 @@ namespace WareHouse.Repository.Implementations
                 var user = dbcontext.users.FirstOrDefault(o => o.UserId == userId);
                 if (user != null)
                 {
-                    user.PassWord = newPassWord;
+                    user.Password = newPassword;
                     dbcontext.SaveChanges();
                     return true;
                 }

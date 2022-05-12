@@ -12,12 +12,12 @@ namespace WareHouse.Repository.Interfaces
     {
         public UserEntity GetUser(string userName);
 
+        public UserEntity GetUser(int userId);
+
         public UserEntity CreateUser(UserEntity userData);
+        public bool DeleteUser(int userId);
 
-        public List<UserEntity> AddUser(List<UserEntity> users);
-        public List<UserEntity> UpdateUser(List<UserEntity> newUsers);
-        public bool DeleteUser(List<int> listUserId);
-
+        public bool UpdateUser(UserEntity newUserData); 
         public List<UserEntity> GetAllUsers();
 
         public List<RoleEntity> GetListPermissions();

@@ -11,5 +11,6 @@ namespace WareHouse.Core.Models
         public int RoleId { get; set; }
         public string Token { get; set; }
 
+        public string Email { get; set; }
     }
 }

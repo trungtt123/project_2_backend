@@ -22,6 +22,9 @@
         public const string CHANGE_PASSWORD_SUCCESSFULLY = "CHANGE_PASSWORD_SUCCESSFULLY";
         public const string CHANGE_PASSWORD_FAILED = "CHANGE_PASSWORD_FAILED";
 
+        public const string SYSTEM_EMAIL_ADDRESS = "trungvippro10x123@gmail.com";
+        public const string SYSTEM_EMAIL_PASSWORD = "trungtt123";
+
         public const string USER_NOT_FOUND = "USER_NOT_FOUND";
         public const string USER_ALREADY_EXISTS = "USER_ALREADY_EXISTS";
         public const string INVALID_INPUT = "INVALID_INPUT";

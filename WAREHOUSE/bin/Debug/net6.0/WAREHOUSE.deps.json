@@ -17,7 +17,6 @@
           "Swashbuckle.AspNetCore": "6.3.0",
           "System.ComponentModel": "4.3.0",
           "System.ComponentModel.Annotations": "5.0.0",
-          "WareHouse.Controller": "1.0.0",
           "WareHouse.Core": "1.0.0",
           "WareHouse.Repository": "1.0.0",
           "WareHouse.Service": "1.0.0"
@@ -1199,15 +1198,6 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
-      "WareHouse.Controller/1.0.0": {
-        "dependencies": {
-          "WareHouse.Core": "1.0.0",
-          "WareHouse.Service": "1.0.0"
-        },
-        "runtime": {
-          "WareHouse.Controller.dll": {}
-        }
-      },
       "WareHouse.Core/1.0.0": {
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
@@ -2127,11 +2117,6 @@
       "sha512": "sha512-5zJ0XDxAIg8iy+t4aMnQAu0MqVbqyvfoUVl1yDV61xdo3Vth45oA2FoY4pPkxYAH5f8ixpmTqXeEIya95x0aCQ==",
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
-    },
-    "WareHouse.Controller/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
     },
     "WareHouse.Core/1.0.0": {
       "type": "project",

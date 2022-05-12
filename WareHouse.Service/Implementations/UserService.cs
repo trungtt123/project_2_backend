@@ -9,18 +9,21 @@ using WareHouse.Core.Utils;
 using AutoMapper;
 using Microsoft.Extensions.Configuration;
 using WareHouse.Service.Interfaces;
+using System.Net.Mail;
 
 namespace WareHouse.Service.Implementations
 {
-    
+
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
         private readonly IConfiguration _iconfiguration;
-        public UserService(IUserRepository userRepository, IConfiguration iconfiguration)
+        private readonly IMailService _mailService;
+        public UserService(IUserRepository userRepository, IConfiguration iconfiguration, IMailService mailService)
         {
             _userRepository = userRepository;
             _iconfiguration = iconfiguration;
+            _mailService = mailService;
         }
         public List<UserData> GetAllUsers()
         {
@@ -39,9 +42,11 @@ namespace WareHouse.Service.Implementations
 
             var user = _userRepository.GetUser(userLogin.UserName);
 
-            bool isValidPassWord = Helpers.IsValidPassWord(userLogin.PassWord, user.PassWord);
+            if (user == null) return null;
 
-            if (!isValidPassWord || user == null) return null;
+            bool isValidPassWord = Helpers.IsValidPassWord(userLogin.Password, user.Password);
+
+            if (!isValidPassWord) return null;
 
             var claims = new[]
         {
@@ -81,17 +86,13 @@ namespace WareHouse.Service.Implementations
 
             return userDto;
         }
-        public List<UserInfomation> AddUser(List<UserNoId> users)
+
+        public UserInfomation GetUser(int userId)
         {
-            foreach (var user in users)
-            {
-                var tmp = users.FindAll(o => o.UserName == user.UserName);
-                if (tmp.Count > 1) return null;
-                var userTmp = _userRepository.GetUser(user.UserName);
-                if (userTmp != null) return null;
-            }
-            List<UserEntity> listUserEntity;
-            List<UserInfomation> listUserInfomation;
+            UserEntity user = _userRepository.GetUser(userId);
+
+            if (user == null) return null;
+
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new MappingProfile());
@@ -99,39 +100,14 @@ namespace WareHouse.Service.Implementations
 
             var mapper = config.CreateMapper();
 
-            listUserEntity = mapper.Map<List<UserNoId>, List<UserEntity>>(users);
-            listUserInfomation = mapper.Map<List<UserNoId>, List<UserInfomation>>(users);
+            var userInfomation = mapper.Map<UserEntity, UserInfomation>(user);
 
-            for (int i = 0; i < listUserEntity.Count; i++)
-            {
-                string passWord = Helpers.RandomString(Constant.RANDOM_DEFAULT_PASSWORD_LENGTH);
-                listUserInfomation[i].PassWord = passWord;
-                listUserEntity[i].PassWord = Helpers.GetHashPassWord(passWord);
-            }
-            var arr = _userRepository.AddUser(listUserEntity);
-            if (arr != null)
-            {
-                for (int i = 0; i < listUserEntity.Count; i++)
-                {
-                  
-                    listUserInfomation[i].UserId = arr[i].UserId;
-                   
-                }
-                return listUserInfomation;
-            }
-            return null;
+            return userInfomation;
         }
-
-        public List<UserInfomation> UpdateUser(List<UserUpdate> newUsers)
+        public UserInfomation CreateUser(UserNoId user)
         {
-            foreach (var user in newUsers)
-            {
-                var tmp = newUsers.FindAll(o => o.UserId == user.UserId);
-                if (tmp.Count > 1) return null;
-            }
-
-            List<UserEntity> listUserEntity;
-            List<UserInfomation> listUserInfomation;
+            UserEntity userEntity;
+            UserInfomation userInfomation;
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new MappingProfile());
@@ -139,26 +115,64 @@ namespace WareHouse.Service.Implementations
 
             var mapper = config.CreateMapper();
 
-            listUserEntity = mapper.Map<List<UserUpdate>, List<UserEntity>>(newUsers);
-            listUserInfomation = mapper.Map<List<UserUpdate>, List<UserInfomation>>(newUsers);
+            userEntity = mapper.Map<UserNoId, UserEntity>(user);
+            userInfomation = mapper.Map<UserNoId, UserInfomation>(user);
 
-            var arr = _userRepository.UpdateUser(listUserEntity); 
-            if (arr != null)
+            string password = Helpers.RandomString(Constant.RANDOM_DEFAULT_PASSWORD_LENGTH);
+
+
+            //call api google
+
+            userEntity.Password = Helpers.GetHashPassword(password);
+            
+            var userResponse = _userRepository.CreateUser(userEntity);
+            if (userResponse != null)
             {
-                return listUserInfomation;
+
+                var email = new EmailForm 
+                { 
+                    EmailFrom = Constant.SYSTEM_EMAIL_ADDRESS, 
+                    EmailTo = user.Email, 
+                    Subject = "Create Account Successfully", 
+                    Body = "Username: <b>" + user.UserName + "</b> <br /> Password: <b>" + password + "</b>" 
+                };
+                var systemEmail = new EmailAccount { EmailAddress = Constant.SYSTEM_EMAIL_ADDRESS, Password = Constant.SYSTEM_EMAIL_PASSWORD };
+                var task = _mailService.SendMail(email, systemEmail);
+                task.Wait();
+                var kt = task.Result;
+                if (!kt) return null;
+
+                userInfomation.UserId = userResponse.UserId;
+                return userInfomation;
             }
             return null;
         }
 
-        public bool DeleteUser(List<int> listUserId)
+        public bool UpdateUser(UserUpdate newUserData)
         {
-            foreach (var userId in listUserId)
+            
+
+            UserEntity userEntity;
+
+            var config = new MapperConfiguration(cfg =>
             {
-                var tmp = listUserId.FindAll(o => o == userId);
-                if (tmp.Count > 1) return false;
-            }
-            var kt = _userRepository.DeleteUser(listUserId);
-            return kt;
+                cfg.AddProfile(new MappingProfile());
+            });
+
+            var mapper = config.CreateMapper();
+
+            userEntity = mapper.Map<UserUpdate, UserEntity>(newUserData);
+           
+
+            return _userRepository.UpdateUser(userEntity);
+
+        }
+
+        public bool DeleteUser(int userId)
+        {
+      
+            return _userRepository.DeleteUser(userId);
+
         }
         public List<RoleDto> GetListPermissions()
         {
@@ -168,20 +182,24 @@ namespace WareHouse.Service.Implementations
             });
             var mapper = config.CreateMapper();
             List<RoleEntity> arrPermissionEntity = _userRepository.GetListPermissions();
-            List<RoleDto> arrPermissionDto = mapper.Map<List<RoleEntity>, List<RoleDto> >(arrPermissionEntity);
+            List<RoleDto> arrPermissionDto = mapper.Map<List<RoleEntity>, List<RoleDto>>(arrPermissionEntity);
             return arrPermissionDto;
         }
         public bool ChangePassWord(UserChangePassWord userData)
         {
             var user = _userRepository.GetUser(userData.UserName);
 
-            bool isValidPassWord = Helpers.IsValidPassWord(userData.OldPassWord, user.PassWord);
+            if (user == null) return false;
 
-            if (!isValidPassWord || user == null) return false;
+            bool isValidPassWord = Helpers.IsValidPassWord(userData.OldPassword, user.Password);
 
-            bool kt = _userRepository.ChangePassWord(user.UserId, Helpers.GetHashPassWord(userData.NewPassWord)); 
+            if (!isValidPassWord) return false;
+
+            bool kt = _userRepository.ChangePassWord(user.UserId, Helpers.GetHashPassword(userData.NewPassword));
 
             return kt;
         }
+    
+
     }
 }

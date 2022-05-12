@@ -14,9 +14,9 @@ namespace WareHouse.Core.Utils
             return new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-        public static bool CheckEmptyOrNullUserData(string userName, string passWord)
+        public static bool CheckEmptyOrNullUserData(string userName, string password)
         {
-            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(passWord)) return true;
+            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password)) return true;
             return false;
         }
 
@@ -58,17 +58,17 @@ namespace WareHouse.Core.Utils
 
         }
 
-        public static string GetHashPassWord(string passWord)
+        public static string GetHashPassword(string password)
         {
-            string passWordHashed = BCrypt.Net.BCrypt.HashPassword(passWord);
-            return passWordHashed;
+            string passwordHashed = BCrypt.Net.BCrypt.HashPassword(password);
+            return passwordHashed;
         }
 
-        public static bool IsValidPassWord(string oPassWord, string passWord)
+        public static bool IsValidPassWord(string oPassword, string password)
         {
             try
             {
-                return BCrypt.Net.BCrypt.Verify(oPassWord, passWord);
+                return BCrypt.Net.BCrypt.Verify(oPassword, password);
             }
             catch (Exception e)
             {

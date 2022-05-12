@@ -1922,20 +1922,6 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "WareHouse.Controller/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "WareHouse.Core": "1.0.0",
-          "WareHouse.Service": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/WareHouse.Controller.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/WareHouse.Controller.dll": {}
-        }
-      },
       "WareHouse.Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -6783,11 +6769,6 @@
         "system.xml.xdocument.nuspec"
       ]
     },
-    "WareHouse.Controller/1.0.0": {
-      "type": "project",
-      "path": "../WareHouse.Controller/WareHouse.Controller.csproj",
-      "msbuildProject": "../WareHouse.Controller/WareHouse.Controller.csproj"
-    },
     "WareHouse.Core/1.0.0": {
       "type": "project",
       "path": "../WareHouse.Core/WareHouse.Core.csproj",
@@ -6815,7 +6796,6 @@
       "Swashbuckle.AspNetCore >= 6.3.0",
       "System.ComponentModel >= 4.3.0",
       "System.ComponentModel.Annotations >= 5.0.0",
-      "WareHouse.Controller >= 1.0.0",
       "WareHouse.Core >= 1.0.0",
       "WareHouse.Repository >= 1.0.0",
       "WareHouse.Service >= 1.0.0"
@@ -6848,9 +6828,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Controller\\WareHouse.Controller.csproj": {
-              "projectPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Controller\\WareHouse.Controller.csproj"
-            },
             "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj": {
               "projectPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj"
             },
