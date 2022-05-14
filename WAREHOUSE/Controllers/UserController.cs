@@ -151,11 +151,8 @@ namespace WareHouse
         public IActionResult ChangePassWord([FromBody] UserChangePassWordDto userData)
         {
             var kt = false;
-            var stream = Request.Headers["Authorization"].ToString().Replace("Bearer ", string.Empty);
-            var handler = new JwtSecurityTokenHandler();
-            var jsonToken = handler.ReadToken(stream);
-            var tokenS = jsonToken as JwtSecurityToken;
-            var userName = tokenS.Claims.First(claim => claim.Type == "username").Value;
+            var jwt = Request.Headers["Authorization"].ToString().Replace("Bearer ", string.Empty);
+            var userName = Helpers.DecodeJwt(jwt, "username");
 
             if (userName == userData.UserName) kt = _userService.ChangePassWord(userData);
             var response = new ResponseDto();

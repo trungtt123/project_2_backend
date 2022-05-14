@@ -1,6 +1,9 @@
 ﻿using WareHouse.Core.Models;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace WareHouse.Core.Utils
 {
@@ -74,6 +77,15 @@ namespace WareHouse.Core.Utils
             {
                 return false;
             }
+        }
+        public static string DecodeJwt(string jwt, string type)
+        {
+            
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(jwt);
+            var tokenS = jsonToken as JwtSecurityToken;
+            var data = tokenS.Claims.First(claim => claim.Type == type).Value;
+            return data;
         }
     }
 }
