@@ -10,14 +10,14 @@ namespace WareHouse.Service.Interfaces
 {
     public interface IUserService
     {
-        public UserDto Authenticate(UserLogin userLogin);
-        public UserInfomation CreateUser(UserNoId user);
-        public bool UpdateUser(UserUpdate newUserData);
+        public UserDto Authenticate(UserLoginDto userLogin);
+        public UserInfomationDto CreateUser(UserNoIdDto user);
+        public bool UpdateUser(UserUpdateDto newUserData);
         public bool DeleteUser(int userId);
 
-        public UserInfomation GetUser(int userId);
-        public bool ChangePassWord(UserChangePassWord userData);
+        public UserInfomationDto GetUser(int userId);
+        public bool ChangePassWord(UserChangePassWordDto userData);
         public List<RoleDto> GetListPermissions();
-        public List<UserData> GetAllUsers();
+        public List<UserDataDto> GetAllUsers();
     }
 }

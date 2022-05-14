@@ -2,7 +2,11 @@
 {
     public class Constant
     {
+        public const string API_BASE = "api/v1";
         public const string INVALID_USER_CREDENTIALS = "INVALID_USER_CREDENTIALS";
+
+        public const string GET_LIST_PERMISSIONS_SUCCESSFULLY = "GET_LIST_PERMISSIONS_SUCCESSFULLY";
+        public const string GET_LIST_PERMISSIONS_FAILED = "GET_LIST_PERMISSIONS_FAILED";
 
         public const string DELETE_USER_SUCCESSFULLY = "DELETE_USER_SUCCESSFULLY";
         public const string DELETE_USER_FAILED = "DELETE_USER_FAILED";

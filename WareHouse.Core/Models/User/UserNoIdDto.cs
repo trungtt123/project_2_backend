@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace WareHouse.Core.Models
 {
     //model khi add user (chưa biết userId)
-    public class UserNoId
+    public class UserNoIdDto
     {
         public string UserName { get; set; }
         public string GivenName { get; set; }

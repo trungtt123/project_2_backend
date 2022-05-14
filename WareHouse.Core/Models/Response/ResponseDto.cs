@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WareHouse.Core.Models
 {
-    public class EmailAccount
+    public class ResponseDto
     {
-        public string EmailAddress { get; set; }
-        public string Password { get; set; }
+        public string message { get; set; }
+        public object data { get; set; }
     }
 }

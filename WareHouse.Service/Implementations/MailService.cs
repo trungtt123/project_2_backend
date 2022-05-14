@@ -13,7 +13,7 @@ namespace WareHouse.Service.Implementations
     public class MailService : IMailService
     {
        
-        public async Task<bool> SendMail(EmailForm emailForm, EmailAccount systemEmail) 
+        public async Task<bool> SendMail(EmailFormDto emailForm, EmailAccountDto systemEmail) 
         {
             try
             {

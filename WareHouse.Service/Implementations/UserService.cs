@@ -25,7 +25,7 @@ namespace WareHouse.Service.Implementations
             _iconfiguration = iconfiguration;
             _mailService = mailService;
         }
-        public List<UserData> GetAllUsers()
+        public List<UserDataDto> GetAllUsers()
         {
             var users = _userRepository.GetAllUsers();
             var config = new MapperConfiguration(cfg =>
@@ -34,10 +34,10 @@ namespace WareHouse.Service.Implementations
             });
             var mapper = config.CreateMapper();
 
-            List<UserData> arr = mapper.Map<List<UserEntity>, List<UserData>>(users);
+            List<UserDataDto> arr = mapper.Map<List<UserEntity>, List<UserDataDto>>(users);
             return arr;
         }
-        public UserDto Authenticate(UserLogin userLogin)
+        public UserDto Authenticate(UserLoginDto userLogin)
         {
 
             var user = _userRepository.GetUser(userLogin.UserName);
@@ -50,13 +50,13 @@ namespace WareHouse.Service.Implementations
 
             var claims = new[]
         {
-            new Claim(ClaimTypes.NameIdentifier, user.UserName),
+            new Claim("username", user.UserName),
 
-            new Claim(ClaimTypes.GivenName, user.GivenName),
+            new Claim("givenname", user.GivenName),
 
-            new Claim(ClaimTypes.Surname, user.SurName),
+            new Claim("surname", user.SurName),
 
-            new Claim(ClaimTypes.Role, user.RoleId.ToString()),
+            new Claim("role", user.RoleId.ToString()),
 
         };
             var token = new JwtSecurityToken
@@ -87,7 +87,7 @@ namespace WareHouse.Service.Implementations
             return userDto;
         }
 
-        public UserInfomation GetUser(int userId)
+        public UserInfomationDto GetUser(int userId)
         {
             UserEntity user = _userRepository.GetUser(userId);
 
@@ -100,14 +100,17 @@ namespace WareHouse.Service.Implementations
 
             var mapper = config.CreateMapper();
 
-            var userInfomation = mapper.Map<UserEntity, UserInfomation>(user);
+            var userInfomation = mapper.Map<UserEntity, UserInfomationDto>(user);
 
             return userInfomation;
         }
-        public UserInfomation CreateUser(UserNoId user)
+        public UserInfomationDto CreateUser(UserNoIdDto user)
         {
+            var userTmp = _userRepository.GetUser(user.UserName);
+            if (userTmp != null) return null;
+
             UserEntity userEntity;
-            UserInfomation userInfomation;
+            UserInfomationDto userInfomation;
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new MappingProfile());
@@ -115,8 +118,8 @@ namespace WareHouse.Service.Implementations
 
             var mapper = config.CreateMapper();
 
-            userEntity = mapper.Map<UserNoId, UserEntity>(user);
-            userInfomation = mapper.Map<UserNoId, UserInfomation>(user);
+            userEntity = mapper.Map<UserNoIdDto, UserEntity>(user);
+            userInfomation = mapper.Map<UserNoIdDto, UserInfomationDto>(user);
 
             string password = Helpers.RandomString(Constant.RANDOM_DEFAULT_PASSWORD_LENGTH);
 
@@ -129,14 +132,14 @@ namespace WareHouse.Service.Implementations
             if (userResponse != null)
             {
 
-                var email = new EmailForm 
+                var email = new EmailFormDto 
                 { 
                     EmailFrom = Constant.SYSTEM_EMAIL_ADDRESS, 
                     EmailTo = user.Email, 
                     Subject = "Create Account Successfully", 
                     Body = "Username: <b>" + user.UserName + "</b> <br /> Password: <b>" + password + "</b>" 
                 };
-                var systemEmail = new EmailAccount { EmailAddress = Constant.SYSTEM_EMAIL_ADDRESS, Password = Constant.SYSTEM_EMAIL_PASSWORD };
+                var systemEmail = new EmailAccountDto { EmailAddress = Constant.SYSTEM_EMAIL_ADDRESS, Password = Constant.SYSTEM_EMAIL_PASSWORD };
                 var task = _mailService.SendMail(email, systemEmail);
                 task.Wait();
                 var kt = task.Result;
@@ -148,7 +151,7 @@ namespace WareHouse.Service.Implementations
             return null;
         }
 
-        public bool UpdateUser(UserUpdate newUserData)
+        public bool UpdateUser(UserUpdateDto newUserData)
         {
             
 
@@ -161,7 +164,7 @@ namespace WareHouse.Service.Implementations
 
             var mapper = config.CreateMapper();
 
-            userEntity = mapper.Map<UserUpdate, UserEntity>(newUserData);
+            userEntity = mapper.Map<UserUpdateDto, UserEntity>(newUserData);
            
 
             return _userRepository.UpdateUser(userEntity);
@@ -185,8 +188,9 @@ namespace WareHouse.Service.Implementations
             List<RoleDto> arrPermissionDto = mapper.Map<List<RoleEntity>, List<RoleDto>>(arrPermissionEntity);
             return arrPermissionDto;
         }
-        public bool ChangePassWord(UserChangePassWord userData)
+        public bool ChangePassWord(UserChangePassWordDto userData)
         {
+            
             var user = _userRepository.GetUser(userData.UserName);
 
             if (user == null) return false;

@@ -7,12 +7,12 @@ namespace WareHouse.Core.Models
         public MappingProfile()
         {
             CreateMap<UserEntity, UserDto>();
-            CreateMap<UserEntity, UserInfomation>();
-            CreateMap<UserEntity, UserData>();
-            CreateMap<UserNoId, UserEntity>();
-            CreateMap<UserNoId, UserInfomation>();
-            CreateMap<UserUpdate, UserInfomation>();
-            CreateMap<UserUpdate, UserEntity>();
+            CreateMap<UserEntity, UserInfomationDto>();
+            CreateMap<UserEntity, UserDataDto>();
+            CreateMap<UserNoIdDto, UserEntity>();
+            CreateMap<UserNoIdDto, UserInfomationDto>();
+            CreateMap<UserUpdateDto, UserInfomationDto>();
+            CreateMap<UserUpdateDto, UserEntity>();
             CreateMap<RoleEntity, RoleDto>();
         }
     }

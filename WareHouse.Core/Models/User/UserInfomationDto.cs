@@ -2,7 +2,7 @@
 namespace WareHouse.Core.Models
 {
     // user sau khi được tạo (thông báo cho admin)
-    public class UserInfomation
+    public class UserInfomationDto
     {
         public int UserId { get; set; }
         public string UserName { get; set; }

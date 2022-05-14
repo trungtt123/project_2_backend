@@ -1,7 +1,7 @@
 ﻿
 namespace WareHouse.Core.Models
 {
-    public class UserChangePassWord
+    public class UserChangePassWordDto
     {    
         public string UserName { get; set; }
         public string OldPassword { get; set; }

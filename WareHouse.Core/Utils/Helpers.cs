@@ -27,7 +27,7 @@ namespace WareHouse.Core.Utils
             if (string.IsNullOrEmpty(userName)) return true;
             return false;
         }
-        public static bool CheckValidUserData(UserNoId userData)
+        public static bool CheckValidUserData(UserNoIdDto userData)
         {
             if (string.IsNullOrEmpty(userData.UserName)
               || string.IsNullOrEmpty(userData.SurName)

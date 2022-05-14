@@ -9,6 +9,6 @@ namespace WareHouse.Service.Interfaces
 {
     public interface IMailService
     {
-        public Task<bool> SendMail(EmailForm email, EmailAccount systemEmail);
+        public Task<bool> SendMail(EmailFormDto email, EmailAccountDto systemEmail);
     }
 }

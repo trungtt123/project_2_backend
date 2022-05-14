@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WareHouse.Core.Models
 {
-    public class EmailForm
+    public class EmailFormDto
     {
         public string EmailFrom { get; set; }
         public string EmailTo { get; set; }
