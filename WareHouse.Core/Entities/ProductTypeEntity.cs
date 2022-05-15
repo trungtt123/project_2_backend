@@ -5,8 +5,8 @@ namespace WareHouse.Core.Entities
     [Table("producttype")]
     public class ProductTypeEntity
     {
-        //public int UserId { get; set; }
         [Key]
+        [Required]
         public int ProductTypeId { get; set; }
         public string ProductTypeName{ get; set; }
 

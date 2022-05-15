@@ -29,6 +29,24 @@
         public const string SYSTEM_EMAIL_ADDRESS = "trungvippro10x123@gmail.com";
         public const string SYSTEM_EMAIL_PASSWORD = "trungtt123";
 
+        public const string GET_PRODUCT_TYPE_SUCCESSFULLY = "GET_PRODUCT_TYPE_SUCCESSFULLY";
+        public const string GET_PRODUCT_TYPE_FAILED = "GET_PRODUCT_TYPE_FAILED";
+
+        public const string GET_LIST_PRODUCT_TYPES_SUCCESSFULLY = "GET_LIST_PRODUCT_TYPES_SUCCESSFULLY";
+        public const string GET_LIST_PRODUCT_TYPES_FAILED = "GET_LIST_PRODUCT_TYPES_FAILED";
+
+        public const string CREATE_PRODUCT_TYPE_SUCCESSFULLY = "CREATE_PRODUCT_TYPE_SUCCESSFULLY";
+        public const string CREATE_PRODUCT_TYPE_FAILED = "CREATE_PRODUCT_TYPE_FAILED";
+
+        public const string UPDATE_PRODUCT_TYPE_SUCCESSFULLY = "UPDATE_PRODUCT_TYPE_SUCCESSFULLY";
+        public const string UPDATE_PRODUCT_TYPE_FAILED = "UPDATE_PRODUCT_TYPE_FAILED";
+
+        public const string DELETE_PRODUCT_TYPE_SUCCESSFULLY = "DELETE_PRODUCT_TYPE_SUCCESSFULLY";
+        public const string DELETE_PRODUCT_TYPE_FAILED = "DELETE_PRODUCT_TYPE_FAILED";
+
+
+
+
         public const string USER_NOT_FOUND = "USER_NOT_FOUND";
         public const string USER_ALREADY_EXISTS = "USER_ALREADY_EXISTS";
         public const string INVALID_INPUT = "INVALID_INPUT";

@@ -64,6 +64,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IUserRepository, UserRepository>();
 builder.Services.AddSingleton<IMailService, MailService>();
+builder.Services.AddSingleton<IProductTypeRepository, ProductTypeRepository>();
+builder.Services.AddSingleton<IProductTypeService, ProductTypeService>();
 //builder.Services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest).AddApplicationPart(typeof(UserController).Assembly);
 builder.Services.AddHttpClient();
 
