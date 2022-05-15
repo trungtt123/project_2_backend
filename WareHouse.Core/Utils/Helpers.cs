@@ -1,6 +1,9 @@
 ﻿using WareHouse.Core.Models;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace WareHouse.Core.Utils
 {
@@ -14,9 +17,9 @@ namespace WareHouse.Core.Utils
             return new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-        public static bool CheckEmptyOrNullUserData(string userName, string passWord)
+        public static bool CheckEmptyOrNullUserData(string userName, string password)
         {
-            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(passWord)) return true;
+            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password)) return true;
             return false;
         }
 
@@ -27,7 +30,7 @@ namespace WareHouse.Core.Utils
             if (string.IsNullOrEmpty(userName)) return true;
             return false;
         }
-        public static bool CheckValidUserData(UserNoId userData)
+        public static bool CheckValidUserData(UserNoIdDto userData)
         {
             if (string.IsNullOrEmpty(userData.UserName)
               || string.IsNullOrEmpty(userData.SurName)
@@ -58,22 +61,31 @@ namespace WareHouse.Core.Utils
 
         }
 
-        public static string GetHashPassWord(string passWord)
+        public static string GetHashPassword(string password)
         {
-            string passWordHashed = BCrypt.Net.BCrypt.HashPassword(passWord);
-            return passWordHashed;
+            string passwordHashed = BCrypt.Net.BCrypt.HashPassword(password);
+            return passwordHashed;
         }
 
-        public static bool IsValidPassWord(string oPassWord, string passWord)
+        public static bool IsValidPassWord(string oPassword, string password)
         {
             try
             {
-                return BCrypt.Net.BCrypt.Verify(oPassWord, passWord);
+                return BCrypt.Net.BCrypt.Verify(oPassword, password);
             }
             catch (Exception e)
             {
                 return false;
             }
+        }
+        public static string DecodeJwt(string jwt, string type)
+        {
+            
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(jwt);
+            var tokenS = jsonToken as JwtSecurityToken;
+            var data = tokenS.Claims.First(claim => claim.Type == type).Value;
+            return data;
         }
     }
 }

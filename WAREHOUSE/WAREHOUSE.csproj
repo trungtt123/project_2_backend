@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WareHouse.Controller\WareHouse.Controller.csproj" />
     <ProjectReference Include="..\WareHouse.Core\WareHouse.Core.csproj" />
     <ProjectReference Include="..\WareHouse.Repository\WareHouse.Repository.csproj" />
     <ProjectReference Include="..\WareHouse.Service\WareHouse.Service.csproj" />

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Service\\WareHouse.Service.csproj": {}
+    "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Service\\WareHouse.Service.csproj": {}
   },
   "projects": {
-    "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj": {
+    "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj",
+        "projectUniqueName": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj",
         "projectName": "WareHouse.Core",
-        "projectPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj",
+        "projectPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj",
         "packagesPath": "C:\\Users\\bruce\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Core\\obj\\",
+        "outputPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\bruce\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -80,14 +80,14 @@
         }
       }
     },
-    "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Repository\\WareHouse.Repository.csproj": {
+    "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Repository\\WareHouse.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Repository\\WareHouse.Repository.csproj",
+        "projectUniqueName": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Repository\\WareHouse.Repository.csproj",
         "projectName": "WareHouse.Repository",
-        "projectPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Repository\\WareHouse.Repository.csproj",
+        "projectPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Repository\\WareHouse.Repository.csproj",
         "packagesPath": "C:\\Users\\bruce\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Repository\\obj\\",
+        "outputPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\bruce\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -104,8 +104,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj": {
-                "projectPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj"
+              "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj": {
+                "projectPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj"
               }
             }
           }
@@ -138,14 +138,14 @@
         }
       }
     },
-    "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Service\\WareHouse.Service.csproj": {
+    "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Service\\WareHouse.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Service\\WareHouse.Service.csproj",
+        "projectUniqueName": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Service\\WareHouse.Service.csproj",
         "projectName": "WareHouse.Service",
-        "projectPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Service\\WareHouse.Service.csproj",
+        "projectPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Service\\WareHouse.Service.csproj",
         "packagesPath": "C:\\Users\\bruce\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Service\\obj\\",
+        "outputPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\bruce\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -162,11 +162,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj": {
-                "projectPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj"
+              "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj": {
+                "projectPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj"
               },
-              "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Repository\\WareHouse.Repository.csproj": {
-                "projectPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\PROJECT II\\project_2_backend\\WareHouse.Repository\\WareHouse.Repository.csproj"
+              "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Repository\\WareHouse.Repository.csproj": {
+                "projectPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Repository\\WareHouse.Repository.csproj"
               }
             }
           }

@@ -2,20 +2,12 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using WareHouse.Core.Models;
 using WareHouse.Service.Interfaces;
 using WareHouse.Service.Implementations;
 using WareHouse.Repository.Interfaces;
 using WareHouse.Repository.Implementations;
-using WareHouse.Controller;
-using WareHouse.Core.Utils;
-using WareHouse;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using System.Text;
-using System.Reflection;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
-using Microsoft.AspNetCore.Mvc;
+
 
 // InitDatabase
 //InitDatabase.ResetDb();
@@ -71,7 +63,10 @@ builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IUserRepository, UserRepository>();
-builder.Services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest).AddApplicationPart(typeof(UserController).Assembly);
+builder.Services.AddSingleton<IMailService, MailService>();
+builder.Services.AddSingleton<IProductTypeRepository, ProductTypeRepository>();
+builder.Services.AddSingleton<IProductTypeService, ProductTypeService>();
+//builder.Services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest).AddApplicationPart(typeof(UserController).Assembly);
 builder.Services.AddHttpClient();
 
 

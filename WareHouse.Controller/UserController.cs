@@ -9,7 +9,7 @@ namespace WareHouse.Controller
 {
     [Authorize]
     [ApiController]
-    [Route("api")]
+    [Route("api/user")]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -26,7 +26,10 @@ namespace WareHouse.Controller
             if (user == null)
                 return BadRequest(new { message = Constant.USERNAME_OR_PASSWORD_IS_INCORRECT });
 
+
+
             return Ok(new { message = Constant.AUTHENTICATION_SUCCESSFULLY, data = user});
+
         }
         
         [HttpGet("getlistpermissions")]
@@ -39,7 +42,7 @@ namespace WareHouse.Controller
         }
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
-        [HttpPost("adduser")]
+        [HttpPost("add")]
         public IActionResult AddUser([FromBody] List<UserNoId> users)
         {
             var arr = _userService.AddUser(users);
@@ -49,7 +52,7 @@ namespace WareHouse.Controller
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
-        [HttpPut("updateuser")]
+        [HttpPut("update")]
         public IActionResult UpdateUser([FromBody] List<UserUpdate> newUsers)
         {
             var arr = _userService.UpdateUser(newUsers);
@@ -59,7 +62,7 @@ namespace WareHouse.Controller
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
-        [HttpPost("deleteuser")]
+        [HttpPost("delete")]
         public IActionResult DeleteUser([FromBody] List<int> listUserId)
         {
             var kt = _userService.DeleteUser(listUserId);

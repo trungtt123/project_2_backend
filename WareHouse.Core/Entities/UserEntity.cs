@@ -15,7 +15,7 @@ namespace WareHouse.Core.Entities
         
         [StringLength(100)]
         [Required]
-        public string PassWord { get; set; }
+        public string Password { get; set; }
         
         [StringLength(100)]
         [Required]
@@ -25,7 +25,9 @@ namespace WareHouse.Core.Entities
         [Required]
         public string SurName { get; set; }
         public int RoleId { get; set; }
-        
+        public string Email { get; set; } 
+       
+
         [ForeignKey("RoleId")]
         public RoleEntity Role { get; set; }
         public ICollection<OutputInfoEntity> PickerOutputInfo { get; set; } = new List<OutputInfoEntity>();

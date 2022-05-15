@@ -1,13 +1,16 @@
 ﻿
 namespace WareHouse.Core.Models
 {
-    //user update
-    public class UserUpdate
+    // user sau khi được tạo (thông báo cho admin)
+    public class UserInfomationDto
     {
         public int UserId { get; set; }
+        public string UserName { get; set; }
         public string GivenName { get; set; }
         public string SurName { get; set; }
         public int RoleId { get; set; }
+        
+        public string Email { get; set; }
 
     }
 }
