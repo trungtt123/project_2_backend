@@ -5,6 +5,9 @@
         public const string API_BASE = "api/v1";
         public const string INVALID_USER_CREDENTIALS = "INVALID_USER_CREDENTIALS";
 
+        public const string VALID_TOKEN = "VALID_TOKEN";
+        public const string INVALID_TOKEN = "INVALID_TOKEN";
+
         public const string GET_LIST_PERMISSIONS_SUCCESSFULLY = "GET_LIST_PERMISSIONS_SUCCESSFULLY";
         public const string GET_LIST_PERMISSIONS_FAILED = "GET_LIST_PERMISSIONS_FAILED";
 
@@ -43,6 +46,21 @@
 
         public const string DELETE_PRODUCT_TYPE_SUCCESSFULLY = "DELETE_PRODUCT_TYPE_SUCCESSFULLY";
         public const string DELETE_PRODUCT_TYPE_FAILED = "DELETE_PRODUCT_TYPE_FAILED";
+
+        public const string GET_PRODUCT_SUCCESSFULLY = "GET_PRODUCT_SUCCESSFULLY";
+        public const string GET_PRODUCT_FAILED = "GET_PRODUCT_FAILED";
+
+        public const string GET_LIST_PRODUCTS_SUCCESSFULLY = "GET_LIST_PRODUCTS_SUCCESSFULLY";
+        public const string GET_LIST_PRODUCTS_FAILED = "GET_LIST_PRODUCTS_FAILED";
+
+        public const string CREATE_PRODUCT_SUCCESSFULLY = "CREATE_PRODUCT_SUCCESSFULLY";
+        public const string CREATE_PRODUCT_FAILED = "CREATE_PRODUCT_FAILED";
+
+        public const string UPDATE_PRODUCT_SUCCESSFULLY = "UPDATE_PRODUCT_SUCCESSFULLY";
+        public const string UPDATE_PRODUCT_FAILED = "UPDATE_PRODUCT_FAILED";
+
+        public const string DELETE_PRODUCT_SUCCESSFULLY = "DELETE_PRODUCT_SUCCESSFULLY";
+        public const string DELETE_PRODUCT_FAILED = "DELETE_PRODUCT_FAILED";
 
 
 

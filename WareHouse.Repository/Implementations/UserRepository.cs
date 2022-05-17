@@ -10,6 +10,7 @@ namespace WareHouse.Repository.Implementations
 {
     public class UserRepository : IUserRepository
     {
+       
         public UserEntity GetUser(string userName)
         {
             try

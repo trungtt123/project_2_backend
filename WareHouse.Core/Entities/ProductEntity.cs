@@ -7,7 +7,6 @@ namespace WareHouse.Core.Entities
     {
         //public int UserId { get; set; }
         [Key]
-        [Required]
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public string ProductOrgin { get; set; }
@@ -16,7 +15,6 @@ namespace WareHouse.Core.Entities
 
         [ForeignKey("ProductTypeId")]
         public ProductTypeEntity ProductType { get; set; }
-
         public string ProductUnit { get; set; }
     }
 }

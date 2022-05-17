@@ -5,12 +5,15 @@ using WareHouse.Core.Models;
 using WareHouse.Core.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.IdentityModel.Tokens.Jwt;
+using WareHouse.Controllers;
 
 namespace WareHouse
 {
+    [VerifyRoleFilter]
     [Authorize]
     [ApiController]
     [Route(Constant.API_BASE)]
+    
     public class ProductTypeController : ControllerBase
     {
         private readonly IProductTypeService _iproductTypeService;
@@ -31,11 +34,11 @@ namespace WareHouse
             {
 
                 response.message = Constant.GET_LIST_PRODUCT_TYPES_FAILED;
-                return BadRequest(response);
+                return BadRequest(Helpers.SerializeObject(response));
             }
             response.message = Constant.GET_LIST_PRODUCT_TYPES_SUCCESSFULLY;
             response.data = productTypes;
-            return Ok(response);
+            return Ok(Helpers.SerializeObject(response));
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
@@ -49,11 +52,11 @@ namespace WareHouse
             {
                 
                 response.message = Constant.GET_PRODUCT_TYPE_FAILED;
-                return BadRequest(response);
+                return BadRequest(Helpers.SerializeObject(response));
             }
             response.message = Constant.GET_PRODUCT_TYPE_SUCCESSFULLY;
             response.data = productType;
-            return Ok(response);
+            return Ok(Helpers.SerializeObject(response));
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
@@ -66,11 +69,11 @@ namespace WareHouse
 
             if (!productType)
             {
-                response.message = Constant.CREATE_USER_FAILED;
+                response.message = Constant.CREATE_PRODUCT_TYPE_FAILED;
                 return BadRequest(response);
             }
-            response.message = Constant.CREATE_USER_SUCCESSFULLY;
-            return Ok(response);
+            response.message = Constant.CREATE_PRODUCT_TYPE_SUCCESSFULLY;
+            return Ok(Helpers.SerializeObject(Helpers.SerializeObject(response)));
             
         }
 
@@ -85,10 +88,10 @@ namespace WareHouse
             if (!kt)
             {
                 response.message = Constant.UPDATE_PRODUCT_TYPE_FAILED;
-                return BadRequest(response);
+                return BadRequest(Helpers.SerializeObject(response));
             }
             response.message = Constant.UPDATE_PRODUCT_TYPE_SUCCESSFULLY;
-            return Ok(response);
+            return Ok(Helpers.SerializeObject(response));
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
@@ -102,13 +105,10 @@ namespace WareHouse
             if (kt) {
                 
                 response.message = Constant.DELETE_PRODUCT_TYPE_SUCCESSFULLY;
-                return Ok(response);
+                return Ok(Helpers.SerializeObject(response));
             }
             response.message = Constant.DELETE_PRODUCT_TYPE_FAILED;
-            return BadRequest(response);                                                                              
+            return BadRequest(Helpers.SerializeObject(response));                                                                              
         }
-
-       
-       
     }
 }

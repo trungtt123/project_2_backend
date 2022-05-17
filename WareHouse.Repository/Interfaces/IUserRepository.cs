@@ -10,6 +10,7 @@ namespace WareHouse.Repository.Interfaces
 {
     public interface IUserRepository
     {
+       
         public UserEntity GetUser(string userName);
 
         public UserEntity GetUser(int userId);

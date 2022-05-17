@@ -4,38 +4,42 @@ using WareHouse.Service.Interfaces;
 using WareHouse.Core.Models;
 using WareHouse.Core.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System.IdentityModel.Tokens.Jwt;
+using WareHouse.Controllers;
 
 namespace WareHouse
 {
+    [VerifyRoleFilter]
     [Authorize]
     [ApiController]
     [Route(Constant.API_BASE)]
+    
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
         public UserController(IUserService userService)
         {
             _userService = userService;
-
         }
-        //Non-authentication
-        [AllowAnonymous]
-        [HttpPost("login")]
-        public IActionResult Authenticate([FromBody] UserLoginDto userData)
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
+        Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
+        [HttpGet("verifytoken")]
+        public IActionResult VerifyToken()
         {
-            var user = _userService.Authenticate(userData);
             var response = new ResponseDto();
-
-            if (user == null)
+            response.message = Constant.INVALID_TOKEN;
+            try
             {
-                response.message = Constant.USERNAME_OR_PASSWORD_IS_INCORRECT;
-                return BadRequest(response);
+                var jwt = Request.Headers["Authorization"].ToString().Replace("Bearer ", string.Empty);
+                var kt = _userService.VerifyToken(jwt);
+                if (!kt) return new UnauthorizedResult();
+                response.message = Constant.VALID_TOKEN;
+                return Ok(Helpers.SerializeObject(response));
             }
-            response.message = Constant.AUTHENTICATION_SUCCESSFULLY;
-            response.data = user;
-            return Ok(response);
-
+            catch (Exception ex)
+            {
+                return new UnauthorizedResult();
+            }
         }
 
         [HttpGet("getlistpermissions")]
@@ -48,12 +52,12 @@ namespace WareHouse
             {
                 response.message = Constant.GET_LIST_PERMISSIONS_SUCCESSFULLY;
                 response.data = listPermissions;
-                return Ok(response);
+                return Ok(Helpers.SerializeObject(response));
             }
             else
             {
                 response.message = Constant.GET_LIST_PERMISSIONS_FAILED;
-                return BadRequest(response);
+                return BadRequest(Helpers.SerializeObject(response));
             }
         }
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
@@ -67,11 +71,11 @@ namespace WareHouse
             {
                 
                 response.message = Constant.GET_USER_FAILED;
-                return BadRequest(response);
+                return BadRequest(Helpers.SerializeObject(response));
             }
             response.message = Constant.GET_USER_SUCCESSFULLY;
             response.data = user;
-            return Ok(response);
+            return Ok(Helpers.SerializeObject(response));
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
@@ -85,11 +89,11 @@ namespace WareHouse
             if (userResponse == null)
             {
                 response.message = Constant.CREATE_USER_FAILED;
-                return BadRequest(response);
+                return BadRequest(Helpers.SerializeObject(response));
             }
             response.message = Constant.CREATE_USER_SUCCESSFULLY;
             response.data = userResponse;
-            return Ok(response);
+            return Ok(Helpers.SerializeObject(response));
             
         }
 
@@ -104,10 +108,10 @@ namespace WareHouse
             if (!kt)
             {
                 response.message = Constant.UPDATE_USER_FAILED;
-                return BadRequest(response);
+                return BadRequest(Helpers.SerializeObject(response));
             }
             response.message = Constant.UPDATE_USER_SUCCESSFULLY;
-            return Ok(response);
+            return Ok(Helpers.SerializeObject(response));
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
@@ -121,10 +125,10 @@ namespace WareHouse
             if (kt) {
                 
                 response.message = Constant.DELETE_USER_SUCCESSFULLY;
-                return Ok(response);
+                return Ok(Helpers.SerializeObject(response));
             }
             response.message = Constant.DELETE_USER_FAILED;
-            return BadRequest(response);                                                                              
+            return BadRequest(Helpers.SerializeObject(response));                                                                              
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
@@ -138,11 +142,11 @@ namespace WareHouse
             if (users == null)
             {
                 response.message = Constant.GET_ALL_USERS_FAILED;
-                return BadRequest(response);
+                return BadRequest(Helpers.SerializeObject(response));
             }
             response.message = Constant.GET_ALL_USERS_SUCCESSFULLY;
             response.data = users;
-            return Ok(response);
+            return Ok(Helpers.SerializeObject(response));
         }
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
@@ -159,10 +163,10 @@ namespace WareHouse
             if (!kt)
             {
                 response.message = Constant.CHANGE_PASSWORD_FAILED;
-                return BadRequest(response);
+                return BadRequest(Helpers.SerializeObject(response));
             }
             response.message = Constant.CHANGE_PASSWORD_SUCCESSFULLY;
-            return Ok(response);
+            return Ok(Helpers.SerializeObject(response));
         }
     }
 }
