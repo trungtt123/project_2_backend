@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,8 @@ namespace WareHouse.Core.Models
     public class ResponseDto
     {
         public string message { get; set; }
+
+        [JsonProperty("data", NullValueHandling = NullValueHandling.Ignore)]
         public object data { get; set; }
     }
 }

@@ -220,3 +220,4 @@ C:\Users\bruce\OneDrive\Desktop\C#\New folder\project_2_backend\WAREHOUSE\obj\De
 C:\Users\bruce\OneDrive\Desktop\C#\New folder\project_2_backend\WAREHOUSE\obj\Debug\net6.0\WareHouse.csproj.CopyComplete
 C:\Users\bruce\OneDrive\Desktop\C#\New folder\project_2_backend\WAREHOUSE\obj\Debug\net6.0\WareHouse.genruntimeconfig.cache
 C:\Users\bruce\OneDrive\Desktop\C#\New folder\project_2_backend\WAREHOUSE\obj\Debug\net6.0\ref\WareHouse.dll
+C:\Users\bruce\OneDrive\Desktop\C#\New folder\project_2_backend\WAREHOUSE\bin\Debug\net6.0\Newtonsoft.Json.dll

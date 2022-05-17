@@ -25,6 +25,23 @@ namespace WareHouse.Service.Implementations
             _iconfiguration = iconfiguration;
             _mailService = mailService;
         }
+        public bool VerifyToken(string token)
+        {
+            try
+            {
+                var userId = Int32.Parse(Helpers.DecodeJwt(token, "userid"));
+                var roleId = Int32.Parse(Helpers.DecodeJwt(token, "role"));
+                var user = _userRepository.GetUser(userId);
+               
+                
+                if (user == null || user.RoleId != roleId) return false;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         public List<UserDataDto> GetAllUsers()
         {
             var users = _userRepository.GetAllUsers();
@@ -50,7 +67,11 @@ namespace WareHouse.Service.Implementations
 
             var claims = new[]
         {
+            
+
             new Claim("username", user.UserName),
+
+            new Claim("userid", user.UserId.ToString()),
 
             new Claim("givenname", user.GivenName),
 

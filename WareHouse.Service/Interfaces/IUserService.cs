@@ -10,6 +10,7 @@ namespace WareHouse.Service.Interfaces
 {
     public interface IUserService
     {
+        public bool VerifyToken(string token);
         public UserDto Authenticate(UserLoginDto userLogin);
         public UserInfomationDto CreateUser(UserNoIdDto user);
         public bool UpdateUser(UserUpdateDto newUserData);

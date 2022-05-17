@@ -63,12 +63,14 @@ namespace WareHouse.Service.Implementations
         public bool UpdateProductType(int productTypeId, string newProductTypeName)
         {
             var productTypeEntity = _productTypeRepository.GetProductType(productTypeId);
+            if (productTypeEntity == null) return false;
             productTypeEntity.ProductTypeName = newProductTypeName;
             return _productTypeRepository.UpdateProductType(productTypeEntity);
         }
         public bool DeleteProductType(int productTypeId)
         {
             var productTypeEntity = _productTypeRepository.GetProductType(productTypeId);
+            if (productTypeEntity == null) return false;
             return _productTypeRepository.DeleteProductType(productTypeEntity);
         }
 

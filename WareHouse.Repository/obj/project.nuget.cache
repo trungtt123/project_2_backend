@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "hNIBhwTeo1Z92RIknY2twTjZZSymogtuPWQfRIRrcxK4JHwty5ySpIo/5lHPLe+0s11ffzzyGONkrmONIgHdbw==",
+  "dgSpecHash": "nLl2mNxvIZ2G1zkEJDN47jHKznPI0zs7pASuBHrPeos3I2gZPtX2xCrXtkyv5Yv97Df/lW4PyGuC9FfGDk2wyw==",
   "success": true,
   "projectFilePath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Repository\\WareHouse.Repository.csproj",
   "expectedPackageFiles": [
@@ -34,6 +34,7 @@
     "C:\\Users\\bruce\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\bruce\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\bruce\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\bruce\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\bruce\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\bruce\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
     "C:\\Users\\bruce\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",

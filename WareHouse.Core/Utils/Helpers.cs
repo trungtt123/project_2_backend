@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.IdentityModel.Tokens.Jwt;
+using Newtonsoft.Json;
 
 namespace WareHouse.Core.Utils
 {
@@ -86,6 +87,14 @@ namespace WareHouse.Core.Utils
             var tokenS = jsonToken as JwtSecurityToken;
             var data = tokenS.Claims.First(claim => claim.Type == type).Value;
             return data;
+        }
+
+        public static object SerializeObject(object o)
+        {
+            return JsonConvert.SerializeObject(o, Formatting.Indented, new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            });
         }
     }
 }
