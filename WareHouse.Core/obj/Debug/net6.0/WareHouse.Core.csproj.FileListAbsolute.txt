@@ -34,3 +34,15 @@ C:\Users\bruce\OneDrive\Desktop\C#\New folder\project_2_backend\WareHouse.Core\o
 C:\Users\bruce\OneDrive\Desktop\C#\New folder\project_2_backend\WareHouse.Core\obj\Debug\net6.0\refint\WareHouse.Core.dll
 C:\Users\bruce\OneDrive\Desktop\C#\New folder\project_2_backend\WareHouse.Core\obj\Debug\net6.0\WareHouse.Core.pdb
 C:\Users\bruce\OneDrive\Desktop\C#\New folder\project_2_backend\WareHouse.Core\obj\Debug\net6.0\ref\WareHouse.Core.dll
+C:\Users\bruce\OneDrive\Desktop\project_2\project_2_backend\WareHouse.Core\bin\Debug\net6.0\WareHouse.Core.deps.json
+C:\Users\bruce\OneDrive\Desktop\project_2\project_2_backend\WareHouse.Core\bin\Debug\net6.0\WareHouse.Core.dll
+C:\Users\bruce\OneDrive\Desktop\project_2\project_2_backend\WareHouse.Core\bin\Debug\net6.0\WareHouse.Core.pdb
+C:\Users\bruce\OneDrive\Desktop\project_2\project_2_backend\WareHouse.Core\obj\Debug\net6.0\WareHouse.Core.csproj.AssemblyReference.cache
+C:\Users\bruce\OneDrive\Desktop\project_2\project_2_backend\WareHouse.Core\obj\Debug\net6.0\WareHouse.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bruce\OneDrive\Desktop\project_2\project_2_backend\WareHouse.Core\obj\Debug\net6.0\WareHouse.Core.AssemblyInfoInputs.cache
+C:\Users\bruce\OneDrive\Desktop\project_2\project_2_backend\WareHouse.Core\obj\Debug\net6.0\WareHouse.Core.AssemblyInfo.cs
+C:\Users\bruce\OneDrive\Desktop\project_2\project_2_backend\WareHouse.Core\obj\Debug\net6.0\WareHouse.Core.csproj.CoreCompileInputs.cache
+C:\Users\bruce\OneDrive\Desktop\project_2\project_2_backend\WareHouse.Core\obj\Debug\net6.0\WareHouse.Core.dll
+C:\Users\bruce\OneDrive\Desktop\project_2\project_2_backend\WareHouse.Core\obj\Debug\net6.0\refint\WareHouse.Core.dll
+C:\Users\bruce\OneDrive\Desktop\project_2\project_2_backend\WareHouse.Core\obj\Debug\net6.0\WareHouse.Core.pdb
+C:\Users\bruce\OneDrive\Desktop\project_2\project_2_backend\WareHouse.Core\obj\Debug\net6.0\ref\WareHouse.Core.dll

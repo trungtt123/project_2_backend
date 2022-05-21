@@ -1949,11 +1949,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj",
+      "projectUniqueName": "C:\\Users\\bruce\\OneDrive\\Desktop\\project_2\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj",
       "projectName": "WareHouse.Core",
-      "projectPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj",
+      "projectPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\project_2\\project_2_backend\\WareHouse.Core\\WareHouse.Core.csproj",
       "packagesPath": "C:\\Users\\bruce\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\C#\\New folder\\project_2_backend\\WareHouse.Core\\obj\\",
+      "outputPath": "C:\\Users\\bruce\\OneDrive\\Desktop\\project_2\\project_2_backend\\WareHouse.Core\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\bruce\\AppData\\Roaming\\NuGet\\NuGet.Config",

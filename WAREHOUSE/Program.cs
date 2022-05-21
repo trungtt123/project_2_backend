@@ -7,7 +7,7 @@ using WareHouse.Service.Implementations;
 using WareHouse.Repository.Interfaces;
 using WareHouse.Repository.Implementations;
 using System.Text;
-
+using WareHouse;
 
 // InitDatabase
 //InitDatabase.ResetDb();

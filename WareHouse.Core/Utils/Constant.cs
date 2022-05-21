@@ -81,7 +81,7 @@
 
 
         public const string CONNECTION_STRING = @"
-                Data Source=DESKTOP-834K9VO;
+                Data Source=localhost;
                 Initial Catalog=DBWAREHOUSE;
                 Integrated Security=True;
                 Connect Timeout=30;
