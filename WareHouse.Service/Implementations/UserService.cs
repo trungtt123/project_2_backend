@@ -57,11 +57,11 @@ namespace WareHouse.Service.Implementations
         public UserDto Authenticate(UserLoginDto userLogin)
         {
 
-            var user = _userRepository.GetUser(userLogin.UserName);
+            var user = _userRepository.GetUser(userLogin.userName);
 
             if (user == null) return null;
 
-            bool isValidPassWord = Helpers.IsValidPassWord(userLogin.Password, user.Password);
+            bool isValidPassWord = Helpers.IsValidPassWord(userLogin.password, user.Password);
 
             if (!isValidPassWord) return null;
 
@@ -101,9 +101,9 @@ namespace WareHouse.Service.Implementations
 
             UserDto userDto = mapper.Map<UserEntity, UserDto>(user);
 
-            userDto.Token = tokenString;
+            userDto.token = tokenString;
 
-            userDto.RoleId = user.RoleId;
+            userDto.roleId = user.RoleId;
 
             return userDto;
         }
@@ -127,7 +127,7 @@ namespace WareHouse.Service.Implementations
         }
         public UserInfomationDto CreateUser(UserNoIdDto user)
         {
-            var userTmp = _userRepository.GetUser(user.UserName);
+            var userTmp = _userRepository.GetUser(user.userName);
             if (userTmp != null) return null;
 
             UserEntity userEntity;
@@ -155,18 +155,18 @@ namespace WareHouse.Service.Implementations
 
                 var email = new EmailFormDto 
                 { 
-                    EmailFrom = Constant.SYSTEM_EMAIL_ADDRESS, 
-                    EmailTo = user.Email, 
-                    Subject = "Create Account Successfully", 
-                    Body = "Username: <b>" + user.UserName + "</b> <br /> Password: <b>" + password + "</b>" 
+                    emailFrom = Constant.SYSTEM_EMAIL_ADDRESS, 
+                    emailTo = user.email, 
+                    subject = "Create Account Successfully", 
+                    body = "Username: <b>" + user.userName + "</b> <br /> Password: <b>" + password + "</b>" 
                 };
-                var systemEmail = new EmailAccountDto { EmailAddress = Constant.SYSTEM_EMAIL_ADDRESS, Password = Constant.SYSTEM_EMAIL_PASSWORD };
+                var systemEmail = new EmailAccountDto { emailAddress = Constant.SYSTEM_EMAIL_ADDRESS, password = Constant.SYSTEM_EMAIL_PASSWORD };
                 var task = _mailService.SendMail(email, systemEmail);
                 task.Wait();
                 var kt = task.Result;
                 if (!kt) return null;
 
-                userInfomation.UserId = userResponse.UserId;
+                userInfomation.userId = userResponse.UserId;
                 return userInfomation;
             }
             return null;
@@ -212,15 +212,15 @@ namespace WareHouse.Service.Implementations
         public bool ChangePassWord(UserChangePassWordDto userData)
         {
             
-            var user = _userRepository.GetUser(userData.UserName);
+            var user = _userRepository.GetUser(userData.userName);
 
             if (user == null) return false;
 
-            bool isValidPassWord = Helpers.IsValidPassWord(userData.OldPassword, user.Password);
+            bool isValidPassWord = Helpers.IsValidPassWord(userData.oldPassword, user.Password);
 
             if (!isValidPassWord) return false;
 
-            bool kt = _userRepository.ChangePassWord(user.UserId, Helpers.GetHashPassword(userData.NewPassword));
+            bool kt = _userRepository.ChangePassWord(user.UserId, Helpers.GetHashPassword(userData.newPassword));
 
             return kt;
         }

@@ -4,12 +4,12 @@ namespace WareHouse.Core.Models
     //user lưu phía người dùng
     public class UserDto
     {
-        public int UserId { get; set; }
-        public string UserName { get; set; }
-        public string GivenName { get; set; }
-        public string SurName { get; set; }
-        public int RoleId { get; set; }
-        public string Token { get; set; }
-        public string Email { get; set; }
+        public int userId { get; set; }
+        public string userName { get; set; }
+        public string givenName { get; set; }
+        public string surName { get; set; }
+        public int roleId { get; set; }
+        public string token { get; set; }
+        public string email { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace WareHouse.Core.Models
 {
     public class ProductTypeDto
     {
-        public string ProductTypeId { get; set; }
-        public string ProductTypeName { get; set; }
+        public string productTypeId { get; set; }
+        public string productTypeName { get; set; }
     }
 }

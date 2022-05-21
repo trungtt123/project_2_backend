@@ -33,9 +33,9 @@ namespace WareHouse.Core.Utils
         }
         public static bool CheckValidUserData(UserNoIdDto userData)
         {
-            if (string.IsNullOrEmpty(userData.UserName)
-              || string.IsNullOrEmpty(userData.SurName)
-              || string.IsNullOrEmpty(userData.GivenName)
+            if (string.IsNullOrEmpty(userData.userName)
+              || string.IsNullOrEmpty(userData.surName)
+              || string.IsNullOrEmpty(userData.givenName)
 
                ) return true;
             return false;

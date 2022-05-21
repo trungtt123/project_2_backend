@@ -8,7 +8,7 @@ namespace WareHouse.Core.Models
 {
     public class EmailAccountDto
     {
-        public string EmailAddress { get; set; }
-        public string Password { get; set; }
+        public string emailAddress { get; set; }
+        public string password { get; set; }
     }
 }

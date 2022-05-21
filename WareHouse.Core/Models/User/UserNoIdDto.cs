@@ -5,11 +5,11 @@ namespace WareHouse.Core.Models
     //model khi add user (chưa biết userId)
     public class UserNoIdDto
     {
-        public string UserName { get; set; }
-        public string GivenName { get; set; }
-        public string SurName { get; set; }
-        public string Email { get; set; }
-        public int RoleId { get; set; }
+        public string userName { get; set; }
+        public string givenName { get; set; }
+        public string surName { get; set; }
+        public string email { get; set; }
+        public int roleId { get; set; }
 
     }
 }

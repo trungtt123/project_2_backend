@@ -17,17 +17,17 @@ namespace WareHouse.Service.Implementations
         {
             try
             {
-                var message = new MailMessage(emailForm.EmailFrom, emailForm.EmailTo, emailForm.Subject, emailForm.Body);
+                var message = new MailMessage(emailForm.emailFrom, emailForm.emailTo, emailForm.subject, emailForm.body);
                 message.BodyEncoding = System.Text.Encoding.UTF8;
                 message.SubjectEncoding = System.Text.Encoding.UTF8;
                 message.IsBodyHtml = true;
-                message.ReplyToList.Add(new MailAddress(emailForm.EmailFrom));
-                message.Sender = new MailAddress(emailForm.EmailFrom);
+                message.ReplyToList.Add(new MailAddress(emailForm.emailFrom));
+                message.Sender = new MailAddress(emailForm.emailFrom);
 
                 using var smtpClient = new SmtpClient("smtp.gmail.com");
                 smtpClient.Port = 587;
                 smtpClient.EnableSsl = true;
-                smtpClient.Credentials = new NetworkCredential(systemEmail.EmailAddress, systemEmail.Password);
+                smtpClient.Credentials = new NetworkCredential(systemEmail.emailAddress, systemEmail.password);
                 await smtpClient.SendMailAsync(message);
                 return true;
             }

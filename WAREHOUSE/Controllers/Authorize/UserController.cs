@@ -158,7 +158,7 @@ namespace WareHouse
             var jwt = Request.Headers["Authorization"].ToString().Replace("Bearer ", string.Empty);
             var userName = Helpers.DecodeJwt(jwt, "username");
 
-            if (userName == userData.UserName) kt = _userService.ChangePassWord(userData);
+            if (userName == userData.userName) kt = _userService.ChangePassWord(userData);
             var response = new ResponseDto();
             if (!kt)
             {
