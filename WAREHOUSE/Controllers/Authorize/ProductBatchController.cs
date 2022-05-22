@@ -14,100 +14,100 @@ namespace WareHouse
     [ApiController]
     [Route(Constant.API_BASE)]
     
-    public class ProductController : ControllerBase
+    public class ProductBatchController : ControllerBase
     {
-        private readonly IProductService _productService;
-        public ProductController(IProductService productService)
+        private readonly IProductBatchService _productBatchService;
+        public ProductBatchController(IProductBatchService productBatchService)
         {
-            _productService = productService;
+            _productBatchService = productBatchService;
 
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
-        [HttpGet("listproducts")]
-        public IActionResult GetListProducts()
+        [HttpGet("listproductbatches")]
+        public IActionResult GetListProductBatches()
         {
-            var products = _productService.GetListProducts();
+            var products = _productBatchService.GetListProductBatches();
             var response = new ResponseDto();
             if (products == null)
             {
 
-                response.message = Constant.GET_LIST_PRODUCTS_FAILED;
+                response.message = Constant.GET_LIST_PRODUCT_BATCHES_FAILED;
                 return BadRequest(Helpers.SerializeObject(response));
             }
-            response.message = Constant.GET_LIST_PRODUCTS_SUCCESSFULLY;
+            response.message = Constant.GET_LIST_PRODUCT_BATCHES_SUCCESSFULLY;
             response.data = products;
             return Ok(Helpers.SerializeObject(response));
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
-        [HttpGet("product")]
-        public IActionResult GetProduct(int productId)
+        [HttpGet("productbatch")]
+        public IActionResult GetProductBatch(int productBatchId)
         {
-            var product = _productService.GetProduct(productId);
+            var productBatch = _productBatchService.GetProductBatch(productBatchId);
             var response = new ResponseDto();
-            if (product == null)
+            if (productBatch == null)
             {
                 
-                response.message = Constant.GET_PRODUCT_FAILED;
+                response.message = Constant.GET_PRODUCT_BATCH_FAILED;
                 return BadRequest(Helpers.SerializeObject(response));
             }
-            response.message = Constant.GET_PRODUCT_SUCCESSFULLY;
-            response.data = product;
+            response.message = Constant.GET_PRODUCT_BATCH_SUCCESSFULLY;
+            response.data = productBatch;
             return Ok(Helpers.SerializeObject(response));
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
-        [HttpPost("product")]
-        public IActionResult CreateProduct([FromBody] ProductNoIdDto product)
+        [HttpPost("productbatch")]
+        public IActionResult CreateProductBatch([FromBody] ProductBatchNoIdDto productBatch)
         {
-            var kt = _productService.CreateProduct(product);
+            var kt = _productBatchService.CreateProductBatch(productBatch);
             var response = new ResponseDto();
 
             if (!kt)
             {
-                response.message = Constant.CREATE_PRODUCT_FAILED;
+                response.message = Constant.CREATE_PRODUCT_BATCH_FAILED;
                 return BadRequest(Helpers.SerializeObject(response));
             }
-            response.message = Constant.CREATE_PRODUCT_SUCCESSFULLY;
+            response.message = Constant.CREATE_PRODUCT_BATCH_SUCCESSFULLY;
             return Ok(Helpers.SerializeObject(response));
             
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
-        [HttpPut("product")]
-        public IActionResult UpdateProduct(int productId, [FromBody] ProductNoIdDto newProductName)
+        [HttpPut("productbatch")]
+        public IActionResult UpdateProductType(int productId, [FromBody] ProductBatchNoIdDto newProductBatch)
         {
-            var kt = _productService.UpdateProduct(productId, newProductName);
+            var kt = _productBatchService.UpdateProductBatch(productId, newProductBatch);
             var response = new ResponseDto();
 
             if (!kt)
             {
-                response.message = Constant.UPDATE_PRODUCT_FAILED;
+                response.message = Constant.UPDATE_PRODUCT_BATCH_FAILED;
                 return BadRequest(Helpers.SerializeObject(response));
             }
-            response.message = Constant.UPDATE_PRODUCT_SUCCESSFULLY;
+            response.message = Constant.UPDATE_PRODUCT_BATCH_SUCCESSFULLY;
             return Ok(Helpers.SerializeObject(response));
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
-        [HttpDelete("product")]
-        public IActionResult DeleteProduct(int productId)
+        [HttpDelete("productbatch")]
+        public IActionResult DeleteProductBatch(int productBatchId)
         {
-            var kt = _productService.DeleteProduct(productId);
+            var kt = _productBatchService.DeleteProductBatch(productBatchId);
             var response = new ResponseDto();
 
             if (kt) {
                 
-                response.message = Constant.DELETE_PRODUCT_SUCCESSFULLY;
+                response.message = Constant.DELETE_PRODUCT_BATCH_SUCCESSFULLY;
                 return Ok(Helpers.SerializeObject(response));
             }
-            response.message = Constant.DELETE_PRODUCT_FAILED;
+            response.message = Constant.DELETE_PRODUCT_BATCH_FAILED;
             return BadRequest(Helpers.SerializeObject(response));                                                                              
         }
     }

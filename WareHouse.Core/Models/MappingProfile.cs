@@ -15,9 +15,13 @@ namespace WareHouse.Core.Models
             CreateMap<UserUpdateDto, UserEntity>();
             CreateMap<RoleEntity, RoleDto>();
             CreateMap<ProductTypeEntity, ProductTypeDto>();
+            CreateMap<ProductBatchEntity, ProductBatchDto>();
             CreateMap<ProductTypeDto, ProductTypeEntity>();
+            CreateMap<ProductBatchDto, ProductBatchEntity>();
             CreateMap<ProductEntity, ProductDto>();
             CreateMap<ProductNoIdDto, ProductEntity>();
+            CreateMap<ProductBatchNoIdDto, ProductBatchEntity>();
+
         }
     }
 }
