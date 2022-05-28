@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,19 @@ namespace WareHouse.Core.Models
 {
     public class ProductNoIdDto
     { 
-        public string productName { get; set; }
-        public string productOrgin { get; set; }
-        public string productSuplier { get; set; }
-        public int productTypeId { get; set; }
-        public string productUnit { get; set; }
+        [JsonProperty("productName")]
+        public string ProductName { get; set; }
+
+        [JsonProperty("productOrgin")]
+        public string ProductOrgin { get; set; }
+
+        [JsonProperty("productSuplier")]
+        public string ProductSuplier { get; set; }
+
+        [JsonProperty("productTypeId")]
+        public int ProductTypeId { get; set; }
+
+        [JsonProperty("productUnit")]
+        public string ProductUnit { get; set; }
     }
 }

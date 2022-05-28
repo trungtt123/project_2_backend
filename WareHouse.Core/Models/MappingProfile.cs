@@ -22,6 +22,11 @@ namespace WareHouse.Core.Models
             CreateMap<ProductNoIdDto, ProductEntity>();
             CreateMap<ProductBatchNoIdDto, ProductBatchEntity>();
 
+            CreateMap<InputInfoEntity, InputInfoDto>();
+            CreateMap<InputInfoNoIdDto, InputInfoEntity>();
+
+            
+
         }
     }
 }

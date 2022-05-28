@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,16 @@ namespace WareHouse.Core.Models
 {
     public class ProductBatchNoIdDto
     {
-        public string productBatchName { get; set; }
-        public int productId { get; set; }
-        public int productQuantity { get; set; }
-        public string dateExpiry { get; set; }
+        [JsonProperty("productBatchName")]
+        public string ProductBatchName { get; set; }
+
+        [JsonProperty("productId")]
+        public int ProductId { get; set; }
+
+        [JsonProperty("productQuantity")]
+        public int ProductQuantity { get; set; }
+
+        [JsonProperty("dateExpiry")]
+        public DateTime DateExpiry { get; set; }
     }
 }

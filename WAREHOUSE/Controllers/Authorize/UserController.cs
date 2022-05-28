@@ -27,13 +27,13 @@ namespace WareHouse
         public IActionResult VerifyToken()
         {
             var response = new ResponseDto();
-            response.message = Constant.INVALID_TOKEN;
+            response.Message = Constant.INVALID_TOKEN;
             try
             {
                 var jwt = Request.Headers["Authorization"].ToString().Replace("Bearer ", string.Empty);
                 var kt = _userService.VerifyToken(jwt);
                 if (!kt) return new UnauthorizedResult();
-                response.message = Constant.VALID_TOKEN;
+                response.Message = Constant.VALID_TOKEN;
                 return Ok(Helpers.SerializeObject(response));
             }
             catch (Exception ex)
@@ -50,13 +50,13 @@ namespace WareHouse
             var listPermissions = _userService.GetListPermissions();
             if (listPermissions != null)
             {
-                response.message = Constant.GET_LIST_PERMISSIONS_SUCCESSFULLY;
-                response.data = listPermissions;
+                response.Message = Constant.GET_LIST_PERMISSIONS_SUCCESSFULLY;
+                response.Data = listPermissions;
                 return Ok(Helpers.SerializeObject(response));
             }
             else
             {
-                response.message = Constant.GET_LIST_PERMISSIONS_FAILED;
+                response.Message = Constant.GET_LIST_PERMISSIONS_FAILED;
                 return BadRequest(Helpers.SerializeObject(response));
             }
         }
@@ -70,11 +70,11 @@ namespace WareHouse
             if (user == null)
             {
                 
-                response.message = Constant.GET_USER_FAILED;
+                response.Message = Constant.GET_USER_FAILED;
                 return BadRequest(Helpers.SerializeObject(response));
             }
-            response.message = Constant.GET_USER_SUCCESSFULLY;
-            response.data = user;
+            response.Message = Constant.GET_USER_SUCCESSFULLY;
+            response.Data = user;
             return Ok(Helpers.SerializeObject(response));
         }
 
@@ -88,11 +88,11 @@ namespace WareHouse
 
             if (userResponse == null)
             {
-                response.message = Constant.CREATE_USER_FAILED;
+                response.Message = Constant.CREATE_USER_FAILED;
                 return BadRequest(Helpers.SerializeObject(response));
             }
-            response.message = Constant.CREATE_USER_SUCCESSFULLY;
-            response.data = userResponse;
+            response.Message = Constant.CREATE_USER_SUCCESSFULLY;
+            response.Data = userResponse;
             return Ok(Helpers.SerializeObject(response));
             
         }
@@ -107,10 +107,10 @@ namespace WareHouse
 
             if (!kt)
             {
-                response.message = Constant.UPDATE_USER_FAILED;
+                response.Message = Constant.UPDATE_USER_FAILED;
                 return BadRequest(Helpers.SerializeObject(response));
             }
-            response.message = Constant.UPDATE_USER_SUCCESSFULLY;
+            response.Message = Constant.UPDATE_USER_SUCCESSFULLY;
             return Ok(Helpers.SerializeObject(response));
         }
 
@@ -124,10 +124,10 @@ namespace WareHouse
 
             if (kt) {
                 
-                response.message = Constant.DELETE_USER_SUCCESSFULLY;
+                response.Message = Constant.DELETE_USER_SUCCESSFULLY;
                 return Ok(Helpers.SerializeObject(response));
             }
-            response.message = Constant.DELETE_USER_FAILED;
+            response.Message = Constant.DELETE_USER_FAILED;
             return BadRequest(Helpers.SerializeObject(response));                                                                              
         }
 
@@ -141,11 +141,11 @@ namespace WareHouse
 
             if (users == null)
             {
-                response.message = Constant.GET_ALL_USERS_FAILED;
+                response.Message = Constant.GET_ALL_USERS_FAILED;
                 return BadRequest(Helpers.SerializeObject(response));
             }
-            response.message = Constant.GET_ALL_USERS_SUCCESSFULLY;
-            response.data = users;
+            response.Message = Constant.GET_ALL_USERS_SUCCESSFULLY;
+            response.Data = users;
             return Ok(Helpers.SerializeObject(response));
         }
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
@@ -158,14 +158,14 @@ namespace WareHouse
             var jwt = Request.Headers["Authorization"].ToString().Replace("Bearer ", string.Empty);
             var userName = Helpers.DecodeJwt(jwt, "username");
 
-            if (userName == userData.userName) kt = _userService.ChangePassWord(userData);
+            if (userName == userData.UserName) kt = _userService.ChangePassWord(userData);
             var response = new ResponseDto();
             if (!kt)
             {
-                response.message = Constant.CHANGE_PASSWORD_FAILED;
+                response.Message = Constant.CHANGE_PASSWORD_FAILED;
                 return BadRequest(Helpers.SerializeObject(response));
             }
-            response.message = Constant.CHANGE_PASSWORD_SUCCESSFULLY;
+            response.Message = Constant.CHANGE_PASSWORD_SUCCESSFULLY;
             return Ok(Helpers.SerializeObject(response));
         }
     }

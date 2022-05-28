@@ -74,26 +74,34 @@ namespace WareHouse
             };
             dbcontext.Add(product);
             dbcontext.SaveChanges();
-
+            string dateString = "2015-03-25T19:00:00";
+            DateTime date =
+                DateTime.Parse(dateString, System.Globalization.CultureInfo.InvariantCulture);
             var productBatch = new ProductBatchEntity
             {
                 ProductId = 1,
                 ProductBatchName = "Lô thịt bò",
                 ProductQuantity = 100,
-                DateExpiry = "05/09/2022"
+                DateExpiry = date,
+                
             };
             dbcontext.Add(productBatch);
             dbcontext.SaveChanges();
-
-            var inputInfo = new InputInfoEntity { InputInfoId = 1, InputInfoName = "Nhập hàng 05/09/2022", ProductBatchId = 1, Shipper = "Trần Quang Trung", InputTime = "05/09/2022", ReceiverUserId = 1 };
+            
+            var inputInfo = new InputInfoEntity { InputInfoName = "Nhập hàng 05/09/2022", Shipper = "Trần Quang Trung", InputCreateTime = date, InputUpdateTime = date, ReceiverUserId = 1 };
             dbcontext.Add(inputInfo);
             dbcontext.SaveChanges();
 
+            //var inputInfoProductBatch = new InputInfoProductBatchEntity { InputInfoId = 1, ProductBatchId = 1 };
+
+            //dbcontext.Add(inputInfoProductBatch);
+            //dbcontext.SaveChanges();
+
             var outputInfo = new OutputInfoEntity 
             { 
-                OutputInfoId = 1, 
+                
                 OutputInfoName = "Xuất hàng 05/09/2022", 
-                ProductId = 1, 
+                //ProductId = 1, 
                 PickerUserId = 1, 
                 DeliverUserId = 1, 
                 OutputTime = "05/09/2022",

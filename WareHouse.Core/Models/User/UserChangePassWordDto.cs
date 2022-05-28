@@ -1,10 +1,17 @@
 ﻿
+using Newtonsoft.Json;
+
 namespace WareHouse.Core.Models
 {
     public class UserChangePassWordDto
     {    
-        public string userName { get; set; }
-        public string oldPassword { get; set; }
-        public string newPassword { get; set; }
+        [JsonProperty("userName")]
+        public string UserName { get; set; }
+
+        [JsonProperty("oldPassword")]
+        public string OldPassword { get; set; }
+
+        [JsonProperty("newPassword")]
+        public string NewPassword { get; set; }
     }
 }

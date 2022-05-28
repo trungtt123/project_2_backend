@@ -15,9 +15,12 @@ namespace WareHouse.Service.Implementations
     {
         private readonly IProductBatchRepository _productBatchRepository;
 
-        public ProductBatchService(IProductBatchRepository productBatchRepository)
+        private readonly IInputInfoRepository _inputInfoRepository;
+
+        public ProductBatchService(IProductBatchRepository productBatchRepository, IInputInfoRepository inputInfoRepository)
         {
             _productBatchRepository = productBatchRepository;
+            _inputInfoRepository = inputInfoRepository;
         }
         public List<ProductBatchDto> GetListProductBatches()
         {

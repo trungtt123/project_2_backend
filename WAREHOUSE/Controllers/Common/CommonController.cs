@@ -29,12 +29,12 @@ namespace WareHouse
 
             if (user == null)
             {
-                response.message = Constant.USERNAME_OR_PASSWORD_IS_INCORRECT;
+                response.Message = Constant.USERNAME_OR_PASSWORD_IS_INCORRECT;
                 
                 return BadRequest(Helpers.SerializeObject(response));
             }
-            response.message = Constant.AUTHENTICATION_SUCCESSFULLY;
-            response.data = user;
+            response.Message = Constant.AUTHENTICATION_SUCCESSFULLY;
+            response.Data = user;
             return Ok(Helpers.SerializeObject(response));
 
         }

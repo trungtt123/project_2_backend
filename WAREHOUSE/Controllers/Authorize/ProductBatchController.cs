@@ -33,11 +33,11 @@ namespace WareHouse
             if (products == null)
             {
 
-                response.message = Constant.GET_LIST_PRODUCT_BATCHES_FAILED;
+                response.Message = Constant.GET_LIST_PRODUCT_BATCHES_FAILED;
                 return BadRequest(Helpers.SerializeObject(response));
             }
-            response.message = Constant.GET_LIST_PRODUCT_BATCHES_SUCCESSFULLY;
-            response.data = products;
+            response.Message = Constant.GET_LIST_PRODUCT_BATCHES_SUCCESSFULLY;
+            response.Data = products;
             return Ok(Helpers.SerializeObject(response));
         }
 
@@ -51,11 +51,11 @@ namespace WareHouse
             if (productBatch == null)
             {
                 
-                response.message = Constant.GET_PRODUCT_BATCH_FAILED;
+                response.Message = Constant.GET_PRODUCT_BATCH_FAILED;
                 return BadRequest(Helpers.SerializeObject(response));
             }
-            response.message = Constant.GET_PRODUCT_BATCH_SUCCESSFULLY;
-            response.data = productBatch;
+            response.Message = Constant.GET_PRODUCT_BATCH_SUCCESSFULLY;
+            response.Data = productBatch;
             return Ok(Helpers.SerializeObject(response));
         }
 
@@ -69,10 +69,10 @@ namespace WareHouse
 
             if (!kt)
             {
-                response.message = Constant.CREATE_PRODUCT_BATCH_FAILED;
+                response.Message = Constant.CREATE_PRODUCT_BATCH_FAILED;
                 return BadRequest(Helpers.SerializeObject(response));
             }
-            response.message = Constant.CREATE_PRODUCT_BATCH_SUCCESSFULLY;
+            response.Message = Constant.CREATE_PRODUCT_BATCH_SUCCESSFULLY;
             return Ok(Helpers.SerializeObject(response));
             
         }
@@ -87,10 +87,10 @@ namespace WareHouse
 
             if (!kt)
             {
-                response.message = Constant.UPDATE_PRODUCT_BATCH_FAILED;
+                response.Message = Constant.UPDATE_PRODUCT_BATCH_FAILED;
                 return BadRequest(Helpers.SerializeObject(response));
             }
-            response.message = Constant.UPDATE_PRODUCT_BATCH_SUCCESSFULLY;
+            response.Message = Constant.UPDATE_PRODUCT_BATCH_SUCCESSFULLY;
             return Ok(Helpers.SerializeObject(response));
         }
 
@@ -104,10 +104,10 @@ namespace WareHouse
 
             if (kt) {
                 
-                response.message = Constant.DELETE_PRODUCT_BATCH_SUCCESSFULLY;
+                response.Message = Constant.DELETE_PRODUCT_BATCH_SUCCESSFULLY;
                 return Ok(Helpers.SerializeObject(response));
             }
-            response.message = Constant.DELETE_PRODUCT_BATCH_FAILED;
+            response.Message = Constant.DELETE_PRODUCT_BATCH_FAILED;
             return BadRequest(Helpers.SerializeObject(response));                                                                              
         }
     }

@@ -33,11 +33,11 @@ namespace WareHouse
             if (productTypes == null)
             {
 
-                response.message = Constant.GET_LIST_PRODUCT_TYPES_FAILED;
+                response.Message = Constant.GET_LIST_PRODUCT_TYPES_FAILED;
                 return BadRequest(Helpers.SerializeObject(response));
             }
-            response.message = Constant.GET_LIST_PRODUCT_TYPES_SUCCESSFULLY;
-            response.data = productTypes;
+            response.Message = Constant.GET_LIST_PRODUCT_TYPES_SUCCESSFULLY;
+            response.Data = productTypes;
             return Ok(Helpers.SerializeObject(response));
         }
 
@@ -51,11 +51,11 @@ namespace WareHouse
             if (productType == null)
             {
                 
-                response.message = Constant.GET_PRODUCT_TYPE_FAILED;
+                response.Message = Constant.GET_PRODUCT_TYPE_FAILED;
                 return BadRequest(Helpers.SerializeObject(response));
             }
-            response.message = Constant.GET_PRODUCT_TYPE_SUCCESSFULLY;
-            response.data = productType;
+            response.Message = Constant.GET_PRODUCT_TYPE_SUCCESSFULLY;
+            response.Data = productType;
             return Ok(Helpers.SerializeObject(response));
         }
 
@@ -69,10 +69,10 @@ namespace WareHouse
 
             if (!productType)
             {
-                response.message = Constant.CREATE_PRODUCT_TYPE_FAILED;
+                response.Message = Constant.CREATE_PRODUCT_TYPE_FAILED;
                 return BadRequest(response);
             }
-            response.message = Constant.CREATE_PRODUCT_TYPE_SUCCESSFULLY;
+            response.Message = Constant.CREATE_PRODUCT_TYPE_SUCCESSFULLY;
             return Ok(Helpers.SerializeObject(Helpers.SerializeObject(response)));
             
         }
@@ -87,10 +87,10 @@ namespace WareHouse
 
             if (!kt)
             {
-                response.message = Constant.UPDATE_PRODUCT_TYPE_FAILED;
+                response.Message = Constant.UPDATE_PRODUCT_TYPE_FAILED;
                 return BadRequest(Helpers.SerializeObject(response));
             }
-            response.message = Constant.UPDATE_PRODUCT_TYPE_SUCCESSFULLY;
+            response.Message = Constant.UPDATE_PRODUCT_TYPE_SUCCESSFULLY;
             return Ok(Helpers.SerializeObject(response));
         }
 
@@ -104,10 +104,10 @@ namespace WareHouse
 
             if (kt) {
                 
-                response.message = Constant.DELETE_PRODUCT_TYPE_SUCCESSFULLY;
+                response.Message = Constant.DELETE_PRODUCT_TYPE_SUCCESSFULLY;
                 return Ok(Helpers.SerializeObject(response));
             }
-            response.message = Constant.DELETE_PRODUCT_TYPE_FAILED;
+            response.Message = Constant.DELETE_PRODUCT_TYPE_FAILED;
             return BadRequest(Helpers.SerializeObject(response));                                                                              
         }
     }

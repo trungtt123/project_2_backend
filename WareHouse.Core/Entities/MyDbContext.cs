@@ -12,9 +12,8 @@ namespace WareHouse.Core.Entities
         public DbSet<ProductEntity> products { set; get; }
 
         public DbSet<ProductBatchEntity> productBatches { set; get; }
-        public DbSet<InputInfoEntity> inputInfos { set; get; }
-        public DbSet<OutputInfoEntity> outputInfos { set; get; }
-        //public DbSet<ProductBatchInputInfoEntity> productBatchInputInfos { set; get; }
+        public DbSet<InputInfoEntity> inputInfo { set; get; }
+        public DbSet<OutputInfoEntity> outputInfo { set; get; }
 
         //public DbSet<ProductOutputInfoEntity> productOutputInfos { set; get; }
         // Chuỗi kết nối tới CSDL (MS SQL Server)
@@ -28,16 +27,12 @@ namespace WareHouse.Core.Entities
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<InputInfoEntity>().HasKey(table => new
-            {
-                table.InputInfoId,
-                table.ProductBatchId
-            });
-            builder.Entity<OutputInfoEntity>().HasKey(table => new
-            {
-                table.OutputInfoId,
-                table.ProductId
-            });
+            
+            //builder.Entity<OutputInfoEntity>().HasKey(table => new
+            //{
+            //    table.OutputInfoId,
+            //    table.ProductId
+            //});
             builder.Entity<OutputInfoEntity>()
                 .HasOne(m => m.PickerUser)
                 .WithMany(t => t.PickerOutputInfo)

@@ -10,7 +10,7 @@ using System.Text;
 using WareHouse;
 
 // InitDatabase
-//InitDatabase.ResetDb();
+InitDatabase.ResetDb();
 
 
 
@@ -73,6 +73,9 @@ builder.Services.AddSingleton<IProductService, ProductService>();
 
 builder.Services.AddSingleton<IProductBatchRepository, ProductBatchRepository>();
 builder.Services.AddSingleton<IProductBatchService, ProductBatchService>();
+
+builder.Services.AddSingleton<IInputInfoRepository, InputInfoRepository>();
+builder.Services.AddSingleton<IInputInfoService, InputInfoService>();
 //builder.Services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest).AddApplicationPart(typeof(UserController).Assembly);
 builder.Services.AddHttpClient();
 

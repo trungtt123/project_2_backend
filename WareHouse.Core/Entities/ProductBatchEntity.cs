@@ -13,7 +13,12 @@ namespace WareHouse.Core.Entities
         [ForeignKey("ProductId")]
         public ProductEntity Product { get; set; }
         public int ProductQuantity { get; set; }
-        public string DateExpiry { get; set; }
+        public DateTime DateExpiry { get; set; }
+
+        public int? InputInfoId { get; set; }
+
+        [ForeignKey("InputInfoId")]
+        public InputInfoEntity? InputInfo { get; set; }
 
     }
 }

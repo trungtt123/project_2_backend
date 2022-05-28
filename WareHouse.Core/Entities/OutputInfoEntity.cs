@@ -5,16 +5,15 @@ namespace WareHouse.Core.Entities
     [Table("outputinfo")]
     public class OutputInfoEntity
     {
-        //public int UserId { get; set; }
+        [Key]
         public int OutputInfoId { get; set; }
         public string OutputInfoName { get; set; }
-        public int ProductId { get; set; }
+        //public int ProductId { get; set; }
 
-        [ForeignKey("ProductId")]
-        public ProductEntity Product { get; set; }
+        //[ForeignKey("ProductId")]
+        //public ProductEntity Product { get; set; }
         public int ProductQuantity { get; set; }
         public string OutputTime { get; set; }
-
         public int PickerUserId { get; set; }
         public int DeliverUserId { get; set; }
 

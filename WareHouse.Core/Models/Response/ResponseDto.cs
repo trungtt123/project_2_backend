@@ -9,9 +9,10 @@ namespace WareHouse.Core.Models
 {
     public class ResponseDto
     {
-        public string message { get; set; }
+        [JsonProperty("message")]
+        public string Message { get; set; }
 
-        [JsonProperty("data", NullValueHandling = NullValueHandling.Ignore)]
-        public object data { get; set; }
+        [JsonProperty("data")]
+        public object Data { get; set; }
     }
 }
