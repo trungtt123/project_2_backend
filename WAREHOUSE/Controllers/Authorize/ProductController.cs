@@ -25,7 +25,7 @@ namespace WareHouse
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
-        [HttpGet("listproducts")]
+        [HttpGet("list-products")]
         public IActionResult GetListProducts()
         {
             var products = _productService.GetListProducts();
@@ -109,6 +109,23 @@ namespace WareHouse
             }
             response.Message = Constant.DELETE_PRODUCT_FAILED;
             return BadRequest(Helpers.SerializeObject(response));                                                                              
+        }
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
+        Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
+        [HttpGet("product/list-inventories")]
+        public IActionResult GetListInventories()
+        {
+            var listInventories = _productService.GetListInventory();
+            var response = new ResponseDto();
+            if (listInventories == null)
+            {
+
+                response.Message = Constant.GET_LIST_INVENTORIES_FAILED;
+                return BadRequest(Helpers.SerializeObject(response));
+            }
+            response.Message = Constant.GET_LIST_INVENTORIES_SUCCESSFULLY;
+            response.Data = listInventories;
+            return Ok(Helpers.SerializeObject(response));
         }
     }
 }

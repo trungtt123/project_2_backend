@@ -79,11 +79,7 @@ namespace WareHouse
                 DateTime.Parse(dateString, System.Globalization.CultureInfo.InvariantCulture);
             var productBatch = new ProductBatchEntity
             {
-                ProductId = 1,
                 ProductBatchName = "Lô thịt bò",
-                ProductQuantity = 100,
-                DateExpiry = date,
-                
             };
             dbcontext.Add(productBatch);
             dbcontext.SaveChanges();
@@ -102,10 +98,10 @@ namespace WareHouse
                 
                 OutputInfoName = "Xuất hàng 05/09/2022", 
                 //ProductId = 1, 
-                PickerUserId = 1, 
-                DeliverUserId = 1, 
-                OutputTime = "05/09/2022",
-                ProductQuantity = 1,
+                PickerId = 1, 
+                SignatorId = 1, 
+                OutputCreateTime = date,
+                OutputUpdateTime = date,
             };
 
             dbcontext.Add(outputInfo);

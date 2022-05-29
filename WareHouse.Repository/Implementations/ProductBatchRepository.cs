@@ -69,9 +69,6 @@ namespace WareHouse.Repository.Implementations
                 if (productBatch != null)
                 {
                     productBatch.ProductBatchName = newProductBatch.ProductBatchName;
-                    productBatch.ProductId = newProductBatch.ProductId;
-                    productBatch.ProductQuantity = newProductBatch.ProductQuantity;
-                    productBatch.DateExpiry = newProductBatch.DateExpiry;
                     dbcontext.SaveChanges();
                     return true;
                 }
@@ -99,6 +96,104 @@ namespace WareHouse.Repository.Implementations
             catch (Exception ex)
             {
                 return false;
+            }
+        }
+
+        public List<ProductBatchProductEntity> GetListProductInProductBatch(int productBatchId)
+        {
+            try
+            {
+                var listProducts = new List<ProductBatchProductEntity>();
+                using var dbcontext = new MyDbContext();
+
+                listProducts = dbcontext.productBatchProduct.ToList().FindAll(o => o.ProductBatchId == productBatchId);
+
+                return listProducts;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public bool ProductBatchAddProduct(ProductBatchProductEntity productBatchProduct)
+        {
+            try
+            {
+                using var dbcontext = new MyDbContext();
+
+                dbcontext.productBatchProduct.Add(productBatchProduct);
+
+                dbcontext.SaveChanges();
+
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool ProductBatchUpdateProduct(ProductBatchProductEntity newProductBatchProduct)
+        {
+            try
+            {
+                using var dbcontext = new MyDbContext();
+
+                var row = dbcontext.productBatchProduct
+                    .FirstOrDefault(o => o.ProductBatchId == newProductBatchProduct.ProductBatchId && o.ProductId == newProductBatchProduct.ProductId);
+                
+                if (row == null) return false;
+                
+                row.ProductQuantity = newProductBatchProduct.ProductQuantity;
+                row.DateExpiry = newProductBatchProduct.DateExpiry;
+                dbcontext.SaveChanges();
+
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public bool ProductBatchRemoveProduct(int productBatchId, int productId)
+        {
+            try
+            {
+                using var dbcontext = new MyDbContext();
+
+                var productBatchProduct = dbcontext.productBatchProduct
+                    .FirstOrDefault(o => o.ProductBatchId == productBatchId && o.ProductId == productId);
+
+                if (productBatchProduct == null) return false;
+
+                dbcontext.productBatchProduct.Remove(productBatchProduct);
+                
+                dbcontext.SaveChanges();
+
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            
+        }
+        public List<ProductBatchProductEntity> GetListProductBatchProduct()
+        {
+            try
+            {
+                using var dbcontext = new MyDbContext();
+
+                var productBatchProduct = dbcontext.productBatchProduct.ToList();
+                return productBatchProduct;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
     }

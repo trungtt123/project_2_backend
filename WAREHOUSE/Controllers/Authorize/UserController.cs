@@ -23,7 +23,7 @@ namespace WareHouse
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
-        [HttpGet("verifytoken")]
+        [HttpGet("verify-token")]
         public IActionResult VerifyToken()
         {
             var response = new ResponseDto();
@@ -42,7 +42,7 @@ namespace WareHouse
             }
         }
 
-        [HttpGet("getlistpermissions")]
+        [HttpGet("get-list-permissions")]
         [AllowAnonymous]
         public IActionResult GetListPermissions()
         {
@@ -133,7 +133,7 @@ namespace WareHouse
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
-        [HttpGet("getallusers")]
+        [HttpGet("get-all-users")]
         public IActionResult GetAllUsers()
         {
             var users = _userService.GetAllUsers();
@@ -150,7 +150,7 @@ namespace WareHouse
         }
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
-        [HttpPut("changepassword")]
+        [HttpPut("change-password")]
         
         public IActionResult ChangePassWord([FromBody] UserChangePassWordDto userData)
         {

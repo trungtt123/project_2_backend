@@ -25,7 +25,7 @@ namespace WareHouse
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
-        [HttpGet("listproducttypes")]
+        [HttpGet("list-product-types")]
         public IActionResult GetListProductTypes()
         {
             var productTypes = _iproductTypeService.GetListProductTypes();
@@ -43,7 +43,7 @@ namespace WareHouse
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
-        [HttpGet("producttype")]
+        [HttpGet("product-type")]
         public IActionResult GetProductType(int productTypeId)
         {
             var productType = _iproductTypeService.GetProductType(productTypeId);
@@ -61,7 +61,7 @@ namespace WareHouse
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
-        [HttpPost("producttype")]
+        [HttpPost("product-type")]
         public IActionResult CreateProductType([FromBody] string productTypeName)
         {
             var productType = _iproductTypeService.CreateProductType(productTypeName);
@@ -79,7 +79,7 @@ namespace WareHouse
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
-        [HttpPut("producttype")]
+        [HttpPut("product-type")]
         public IActionResult UpdateProductType(int productTypeId, [FromBody] string newProductTypeName)
         {
             var kt = _iproductTypeService.UpdateProductType(productTypeId, newProductTypeName);
@@ -96,7 +96,7 @@ namespace WareHouse
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
-        [HttpDelete("producttype")]
+        [HttpDelete("product-type")]
         public IActionResult DeleteProductType(int productTypeId)
         {
             var kt = _iproductTypeService.DeleteProductType(productTypeId);

@@ -53,6 +53,11 @@ namespace WareHouse.Service.Implementations
             var mapper = config.CreateMapper();
 
             var productBatchDto = mapper.Map<ProductBatchEntity, ProductBatchDto>(productBatchEntity);
+            var listProductEntity = _productBatchRepository.GetListProductInProductBatch(productBatchId);
+
+            var listProductDto = mapper.Map<List<ProductBatchProductEntity>, List<ProductBatchProductDto> >(listProductEntity);
+            
+            productBatchDto.ListProducts = listProductDto;
 
             return productBatchDto;
         }
@@ -82,7 +87,7 @@ namespace WareHouse.Service.Implementations
             var mapper = config.CreateMapper();
 
             productBatchEntity = mapper.Map<ProductBatchNoIdDto, ProductBatchEntity>(productBatch);
-            productBatchEntity.ProductId = productBatchId;
+            productBatchEntity.ProductBatchId = productBatchId;
 
             return _productBatchRepository.UpdateProductBatch(productBatchEntity);
         }
@@ -92,6 +97,37 @@ namespace WareHouse.Service.Implementations
             if (productBatchEntity == null) return false;
             return _productBatchRepository.DeleteProductBatch(productBatchEntity);
         }
+        public bool ProductBatchAddProduct(int productBatchId, int productId, ProductBatchProductNoIdDto productBatchProduct)
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
 
+            var mapper = config.CreateMapper();
+
+            var productBatchProductEntity = mapper.Map<ProductBatchProductNoIdDto, ProductBatchProductEntity>(productBatchProduct);
+            productBatchProductEntity.ProductBatchId = productBatchId;
+            productBatchProductEntity.ProductId = productId;
+            return _productBatchRepository.ProductBatchAddProduct(productBatchProductEntity);
+        }
+        public bool ProductBatchUpdateProduct(int productBatchId, int productId, ProductBatchProductNoIdDto newProductBatchProduct)
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+
+            var mapper = config.CreateMapper();
+
+            var productBatchProductEntity = mapper.Map<ProductBatchProductNoIdDto, ProductBatchProductEntity>(newProductBatchProduct);
+            productBatchProductEntity.ProductBatchId = productBatchId;
+            productBatchProductEntity.ProductId = productId;
+            return _productBatchRepository.ProductBatchUpdateProduct(productBatchProductEntity);
+        }
+        public bool ProductBatchRemoveProduct(int productBatchId, int productId)
+        {
+            return _productBatchRepository.ProductBatchRemoveProduct(productBatchId, productId);
+        }
     }
 }

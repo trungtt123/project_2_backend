@@ -14,10 +14,11 @@ namespace WareHouse.Service.Implementations
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
-
-        public ProductService(IProductRepository productRepository)
+        private readonly IProductBatchRepository _productBatchRepository;
+        public ProductService(IProductRepository productRepository, IProductBatchRepository productBatchRepository)
         {
             _productRepository = productRepository;
+            _productBatchRepository = productBatchRepository;
         }
         public List<ProductDto> GetListProducts()
         {
@@ -88,6 +89,58 @@ namespace WareHouse.Service.Implementations
             var productEntity = _productRepository.GetProduct(productId);
             if (productEntity == null) return false;
             return _productRepository.DeleteProduct(productEntity);
+        }
+        public List<InventoryDto> GetListInventory()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new MappingProfile());
+            });
+
+            var mapper = config.CreateMapper();
+
+            
+
+            var listInventories = new List<InventoryDto>();
+            var listProducts = new List<ProductEntity>();
+
+            var listProductBatchProduct = _productBatchRepository.GetListProductBatchProduct();
+            listProducts = _productRepository.GetListProducts();
+
+            foreach (var product in listProducts)
+            {
+                var inventory = new InventoryDto();
+                inventory.ProductId = product.ProductId;
+                var productBatchProduct = listProductBatchProduct
+                    .FindAll(o =>
+                    {
+                        var productBatchId = o.ProductBatchId;
+                        var productBatch = _productBatchRepository.GetProductBatch(productBatchId);
+                        return o.ProductId == product.ProductId && !(productBatch.InputInfoId == null || productBatch.InputInfoId == 0);
+                    });
+                var inv = mapper.Map<List<ProductBatchProductEntity>, List<ProductBatchInVentory>>(productBatchProduct);
+                inventory.ListProductBatches = inv;
+                inventory.Total = GetTotalProductQuantityInProductBatch(inv);
+                listInventories.Add(inventory);
+            }
+            return listInventories;
+        }
+        public static int GetTotalProductQuantityInProductBatch(List<ProductBatchInVentory> arr)
+        {
+            try
+            {
+                var total = 0;
+
+                foreach (var item in arr)
+                {
+                    total += item.ProductQuantity;
+                }
+                return total;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
         }
 
     }

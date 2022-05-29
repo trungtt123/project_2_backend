@@ -13,6 +13,7 @@ namespace WareHouse.Service.Interfaces
         public bool CreateProduct(ProductNoIdDto product);
         public bool UpdateProduct(int productId, ProductNoIdDto product);
         public bool DeleteProduct(int productId);
+        public List<InventoryDto> GetListInventory();
 
     }
 }

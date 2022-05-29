@@ -25,7 +25,7 @@ namespace WareHouse
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
-        [HttpGet("listproductbatches")]
+        [HttpGet("list-product-batches")]
         public IActionResult GetListProductBatches()
         {
             var products = _productBatchService.GetListProductBatches();
@@ -43,7 +43,7 @@ namespace WareHouse
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
-        [HttpGet("productbatch")]
+        [HttpGet("product-batch")]
         public IActionResult GetProductBatch(int productBatchId)
         {
             var productBatch = _productBatchService.GetProductBatch(productBatchId);
@@ -61,7 +61,7 @@ namespace WareHouse
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
-        [HttpPost("productbatch")]
+        [HttpPost("product-batch")]
         public IActionResult CreateProductBatch([FromBody] ProductBatchNoIdDto productBatch)
         {
             var kt = _productBatchService.CreateProductBatch(productBatch);
@@ -79,7 +79,7 @@ namespace WareHouse
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
-        [HttpPut("productbatch")]
+        [HttpPut("product-batch")]
         public IActionResult UpdateProductType(int productId, [FromBody] ProductBatchNoIdDto newProductBatch)
         {
             var kt = _productBatchService.UpdateProductBatch(productId, newProductBatch);
@@ -96,7 +96,7 @@ namespace WareHouse
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
-        [HttpDelete("productbatch")]
+        [HttpDelete("product-batch")]
         public IActionResult DeleteProductBatch(int productBatchId)
         {
             var kt = _productBatchService.DeleteProductBatch(productBatchId);
@@ -109,6 +109,57 @@ namespace WareHouse
             }
             response.Message = Constant.DELETE_PRODUCT_BATCH_FAILED;
             return BadRequest(Helpers.SerializeObject(response));                                                                              
+        }
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
+        Roles = Constant.Administrator)]
+        [HttpPost("product-batch/products")]
+        public IActionResult ProductBatchAddProduct(int productBatchId, int productId, [FromBody] ProductBatchProductNoIdDto data)
+        {
+            var kt = _productBatchService.ProductBatchAddProduct(productBatchId, productId, data);
+            var response = new ResponseDto();
+
+            if (kt)
+            {
+
+                response.Message = Constant.PRODUCT_BATCHE_ADD_PRODUCT_SUCCESSFULLY;
+                return Ok(Helpers.SerializeObject(response));
+            }
+            response.Message = Constant.PRODUCT_BATCHE_ADD_PRODUCT_FAILED;
+            return BadRequest(Helpers.SerializeObject(response));
+        }
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
+        Roles = Constant.Administrator)]
+        [HttpPut("product-batch/products")]
+        public IActionResult ProductBatchUpdateProduct(int productBatchId, int productId, [FromBody] ProductBatchProductNoIdDto data)
+        {
+            var kt = _productBatchService.ProductBatchUpdateProduct(productBatchId, productId, data);
+            var response = new ResponseDto();
+
+            if (kt)
+            {
+
+                response.Message = Constant.PRODUCT_BATCHE_UPDATE_PRODUCT_SUCCESSFULLY;
+                return Ok(Helpers.SerializeObject(response));
+            }
+            response.Message = Constant.PRODUCT_BATCHE_UPDATE_PRODUCT_FAILED;
+            return BadRequest(Helpers.SerializeObject(response));
+        }
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
+        Roles = Constant.Administrator)]
+        [HttpDelete("product-batch/products")]
+        public IActionResult ProductBatchRemoveProduct(int productBatchId, int productId)
+        {
+            var kt = _productBatchService.ProductBatchRemoveProduct(productBatchId, productId);
+            var response = new ResponseDto();
+
+            if (kt)
+            {
+
+                response.Message = Constant.PRODUCT_BATCHE_REMOVE_PRODUCT_SUCCESSFULLY;
+                return Ok(Helpers.SerializeObject(response));
+            }
+            response.Message = Constant.PRODUCT_BATCHE_REMOVE_PRODUCT_FAILED;
+            return BadRequest(Helpers.SerializeObject(response));
         }
     }
 }

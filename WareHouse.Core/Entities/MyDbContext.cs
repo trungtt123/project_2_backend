@@ -14,8 +14,8 @@ namespace WareHouse.Core.Entities
         public DbSet<ProductBatchEntity> productBatches { set; get; }
         public DbSet<InputInfoEntity> inputInfo { set; get; }
         public DbSet<OutputInfoEntity> outputInfo { set; get; }
-
-        //public DbSet<ProductOutputInfoEntity> productOutputInfos { set; get; }
+        public DbSet<OutputProductEntity> outputProduct { set; get; }
+        public DbSet<ProductBatchProductEntity> productBatchProduct { set; get; }
         // Chuỗi kết nối tới CSDL (MS SQL Server)
 
         private const string connectionString = Constant.CONNECTION_STRING;
@@ -27,22 +27,29 @@ namespace WareHouse.Core.Entities
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            
-            //builder.Entity<OutputInfoEntity>().HasKey(table => new
+
+            //builder.Entity<OutputProductEntity>().HasKey(table => new
             //{
             //    table.OutputInfoId,
-            //    table.ProductId
+            //    table.ProductId,
+            //    table
             //});
+            builder.Entity<ProductBatchProductEntity>().HasKey(table => new
+            {
+                table.ProductBatchId,
+                table.ProductId
+            });
+
             builder.Entity<OutputInfoEntity>()
-                .HasOne(m => m.PickerUser)
+                .HasOne(m => m.Picker)
                 .WithMany(t => t.PickerOutputInfo)
-                .HasForeignKey(m => m.PickerUserId)
+                .HasForeignKey(m => m.PickerId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<OutputInfoEntity>()
-                .HasOne(m => m.DeliverUser)
+                .HasOne(m => m.Signator)
                 .WithMany(t => t.DeliverOutputInfo)
-                .HasForeignKey(m => m.DeliverUserId)
+                .HasForeignKey(m => m.SignatorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
         }

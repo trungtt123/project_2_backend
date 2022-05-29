@@ -8,22 +8,16 @@ namespace WareHouse.Core.Entities
         [Key]
         public int OutputInfoId { get; set; }
         public string OutputInfoName { get; set; }
-        //public int ProductId { get; set; }
+        public DateTime OutputCreateTime { get; set; }
+        public DateTime OutputUpdateTime { get; set; }
+        public int PickerId { get; set; }
+        public int SignatorId { get; set; }
 
-        //[ForeignKey("ProductId")]
-        //public ProductEntity Product { get; set; }
-        public int ProductQuantity { get; set; }
-        public string OutputTime { get; set; }
-        public int PickerUserId { get; set; }
-        public int DeliverUserId { get; set; }
+        [ForeignKey("PickerId")]
+        public virtual UserEntity Picker { get; set; }
 
-        [ForeignKey("PickerUserId")]
-        public virtual UserEntity PickerUser { get; set; }
-
-        
-
-        [ForeignKey("DeliverUserId")]
-        public virtual UserEntity DeliverUser { get; set; }
+        [ForeignKey("SignatorId")]
+        public virtual UserEntity Signator { get; set; }
 
     }
 }

@@ -25,7 +25,7 @@ namespace WareHouse
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
-        [HttpGet("listinputinfo")]
+        [HttpGet("list-input-info")]
         public IActionResult GetListInputInfo()
         {
             var listInputInfo = _inputInfoService.GetListInputInfo();
@@ -43,7 +43,7 @@ namespace WareHouse
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
-        [HttpGet("inputinfo")]
+        [HttpGet("input-info")]
         public IActionResult GetInputInfo(int inputInfoId)
         {
             var inputInfo = _inputInfoService.GetInputInfo(inputInfoId);
@@ -61,7 +61,7 @@ namespace WareHouse
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
-        [HttpPost("inputinfo")]
+        [HttpPost("input-info")]
         public IActionResult CreateInputInfo([FromBody] InputInfoNoIdDto inputInfo)
         { 
 
@@ -80,7 +80,7 @@ namespace WareHouse
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
-        [HttpPost("inputinfo/productbatch")]
+        [HttpPost("input-info/product-batches")]
         public IActionResult InputInfoAddProductBatch(int inputInfoId, int productBatchId)
         {
             var kt = _inputInfoService.InputInfoAddProductBatch(productBatchId, inputInfoId);
@@ -98,7 +98,7 @@ namespace WareHouse
         }
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
-        [HttpDelete("inputinfo/productbatch")]
+        [HttpDelete("input-info/product-batches")]
         public IActionResult InputInfoRemoveProductBatch(int productBatchId)
         {
             var kt = _inputInfoService.InputInfoRemoveProductBatch(productBatchId);
@@ -116,7 +116,7 @@ namespace WareHouse
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
-        [HttpPut("inputinfo")]
+        [HttpPut("input-info")]
         public IActionResult UpdateInputInfo(int inputInfoId, [FromBody] InputInfoNoIdDto newInputInfo)
         {
             var kt = _inputInfoService.UpdateInputInfo(inputInfoId, newInputInfo);
@@ -133,7 +133,7 @@ namespace WareHouse
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
-        [HttpDelete("inputinfo")]
+        [HttpDelete("input-info")]
         public IActionResult DeleteInputInfo(int inputInfoId)
         {
             var kt = _inputInfoService.DeleteInputInfo(inputInfoId);
