@@ -141,12 +141,15 @@ namespace WareHouse.Repository.Implementations
                 using var dbcontext = new MyDbContext();
 
                 var row = dbcontext.productBatchProduct
-                    .FirstOrDefault(o => o.ProductBatchId == newProductBatchProduct.ProductBatchId && o.ProductId == newProductBatchProduct.ProductId);
+                    .FirstOrDefault(o => o.Id == newProductBatchProduct.Id);
                 
                 if (row == null) return false;
-                
+
+                row.ProductBatchId = newProductBatchProduct.ProductBatchId;
+                row.ProductId = newProductBatchProduct.ProductId;
                 row.ProductQuantity = newProductBatchProduct.ProductQuantity;
                 row.DateExpiry = newProductBatchProduct.DateExpiry;
+
                 dbcontext.SaveChanges();
 
                 return true;
@@ -157,14 +160,14 @@ namespace WareHouse.Repository.Implementations
                 return false;
             }
         }
-        public bool ProductBatchRemoveProduct(int productBatchId, int productId)
+        public bool ProductBatchRemoveProduct(int id)
         {
             try
             {
                 using var dbcontext = new MyDbContext();
 
                 var productBatchProduct = dbcontext.productBatchProduct
-                    .FirstOrDefault(o => o.ProductBatchId == productBatchId && o.ProductId == productId);
+                    .FirstOrDefault(o => o.Id == id);
 
                 if (productBatchProduct == null) return false;
 

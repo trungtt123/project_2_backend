@@ -6,6 +6,8 @@ namespace WareHouse.Core.Entities
     public class ProductBatchProductEntity
     {
 
+        [Key]
+        public int Id { get; set; }
         public int ProductBatchId { get; set; }
 
         [ForeignKey("ProductBatchId")]

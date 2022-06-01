@@ -9,7 +9,7 @@ namespace WareHouse.Core.Models
 {
     public class InputInfoDto
     {
-        [JsonProperty("inputInfo")]
+        [JsonProperty("inputInfoId")]
         public int InputInfoId { get; set; }
 
         [JsonProperty("inputInfoName")]

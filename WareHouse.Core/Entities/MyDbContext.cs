@@ -34,11 +34,11 @@ namespace WareHouse.Core.Entities
             //    table.ProductId,
             //    table
             //});
-            builder.Entity<ProductBatchProductEntity>().HasKey(table => new
-            {
-                table.ProductBatchId,
-                table.ProductId
-            });
+            //builder.Entity<ProductBatchProductEntity>().HasKey(table => new
+            //{
+            //    table.ProductBatchId,
+            //    table.ProductId
+            //});
 
             builder.Entity<OutputInfoEntity>()
                 .HasOne(m => m.Picker)

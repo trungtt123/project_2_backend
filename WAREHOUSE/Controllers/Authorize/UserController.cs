@@ -32,8 +32,11 @@ namespace WareHouse
             {
                 var jwt = Request.Headers["Authorization"].ToString().Replace("Bearer ", string.Empty);
                 var kt = _userService.VerifyToken(jwt);
+                var userId = Int32.Parse(Helpers.DecodeJwt(jwt, "userid"));
+                var userData = _userService.GetUser(userId);
                 if (!kt) return new UnauthorizedResult();
                 response.Message = Constant.VALID_TOKEN;
+                response.Data = userData;
                 return Ok(Helpers.SerializeObject(response));
             }
             catch (Exception ex)

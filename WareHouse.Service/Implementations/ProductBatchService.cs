@@ -97,7 +97,7 @@ namespace WareHouse.Service.Implementations
             if (productBatchEntity == null) return false;
             return _productBatchRepository.DeleteProductBatch(productBatchEntity);
         }
-        public bool ProductBatchAddProduct(int productBatchId, int productId, ProductBatchProductNoIdDto productBatchProduct)
+        public bool ProductBatchAddProduct(ProductBatchProductNoIdDto productBatchProduct)
         {
             var config = new MapperConfiguration(cfg =>
             {
@@ -107,27 +107,23 @@ namespace WareHouse.Service.Implementations
             var mapper = config.CreateMapper();
 
             var productBatchProductEntity = mapper.Map<ProductBatchProductNoIdDto, ProductBatchProductEntity>(productBatchProduct);
-            productBatchProductEntity.ProductBatchId = productBatchId;
-            productBatchProductEntity.ProductId = productId;
+
             return _productBatchRepository.ProductBatchAddProduct(productBatchProductEntity);
         }
-        public bool ProductBatchUpdateProduct(int productBatchId, int productId, ProductBatchProductNoIdDto newProductBatchProduct)
+        public bool ProductBatchUpdateProduct(int id, ProductBatchProductNoIdDto newProductBatchProduct)
         {
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new MappingProfile());
             });
-
             var mapper = config.CreateMapper();
-
             var productBatchProductEntity = mapper.Map<ProductBatchProductNoIdDto, ProductBatchProductEntity>(newProductBatchProduct);
-            productBatchProductEntity.ProductBatchId = productBatchId;
-            productBatchProductEntity.ProductId = productId;
+            productBatchProductEntity.Id = id;
             return _productBatchRepository.ProductBatchUpdateProduct(productBatchProductEntity);
         }
-        public bool ProductBatchRemoveProduct(int productBatchId, int productId)
+        public bool ProductBatchRemoveProduct(int id)
         {
-            return _productBatchRepository.ProductBatchRemoveProduct(productBatchId, productId);
+            return _productBatchRepository.ProductBatchRemoveProduct(id);
         }
     }
 }

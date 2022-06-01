@@ -113,9 +113,9 @@ namespace WareHouse
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
         [HttpPost("product-batch/products")]
-        public IActionResult ProductBatchAddProduct(int productBatchId, int productId, [FromBody] ProductBatchProductNoIdDto data)
+        public IActionResult ProductBatchAddProduct([FromBody] ProductBatchProductNoIdDto data)
         {
-            var kt = _productBatchService.ProductBatchAddProduct(productBatchId, productId, data);
+            var kt = _productBatchService.ProductBatchAddProduct(data);
             var response = new ResponseDto();
 
             if (kt)
@@ -130,9 +130,9 @@ namespace WareHouse
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
         [HttpPut("product-batch/products")]
-        public IActionResult ProductBatchUpdateProduct(int productBatchId, int productId, [FromBody] ProductBatchProductNoIdDto data)
+        public IActionResult ProductBatchUpdateProduct(int id, [FromBody] ProductBatchProductNoIdDto data)
         {
-            var kt = _productBatchService.ProductBatchUpdateProduct(productBatchId, productId, data);
+            var kt = _productBatchService.ProductBatchUpdateProduct(id, data);
             var response = new ResponseDto();
 
             if (kt)
@@ -147,9 +147,9 @@ namespace WareHouse
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
         [HttpDelete("product-batch/products")]
-        public IActionResult ProductBatchRemoveProduct(int productBatchId, int productId)
+        public IActionResult ProductBatchRemoveProduct(int id)
         {
-            var kt = _productBatchService.ProductBatchRemoveProduct(productBatchId, productId);
+            var kt = _productBatchService.ProductBatchRemoveProduct(id);
             var response = new ResponseDto();
 
             if (kt)

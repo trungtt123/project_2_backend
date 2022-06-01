@@ -53,6 +53,8 @@ namespace WareHouse.Repository.Implementations
                 var productBatch = dbcontext.productBatches.FirstOrDefault(o => o.ProductBatchId == productBatchId);
                 if (productBatch == null) return false;
 
+
+                if (productBatch.InputInfoId != 0 && productBatch.InputInfoId != null) return false;
                 productBatch.InputInfoId = inputInfoId;
                 dbcontext.SaveChanges();
 

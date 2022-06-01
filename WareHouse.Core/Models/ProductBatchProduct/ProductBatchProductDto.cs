@@ -9,6 +9,8 @@ namespace WareHouse.Core.Models
 
         //[JsonProperty("productBatchId")]
         //public int ProductBatchId { get; set; }
+        [JsonProperty("id")]
+        public int Id { get; set; }
 
         [JsonProperty("productId")]
         public int ProductId { get; set; }

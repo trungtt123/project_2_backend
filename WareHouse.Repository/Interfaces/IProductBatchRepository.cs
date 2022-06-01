@@ -14,8 +14,7 @@ namespace WareHouse.Repository.Interfaces
         public List<ProductBatchProductEntity> GetListProductBatchProduct();
         public bool ProductBatchAddProduct(ProductBatchProductEntity productBatchProduct);
         public bool ProductBatchUpdateProduct(ProductBatchProductEntity newProductBatchProduct);
-        public bool ProductBatchRemoveProduct(int productBatchId, int productId);
-
+        public bool ProductBatchRemoveProduct(int id);
         public bool CreateProductBatch(ProductBatchEntity productBatch);
         public bool UpdateProductBatch(ProductBatchEntity newProductBatch);
         public bool DeleteProductBatch(ProductBatchEntity productBatchId);
