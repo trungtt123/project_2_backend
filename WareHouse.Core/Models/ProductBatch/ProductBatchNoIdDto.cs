@@ -11,5 +11,9 @@ namespace WareHouse.Core.Models
     {
         [JsonProperty("productBatchName")]
         public string ProductBatchName { get; set; }
+
+        [JsonProperty("inputInfoId")]
+
+        public int InputInfoId { get; set; }
     }
 }

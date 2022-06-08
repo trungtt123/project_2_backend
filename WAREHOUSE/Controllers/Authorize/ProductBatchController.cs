@@ -80,9 +80,9 @@ namespace WareHouse
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
         [HttpPut("product-batch")]
-        public IActionResult UpdateProductType(int productId, [FromBody] ProductBatchNoIdDto newProductBatch)
+        public IActionResult UpdateProductType(int productBatchId, [FromBody] ProductBatchNoIdDto newProductBatch)
         {
-            var kt = _productBatchService.UpdateProductBatch(productId, newProductBatch);
+            var kt = _productBatchService.UpdateProductBatch(productBatchId, newProductBatch);
             var response = new ResponseDto();
 
             if (!kt)

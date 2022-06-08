@@ -1,8 +1,8 @@
-WAREHOUSE\bin
-WAREHOUSE\obj
-WareHouse.Core\bin
-WareHouse.Core\obj
-WareHouse.Repository\bin
-WareHouse.Repository\obj
-WareHouse.Service\bin
-WareHouse.Service\obj
+WAREHOUSE/bin/
+WAREHOUSE/obj/
+WareHouse.Core/bin/
+WareHouse.Core/obj/
+WareHouse.Repository/bin/
+WareHouse.Repository/obj/
+WareHouse.Service/bin/
+WareHouse.Service/obj/
