@@ -15,6 +15,12 @@ namespace WareHouse.Core.Models
         [JsonProperty("total")]
         public int Total { get; set; }
 
+        [JsonProperty("exported")]
+        public int Exported { get; set; }
+
+        [JsonProperty("listProductExported")]
+        public List<OutputProductDto> ListProductExported { get; set; }
+
         [JsonProperty("listProductBatches")]
         public List<ProductBatchInVentory> ListProductBatches { get; set; }
 

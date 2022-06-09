@@ -54,7 +54,7 @@ namespace WareHouse.Repository.Implementations
                     product.ProductName = newProduct.ProductName;
                     product.ProductOrgin = newProduct.ProductOrgin;
                     product.ProductSuplier = newProduct.ProductSuplier;
-                    product.ProductType = newProduct.ProductType;
+                    product.ProductTypeId = newProduct.ProductTypeId;
                     product.ProductUnit = newProduct.ProductUnit;
 
                     dbcontext.SaveChanges();

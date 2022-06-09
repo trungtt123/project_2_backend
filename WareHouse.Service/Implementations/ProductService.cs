@@ -15,10 +15,12 @@ namespace WareHouse.Service.Implementations
     {
         private readonly IProductRepository _productRepository;
         private readonly IProductBatchRepository _productBatchRepository;
-        public ProductService(IProductRepository productRepository, IProductBatchRepository productBatchRepository)
+        private readonly IOutputInfoRepository _outputInfoRepository;
+        public ProductService(IProductRepository productRepository, IProductBatchRepository productBatchRepository, IOutputInfoRepository outputInfoRepository)
         {
             _productRepository = productRepository;
             _productBatchRepository = productBatchRepository;
+            _outputInfoRepository = outputInfoRepository;
         }
         public List<ProductDto> GetListProducts()
         {
@@ -119,13 +121,36 @@ namespace WareHouse.Service.Implementations
                         return o.ProductId == product.ProductId && !(productBatch.InputInfoId == null || productBatch.InputInfoId == 0);
                     });
                 var inv = mapper.Map<List<ProductBatchProductEntity>, List<ProductBatchInVentory>>(productBatchProduct);
+                var listOutputProductEntity = _outputInfoRepository.GetProductById(product.ProductId);
+                var listOutputProductDto = mapper.Map<List<OutputProductEntity>, List<OutputProductDto>>(listOutputProductEntity);
+                var exported = GetTotalExportedInProductBatch(listOutputProductDto);
                 inventory.ListProductBatches = inv;
+                inventory.Exported = exported;
                 inventory.Total = GetTotalProductQuantityInProductBatch(inv);
+                inventory.ListProductExported = listOutputProductDto;
+                
                 listInventories.Add(inventory);
             }
             return listInventories;
         }
         public static int GetTotalProductQuantityInProductBatch(List<ProductBatchInVentory> arr)
+        {
+            try
+            {
+                var total = 0;
+
+                foreach (var item in arr)
+                {
+                    total += item.ProductQuantity;
+                }
+                return total;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+        public static int GetTotalExportedInProductBatch(List<OutputProductDto> arr)
         {
             try
             {

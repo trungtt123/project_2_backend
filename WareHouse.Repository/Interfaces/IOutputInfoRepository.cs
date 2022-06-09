@@ -12,6 +12,8 @@ namespace WareHouse.Repository.Interfaces
         public OutputInfoEntity GetOutputInfo(int outputInfoId);
 
         public List<OutputProductEntity> GetProductInOutputInfo(int outputInfoId);
+
+        public List<OutputProductEntity> GetProductById(int productId);
         public bool OutputInfoAddProduct(OutputProductEntity outputProductEntity);
 
         public bool OutputInfoUpdateProduct(OutputProductEntity newOutputProduct);

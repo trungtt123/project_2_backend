@@ -43,6 +43,21 @@ namespace WareHouse.Repository.Implementations
                 return null;
             }
         }
+        public List<OutputProductEntity> GetProductById(int productId)
+        {
+            try
+            {
+                using var dbcontext = new MyDbContext();
+
+                var arr = dbcontext.outputProduct.ToList().FindAll(o => o.ProductId == productId);
+
+                return arr;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
         public bool OutputInfoAddProduct(OutputProductEntity outputProductEntity)
         {
@@ -52,7 +67,6 @@ namespace WareHouse.Repository.Implementations
 
                 var outputProduct = dbcontext.outputProduct.Add(outputProductEntity);
                 if (outputProduct == null) return false;
-
                 dbcontext.SaveChanges();
 
                 return true;
