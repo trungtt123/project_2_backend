@@ -1,8 +1,12 @@
 WareHouse/bin/
+WareHouse/.vs/
 WareHouse/obj/
 WareHouse.Core/bin/
 WareHouse.Core/obj/
+WareHouse.Core/.vs/
 WareHouse.Repository/bin/
+WareHouse.Repository/.vs/
 WareHouse.Repository/obj/
 WareHouse.Service/bin/
 WareHouse.Service/obj/
+WareHouse.Service/.vs/
