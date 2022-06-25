@@ -6,19 +6,15 @@ namespace WareHouse.Core.Entities
     public class OutputProductEntity
     {
         public int Id { get; set; }
-        public int ProductId { get; set; }
+        public int ProductBatchProductId { get; set; }
 
-        [ForeignKey("ProductId")]
-        public ProductEntity Product { get; set; }
+        [ForeignKey("ProductBatchProductId")]
+        public ProductBatchProductEntity ProductBatchProduct { get; set; }
         public int OutputInfoId { get; set; }
 
         [ForeignKey("OutputInfoId")]
         public OutputInfoEntity OutputInfo { get; set; }
 
-        public int ProductBatchId { get; set; }
-
-        [ForeignKey("ProductBatchId")]
-        public ProductBatchEntity ProductBatch { get; set; }
         public int ProductQuantity { get; set; }
 
 

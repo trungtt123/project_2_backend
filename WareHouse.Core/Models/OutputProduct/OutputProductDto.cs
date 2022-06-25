@@ -9,6 +9,12 @@ namespace WareHouse.Core.Models
 {
     public class OutputProductDto
     {
+        [JsonProperty("outputProductId")]
+        public int Id { get; set; }
+        
+        [JsonProperty("productBatchProductId")]
+        public int ProductBatchProductId { get; set; }
+
         [JsonProperty("productId")]
         public int ProductId { get; set; }
 

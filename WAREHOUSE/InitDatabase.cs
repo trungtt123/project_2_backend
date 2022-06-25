@@ -67,7 +67,7 @@ namespace WareHouse
             var product = new ProductEntity
             {
                 ProductName = "Thịt bò",
-                ProductOrgin = "Việt Nam",
+                ProductOrigin = "Việt Nam",
                 ProductSuplier = "Công ty thực phẩm",
                 ProductTypeId = 1,
                 ProductUnit = "1 hộp"

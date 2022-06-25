@@ -24,9 +24,15 @@ namespace WareHouse.Core.Models
         [JsonProperty("listProductBatches")]
         public List<ProductBatchInVentory> ListProductBatches { get; set; }
 
+        [JsonProperty("listInventories")]
+        public List<ProductBatchInVentory> ListInventories { get; set; }
+
     }
     public class ProductBatchInVentory
     {
+        [JsonProperty("productBatchProductId")]
+        public int Id { get; set; }
+
         [JsonProperty("productBatchId")]
         public int ProductBatchId { get; set; }
 

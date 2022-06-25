@@ -119,9 +119,9 @@ namespace WareHouse
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
         [HttpDelete("output-info/products")]
-        public IActionResult OutputInfoRemoveProduct(int productId, int outputInfoId)
+        public IActionResult OutputInfoRemoveProduct(int id)
         {
-            var kt = _outputInfoService.OutputInfoRemoveProduct(productId, outputInfoId);
+            var kt = _outputInfoService.OutputInfoRemoveProduct(id);
             var response = new ResponseDto();
 
             if (!kt)

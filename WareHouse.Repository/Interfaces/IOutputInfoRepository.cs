@@ -13,11 +13,11 @@ namespace WareHouse.Repository.Interfaces
 
         public List<OutputProductEntity> GetProductInOutputInfo(int outputInfoId);
 
-        public List<OutputProductEntity> GetProductById(int productId);
+        public List<OutputProductEntity> GetProductInOutputById(int productBatchProductId);
         public bool OutputInfoAddProduct(OutputProductEntity outputProductEntity);
 
         public bool OutputInfoUpdateProduct(OutputProductEntity newOutputProduct);
-        public bool OutputInfoRemoveProduct(int productId, int outputInfoId);
+        public bool OutputInfoRemoveProduct(int id);
         public bool CreateOutputInfo(OutputInfoEntity outputInfo);
         public bool UpdateOutputInfo(OutputInfoEntity newOutputInfo);
         public bool DeleteOutputInfo(OutputInfoEntity outputInfoId);

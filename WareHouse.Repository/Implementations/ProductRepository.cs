@@ -52,7 +52,7 @@ namespace WareHouse.Repository.Implementations
                 if (product != null)
                 {
                     product.ProductName = newProduct.ProductName;
-                    product.ProductOrgin = newProduct.ProductOrgin;
+                    product.ProductOrigin = newProduct.ProductOrigin;
                     product.ProductSuplier = newProduct.ProductSuplier;
                     product.ProductTypeId = newProduct.ProductTypeId;
                     product.ProductUnit = newProduct.ProductUnit;

@@ -8,6 +8,7 @@ using WareHouse.Core.Models;
 using WareHouse.Core.Entities;
 using AutoMapper;
 using WareHouse.Service.Interfaces;
+using Newtonsoft.Json;
 
 namespace WareHouse.Service.Implementations
 {
@@ -120,15 +121,54 @@ namespace WareHouse.Service.Implementations
                         var productBatch = _productBatchRepository.GetProductBatch(productBatchId);
                         return o.ProductId == product.ProductId && !(productBatch.InputInfoId == null || productBatch.InputInfoId == 0);
                     });
-                var inv = mapper.Map<List<ProductBatchProductEntity>, List<ProductBatchInVentory>>(productBatchProduct);
-                var listOutputProductEntity = _outputInfoRepository.GetProductById(product.ProductId);
-                var listOutputProductDto = mapper.Map<List<OutputProductEntity>, List<OutputProductDto>>(listOutputProductEntity);
-                var exported = GetTotalExportedInProductBatch(listOutputProductDto);
-                inventory.ListProductBatches = inv;
-                inventory.Exported = exported;
-                inventory.Total = GetTotalProductQuantityInProductBatch(inv);
-                inventory.ListProductExported = listOutputProductDto;
+                var productBatches = mapper.Map<List<ProductBatchProductEntity>, List<ProductBatchInVentory>>(productBatchProduct);
+
+                var listIdProductsInBatch = listProductBatchProduct.FindAll(o => o.ProductId == product.ProductId);
+                var listOutputProductEntity = new List<OutputProductEntity>();
                 
+                foreach (var idProduct in listIdProductsInBatch)
+                {
+                    var listOutputProduct = _outputInfoRepository.GetProductInOutputById(idProduct.Id);
+                    foreach(var outputProduct in listOutputProduct)
+                    {
+                     
+                        listOutputProductEntity.Add(outputProduct);
+                    }
+                    
+                }
+                
+                var listOutputProductDto = mapper.Map<List<OutputProductEntity>, List<OutputProductDto>>(listOutputProductEntity);
+                foreach (var outputProduct in listOutputProductDto)
+                {
+                    //outputProduct.ProductBatchId = _productBatchRepository.GetProductInProductBatch(outputProduct.ProductBatchProductId);
+                    var productData = _productBatchRepository.GetProductInProductBatch(outputProduct.ProductBatchProductId);
+                    if (productData != null)
+                    {
+                        outputProduct.ProductId = productData.ProductId;
+                        outputProduct.ProductBatchId = productData.ProductBatchId;
+                    }
+                }
+                var exported = GetTotalExportedInProductBatch(listOutputProductDto);
+                inventory.ListProductBatches = productBatches;
+                inventory.Exported = exported;
+
+                inventory.Total = GetTotalProductQuantityInProductBatch(productBatches);
+                inventory.ListProductExported = listOutputProductDto;
+
+                // deep clone
+                var serialized = JsonConvert.SerializeObject(productBatches);
+                var productInventories = JsonConvert.DeserializeObject<List<ProductBatchInVentory>>(serialized);
+
+
+                foreach (var productInv in productInventories)
+                {
+                    var productExported = listOutputProductDto.FindAll(o => o.ProductBatchProductId == productInv.Id);
+                    foreach (var item in productExported)
+                    {
+                        productInv.ProductQuantity -= item.ProductQuantity;
+                    }
+                }
+                inventory.ListInventories = productInventories;
                 listInventories.Add(inventory);
             }
             return listInventories;

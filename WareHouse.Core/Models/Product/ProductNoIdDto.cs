@@ -12,8 +12,8 @@ namespace WareHouse.Core.Models
         [JsonProperty("productName")]
         public string ProductName { get; set; }
 
-        [JsonProperty("productOrgin")]
-        public string ProductOrgin { get; set; }
+        [JsonProperty("productOrigin")]
+        public string ProductOrigin { get; set; }
 
         [JsonProperty("productSuplier")]
         public string ProductSuplier { get; set; }

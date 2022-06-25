@@ -43,13 +43,13 @@ namespace WareHouse.Repository.Implementations
                 return null;
             }
         }
-        public List<OutputProductEntity> GetProductById(int productId)
+        public List<OutputProductEntity> GetProductInOutputById(int productBatchProductId)
         {
             try
             {
                 using var dbcontext = new MyDbContext();
 
-                var arr = dbcontext.outputProduct.ToList().FindAll(o => o.ProductId == productId);
+                var arr = dbcontext.outputProduct.ToList().FindAll(o => o.ProductBatchProductId == productBatchProductId);
 
                 return arr;
             }
@@ -83,7 +83,7 @@ namespace WareHouse.Repository.Implementations
                 using var dbcontext = new MyDbContext();
 
                 var outputProduct = dbcontext.outputProduct
-                    .FirstOrDefault(o => o.ProductId == newOutputProduct.ProductId && o.OutputInfoId == newOutputProduct.OutputInfoId);
+                    .FirstOrDefault(o => o.ProductBatchProductId == newOutputProduct.ProductBatchProductId);
                 if (outputProduct == null) return false;
                 outputProduct.ProductQuantity = newOutputProduct.ProductQuantity;
 
@@ -96,13 +96,14 @@ namespace WareHouse.Repository.Implementations
                 return false;
             }
         }
-        public bool OutputInfoRemoveProduct(int productId, int outputInfoId)
+        public bool OutputInfoRemoveProduct(int id)
         {
             try
             {
                 using var dbcontext = new MyDbContext();
 
-                var outputInfo = dbcontext.outputProduct.FirstOrDefault(o => o.ProductId == productId && o.OutputInfoId == outputInfoId);
+                var outputInfo = dbcontext.outputProduct
+                    .FirstOrDefault(o => o.Id == id);
 
                 if (outputInfo == null) return false;
 

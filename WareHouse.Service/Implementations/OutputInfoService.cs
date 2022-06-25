@@ -17,10 +17,13 @@ namespace WareHouse.Service.Implementations
 
         private readonly IProductRepository _productRepository;
 
-        public OutputInfoService(IOutputInfoRepository outputInfoRepository, IProductRepository productRepository)
+        private readonly IProductBatchRepository _productBatchRepository;
+
+        public OutputInfoService(IOutputInfoRepository outputInfoRepository, IProductRepository productRepository, IProductBatchRepository productBatchRepository)
         {
             _outputInfoRepository = outputInfoRepository;
             _productRepository = productRepository;
+            _productBatchRepository = productBatchRepository;
         }
         public List<OutputInfoDto> GetListOutputInfo()
         {
@@ -67,6 +70,17 @@ namespace WareHouse.Service.Implementations
 
             listProductDto = mapper.Map <List<OutputProductEntity>, List<OutputProductDto> >(listProductEntity);
 
+            foreach (var productDto in listProductDto)
+            {
+                var productData = _productBatchRepository.GetProductInProductBatch(productDto.ProductBatchProductId);
+                if (productData != null)
+                {
+                    productDto.ProductId = productData.ProductId;
+                    productDto.ProductBatchId = productData.ProductBatchId;
+                }
+                    
+            }
+            
             outputInfoDto.ListProducts = listProductDto;
 
             //foreach (var productBatch in listProductBatches)
@@ -113,10 +127,10 @@ namespace WareHouse.Service.Implementations
             var kt = _outputInfoRepository.OutputInfoUpdateProduct(outputProductEntity);
             return kt;
         }
-        public bool OutputInfoRemoveProduct(int productId, int outputInfoId)
+        public bool OutputInfoRemoveProduct(int id)
         {
 
-            var kt = _outputInfoRepository.OutputInfoRemoveProduct(productId, outputInfoId);
+            var kt = _outputInfoRepository.OutputInfoRemoveProduct(id);
 
             return kt;
         }

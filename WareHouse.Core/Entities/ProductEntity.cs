@@ -9,7 +9,7 @@ namespace WareHouse.Core.Entities
         [Key]
         public int ProductId { get; set; }
         public string ProductName { get; set; }
-        public string ProductOrgin { get; set; }
+        public string ProductOrigin { get; set; }
         public string ProductSuplier { get; set; }
         public int ProductTypeId { get; set; }
 

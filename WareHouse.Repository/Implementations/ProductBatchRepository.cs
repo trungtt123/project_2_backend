@@ -199,5 +199,20 @@ namespace WareHouse.Repository.Implementations
                 return null;
             }
         }
+        public ProductBatchProductEntity GetProductInProductBatch(int id)
+        {
+            try
+            {
+                using var dbcontext = new MyDbContext();
+
+                var productBatchProduct = dbcontext.productBatchProduct.FirstOrDefault(o => o.Id == id);
+                return productBatchProduct;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }
