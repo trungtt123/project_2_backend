@@ -81,7 +81,7 @@ namespace WareHouse
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
         [HttpPost("output-info/products")]
-        public IActionResult OutputInfoAddProduct([FromBody] OutputProductDto outputProductDto, int outputInfoId)
+        public IActionResult OutputInfoAddProduct([FromBody] OutputProductNoIdDto outputProductDto, int outputInfoId)
         {
             var kt = _outputInfoService.OutputInfoAddProduct(outputProductDto, outputInfoId);
 

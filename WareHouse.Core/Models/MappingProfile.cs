@@ -28,6 +28,10 @@ namespace WareHouse.Core.Models
             CreateMap<OutputInfoEntity, OutputInfoDto>();
             CreateMap<OutputInfoNoIdDto, OutputInfoEntity>();
 
+            CreateMap<OutputProductEntity, OutputProductNoIdDto>();
+
+            CreateMap<OutputProductNoIdDto, OutputProductEntity>();
+
             CreateMap<OutputProductEntity, OutputProductDto>();
 
             CreateMap<OutputProductDto, OutputProductEntity>();
