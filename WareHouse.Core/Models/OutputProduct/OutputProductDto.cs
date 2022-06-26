@@ -21,6 +21,9 @@ namespace WareHouse.Core.Models
         [JsonProperty("productBatchId")]
         public int ProductBatchId { get; set; }
 
+        [JsonProperty("dateExpiry")]
+        public DateTime DateExpiry { get; set; }
+
         [JsonProperty("productQuantity")]
         public int ProductQuantity { get; set; }
     }

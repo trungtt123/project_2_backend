@@ -77,6 +77,7 @@ namespace WareHouse.Service.Implementations
                 {
                     productDto.ProductId = productData.ProductId;
                     productDto.ProductBatchId = productData.ProductBatchId;
+                    productDto.DateExpiry = productData.DateExpiry;
                 }
                     
             }
@@ -111,7 +112,7 @@ namespace WareHouse.Service.Implementations
             return kt;
         }
 
-        public bool OutputInfoUpdateProduct(OutputProductDto outputProduct, int outputInfoId)
+        public bool OutputInfoUpdateProduct(OutputProductNoIdDto outputProduct, int outputInfoId)
         {
             var config = new MapperConfiguration(cfg =>
             {
@@ -120,7 +121,7 @@ namespace WareHouse.Service.Implementations
 
             var mapper = config.CreateMapper();
 
-            var outputProductEntity = mapper.Map<OutputProductDto, OutputProductEntity>(outputProduct);
+            var outputProductEntity = mapper.Map<OutputProductNoIdDto, OutputProductEntity>(outputProduct);
 
             outputProductEntity.OutputInfoId = outputInfoId;
 

@@ -146,6 +146,7 @@ namespace WareHouse.Service.Implementations
                     {
                         outputProduct.ProductId = productData.ProductId;
                         outputProduct.ProductBatchId = productData.ProductBatchId;
+                        outputProduct.DateExpiry = productData.DateExpiry;
                     }
                 }
                 var exported = GetTotalExportedInProductBatch(listOutputProductDto);
