@@ -100,9 +100,9 @@ namespace WareHouse
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
         Roles = Constant.Administrator)]
         [HttpPut("output-info/products")]
-        public IActionResult OutputInfoUpdateProduct([FromBody] OutputProductNoIdDto newOutputProductDto, int outputInfoId)
+        public IActionResult OutputInfoUpdateProduct([FromBody] OutputProductNoIdDto newOutputProductDto, int id)
         {
-            var kt = _outputInfoService.OutputInfoUpdateProduct(newOutputProductDto, outputInfoId);
+            var kt = _outputInfoService.OutputInfoUpdateProduct(newOutputProductDto, id);
 
             var response = new ResponseDto();
 

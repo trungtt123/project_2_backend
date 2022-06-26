@@ -112,7 +112,7 @@ namespace WareHouse.Service.Implementations
             return kt;
         }
 
-        public bool OutputInfoUpdateProduct(OutputProductNoIdDto outputProduct, int outputInfoId)
+        public bool OutputInfoUpdateProduct(OutputProductNoIdDto outputProduct, int id)
         {
             var config = new MapperConfiguration(cfg =>
             {
@@ -123,7 +123,7 @@ namespace WareHouse.Service.Implementations
 
             var outputProductEntity = mapper.Map<OutputProductNoIdDto, OutputProductEntity>(outputProduct);
 
-            outputProductEntity.OutputInfoId = outputInfoId;
+            outputProductEntity.Id = id;
 
             var kt = _outputInfoRepository.OutputInfoUpdateProduct(outputProductEntity);
             return kt;

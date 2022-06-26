@@ -83,10 +83,10 @@ namespace WareHouse.Repository.Implementations
                 using var dbcontext = new MyDbContext();
 
                 var outputProduct = dbcontext.outputProduct
-                    .FirstOrDefault(o => o.ProductBatchProductId == newOutputProduct.ProductBatchProductId);
+                    .FirstOrDefault(o => o.Id == newOutputProduct.Id);
                 if (outputProduct == null) return false;
                 outputProduct.ProductQuantity = newOutputProduct.ProductQuantity;
-
+                outputProduct.ProductBatchProductId = newOutputProduct.ProductBatchProductId;
                 dbcontext.SaveChanges();
 
                 return true;

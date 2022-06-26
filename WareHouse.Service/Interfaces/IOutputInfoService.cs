@@ -12,7 +12,7 @@ namespace WareHouse.Service.Interfaces
         public OutputInfoDto GetOutputInfo(int outputInfoId);
         public bool OutputInfoAddProduct(OutputProductNoIdDto outputProduct, int outputInfoId);
 
-        public bool OutputInfoUpdateProduct(OutputProductNoIdDto newOutputProduct, int outputInfoId);
+        public bool OutputInfoUpdateProduct(OutputProductNoIdDto newOutputProduct, int id);
         public bool OutputInfoRemoveProduct(int id);
         public bool CreateOutputInfo(OutputInfoNoIdDto outputInfo);
         public bool UpdateOutputInfo(int outputInfoId, OutputInfoNoIdDto newOutputInfo);
