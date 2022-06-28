@@ -60,7 +60,7 @@ namespace WareHouse
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = Constant.Administrator)]
+        Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
         [HttpPost("product-batch")]
         public IActionResult CreateProductBatch([FromBody] ProductBatchNoIdDto productBatch)
         {
@@ -78,7 +78,7 @@ namespace WareHouse
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = Constant.Administrator)]
+        Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
         [HttpPut("product-batch")]
         public IActionResult UpdateProductType(int productBatchId, [FromBody] ProductBatchNoIdDto newProductBatch)
         {
@@ -95,7 +95,7 @@ namespace WareHouse
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = Constant.Administrator)]
+        Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
         [HttpDelete("product-batch")]
         public IActionResult DeleteProductBatch(int productBatchId)
         {
@@ -111,7 +111,7 @@ namespace WareHouse
             return BadRequest(Helpers.SerializeObject(response));                                                                              
         }
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = Constant.Administrator)]
+        Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
         [HttpPost("product-batch/products")]
         public IActionResult ProductBatchAddProduct([FromBody] ProductBatchProductNoIdDto data)
         {
@@ -128,7 +128,7 @@ namespace WareHouse
             return BadRequest(Helpers.SerializeObject(response));
         }
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = Constant.Administrator)]
+        Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
         [HttpPut("product-batch/products")]
         public IActionResult ProductBatchUpdateProduct(int id, [FromBody] ProductBatchProductNoIdDto data)
         {
@@ -145,7 +145,7 @@ namespace WareHouse
             return BadRequest(Helpers.SerializeObject(response));
         }
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = Constant.Administrator)]
+        Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
         [HttpDelete("product-batch/products")]
         public IActionResult ProductBatchRemoveProduct(int id)
         {

@@ -60,7 +60,7 @@ namespace WareHouse
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = Constant.Administrator)]
+        Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
         [HttpPost("product")]
         public IActionResult CreateProduct([FromBody] ProductNoIdDto product)
         {
@@ -78,7 +78,7 @@ namespace WareHouse
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = Constant.Administrator)]
+        Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
         [HttpPut("product")]
         public IActionResult UpdateProduct(int productId, [FromBody] ProductNoIdDto newProductName)
         {
@@ -95,7 +95,7 @@ namespace WareHouse
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = Constant.Administrator)]
+        Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
         [HttpDelete("product")]
         public IActionResult DeleteProduct(int productId)
         {
