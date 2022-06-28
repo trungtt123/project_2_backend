@@ -60,7 +60,7 @@ namespace WareHouse
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = Constant.Administrator)]
+        Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
         [HttpPost("output-info")]
         public IActionResult CreateOutputInfo([FromBody] OutputInfoNoIdDto outputInfo)
         { 
@@ -79,7 +79,7 @@ namespace WareHouse
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = Constant.Administrator)]
+        Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
         [HttpPost("output-info/products")]
         public IActionResult OutputInfoAddProduct([FromBody] OutputProductNoIdDto outputProductDto, int outputInfoId)
         {
@@ -98,7 +98,7 @@ namespace WareHouse
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = Constant.Administrator)]
+        Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
         [HttpPut("output-info/products")]
         public IActionResult OutputInfoUpdateProduct([FromBody] OutputProductNoIdDto newOutputProductDto, int id)
         {
@@ -117,7 +117,7 @@ namespace WareHouse
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = Constant.Administrator)]
+        Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
         [HttpDelete("output-info/products")]
         public IActionResult OutputInfoRemoveProduct(int id)
         {
@@ -135,7 +135,7 @@ namespace WareHouse
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = Constant.Administrator)]
+        Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
         [HttpPut("output-info")]
         public IActionResult UpdateOutputInfo(int outputInfoId, [FromBody] OutputInfoNoIdDto newOutputInfo)
         {
@@ -152,7 +152,7 @@ namespace WareHouse
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = Constant.Administrator)]
+        Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
         [HttpDelete("output-info")]
         public IActionResult DeleteOutputInfo(int outputInfoId)
         {
