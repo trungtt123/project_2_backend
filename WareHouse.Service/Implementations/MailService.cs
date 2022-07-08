@@ -24,8 +24,9 @@ namespace WareHouse.Service.Implementations
                 message.ReplyToList.Add(new MailAddress(emailForm.EmailFrom));
                 message.Sender = new MailAddress(emailForm.EmailFrom);
 
-                using var smtpClient = new SmtpClient("smtp.gmail.com");
+                using var smtpClient = new SmtpClient("smtp-mail.outlook.com");
                 smtpClient.Port = 587;
+                smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtpClient.EnableSsl = true;
                 smtpClient.Credentials = new NetworkCredential(systemEmail.EmailAddress, systemEmail.Password);
                 await smtpClient.SendMailAsync(message);

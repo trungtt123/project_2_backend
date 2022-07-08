@@ -108,7 +108,7 @@ namespace WareHouse
             var kt = _userService.UpdateUser(newUserData);
             var response = new ResponseDto();
 
-            if (!kt)
+            if (!kt || newUserData.UserId == 1)
             {
                 response.Message = Constant.UPDATE_USER_FAILED;
                 return BadRequest(Helpers.SerializeObject(response));

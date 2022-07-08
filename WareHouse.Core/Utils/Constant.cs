@@ -29,8 +29,8 @@
         public const string CHANGE_PASSWORD_SUCCESSFULLY = "CHANGE_PASSWORD_SUCCESSFULLY";
         public const string CHANGE_PASSWORD_FAILED = "CHANGE_PASSWORD_FAILED";
 
-        public const string SYSTEM_EMAIL_ADDRESS = "trungvippro10x123@gmail.com";
-        public const string SYSTEM_EMAIL_PASSWORD = "trungtt123";
+        public const string SYSTEM_EMAIL_ADDRESS = "no-reply-project-3@outlook.com";
+        public const string SYSTEM_EMAIL_PASSWORD = "project3";
 
         public const string GET_PRODUCT_TYPE_SUCCESSFULLY = "GET_PRODUCT_TYPE_SUCCESSFULLY";
         public const string GET_PRODUCT_TYPE_FAILED = "GET_PRODUCT_TYPE_FAILED";

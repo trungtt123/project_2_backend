@@ -148,26 +148,28 @@ namespace WareHouse.Service.Implementations
             //call api google
 
             userEntity.Password = Helpers.GetHashPassword(password);
-            
+            var email = new EmailFormDto
+            {
+                EmailFrom = Constant.SYSTEM_EMAIL_ADDRESS,
+                EmailTo = user.Email,
+                Subject = "Create Account Successfully",
+                Body = "Username: <b>" + user.UserName + "</b> <br /> Password: <b>" + password + "</b>"
+            };
+            var systemEmail = new EmailAccountDto { EmailAddress = Constant.SYSTEM_EMAIL_ADDRESS, Password = Constant.SYSTEM_EMAIL_PASSWORD };
+            var task = _mailService.SendMail(email, systemEmail);
+            task.Wait();
+            var kt = task.Result;
+
+            if (!kt) return null;
+           
             var userResponse = _userRepository.CreateUser(userEntity);
+            
+            
             if (userResponse != null)
             {
-
-                var email = new EmailFormDto 
-                { 
-                    EmailFrom = Constant.SYSTEM_EMAIL_ADDRESS, 
-                    EmailTo = user.Email, 
-                    Subject = "Create Account Successfully", 
-                    Body = "Username: <b>" + user.UserName + "</b> <br /> Password: <b>" + password + "</b>" 
-                };
-                var systemEmail = new EmailAccountDto { EmailAddress = Constant.SYSTEM_EMAIL_ADDRESS, Password = Constant.SYSTEM_EMAIL_PASSWORD };
-                var task = _mailService.SendMail(email, systemEmail);
-                task.Wait();
-                var kt = task.Result;
-                if (!kt) return null;
-
                 userInfomation.UserId = userResponse.UserId;
                 return userInfomation;
+
             }
             return null;
         }
