@@ -58,6 +58,10 @@ namespace WareHouse.Repository.Implementations
                 productBatch.InputInfoId = inputInfoId;
                 dbcontext.SaveChanges();
 
+                var inputInfo = dbcontext.inputInfo.FirstOrDefault(o => o.InputInfoId == inputInfoId);
+                inputInfo.InputUpdateTime = DateTime.Now;
+                dbcontext.SaveChanges();
+
                 return true;
             }
             catch (Exception ex)
@@ -76,8 +80,18 @@ namespace WareHouse.Repository.Implementations
                 
                 if (productBatch == null) return false;
 
+                var inputInfo = dbcontext.inputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
+                if (inputInfo != null)
+                {
+                    inputInfo.InputUpdateTime = DateTime.Now;
+                    dbcontext.SaveChanges();
+                }
+
                 productBatch.InputInfoId = null;
                 dbcontext.SaveChanges();
+
+                
+
                 return true;
             }
             catch (Exception ex)

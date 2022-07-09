@@ -144,10 +144,10 @@ namespace WareHouse
 
             if (users == null)
             {
-                response.Message = Constant.GET_ALL_USERS_FAILED;
+                response.Message = Constant.GET_LIST_USERS_FAILED;
                 return BadRequest(Helpers.SerializeObject(response));
             }
-            response.Message = Constant.GET_ALL_USERS_SUCCESSFULLY;
+            response.Message = Constant.GET_LIST_USERS_SUCCESSFULLY;
             response.Data = users;
             return Ok(Helpers.SerializeObject(response));
         }

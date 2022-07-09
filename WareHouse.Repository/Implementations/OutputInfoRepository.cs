@@ -69,6 +69,14 @@ namespace WareHouse.Repository.Implementations
                 if (outputProduct == null) return false;
                 dbcontext.SaveChanges();
 
+                var outputInfo = dbcontext.outputInfo.FirstOrDefault(o => o.OutputInfoId == outputProductEntity.OutputInfoId);
+                if (outputInfo != null)
+                {
+                    outputInfo.OutputUpdateTime = DateTime.Now;
+                    dbcontext.SaveChanges();
+                }
+
+
                 return true;
             }
             catch (Exception ex)
@@ -89,6 +97,15 @@ namespace WareHouse.Repository.Implementations
                 outputProduct.ProductBatchProductId = newOutputProduct.ProductBatchProductId;
                 dbcontext.SaveChanges();
 
+                Console.WriteLine(newOutputProduct.OutputInfoId);
+                var outputInfo = dbcontext.outputInfo.FirstOrDefault(o => o.OutputInfoId == outputProduct.OutputInfoId);
+                if (outputInfo != null)
+                {
+                    Console.WriteLine("abc");
+                    outputInfo.OutputUpdateTime = DateTime.Now;
+                    dbcontext.SaveChanges();
+                }
+
                 return true;
             }
             catch (Exception ex)
@@ -107,9 +124,19 @@ namespace WareHouse.Repository.Implementations
 
                 if (outputInfo == null) return false;
 
+                var outputInfoTmp = dbcontext.outputInfo.FirstOrDefault(o => o.OutputInfoId == outputInfo.OutputInfoId);
+                if (outputInfoTmp != null)
+                {
+                    outputInfoTmp.OutputUpdateTime = DateTime.Now;
+                    dbcontext.SaveChanges();
+                }
+
                 dbcontext.outputProduct.Remove(outputInfo);
 
                 dbcontext.SaveChanges();
+
+                
+
                 return true;
             }
             catch (Exception ex)

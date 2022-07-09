@@ -50,6 +50,14 @@ namespace WareHouse.Repository.Implementations
             {
                 using var dbcontext = new MyDbContext();
                 dbcontext.productBatches.Add(productBatch);
+
+                var inputInfo = dbcontext.inputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
+                if (inputInfo != null)
+                {
+                    inputInfo.InputUpdateTime = DateTime.Now;
+                    dbcontext.SaveChanges();
+                }
+
                 dbcontext.SaveChanges();
                 return true;
             }
@@ -70,6 +78,14 @@ namespace WareHouse.Repository.Implementations
                 {
                     productBatch.ProductBatchName = newProductBatch.ProductBatchName;
                     dbcontext.SaveChanges();
+
+                    var inputInfo = dbcontext.inputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
+                    if (inputInfo != null)
+                    {
+                        inputInfo.InputUpdateTime = DateTime.Now;
+                        dbcontext.SaveChanges();
+                    }
+
                     return true;
                 }
                 else return false;
@@ -89,7 +105,14 @@ namespace WareHouse.Repository.Implementations
                 dbcontext.productBatches.Remove(productBatch);
                 
                 dbcontext.SaveChanges();
-                
+
+                var inputInfo = dbcontext.inputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
+                if (inputInfo != null)
+                {
+                    inputInfo.InputUpdateTime = DateTime.Now;
+                    dbcontext.SaveChanges();
+                }
+
                 return true;
 
             }
@@ -126,6 +149,13 @@ namespace WareHouse.Repository.Implementations
 
                 dbcontext.SaveChanges();
 
+                var productBatch = dbcontext.productBatches.FirstOrDefault(o => o.ProductBatchId == productBatchProduct.ProductBatchId);
+                var inputInfo = dbcontext.inputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
+                if (inputInfo != null)
+                {
+                    inputInfo.InputUpdateTime = DateTime.Now;
+                    dbcontext.SaveChanges();
+                }
                 return true;
 
             }
@@ -152,6 +182,14 @@ namespace WareHouse.Repository.Implementations
 
                 dbcontext.SaveChanges();
 
+                var productBatch = dbcontext.productBatches.FirstOrDefault(o => o.ProductBatchId == newProductBatchProduct.ProductBatchId);
+                var inputInfo = dbcontext.inputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
+                if (inputInfo != null)
+                {
+                    inputInfo.InputUpdateTime = DateTime.Now;
+                    dbcontext.SaveChanges();
+                }
+
                 return true;
 
             }
@@ -174,6 +212,15 @@ namespace WareHouse.Repository.Implementations
                 dbcontext.productBatchProduct.Remove(productBatchProduct);
                 
                 dbcontext.SaveChanges();
+
+                var productBatch = dbcontext.productBatches.FirstOrDefault(o => o.ProductBatchId == productBatchProduct.ProductBatchId);
+                var inputInfo = dbcontext.inputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
+                if (inputInfo != null)
+                {
+                    inputInfo.InputUpdateTime = DateTime.Now;
+                    dbcontext.SaveChanges();
+                }
+
 
                 return true;
 
