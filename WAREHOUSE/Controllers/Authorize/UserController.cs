@@ -152,7 +152,7 @@ namespace WareHouse
             return Ok(Helpers.SerializeObject(response));
         }
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = Constant.Administrator)]
+        Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
         [HttpPut("change-password")]
         
         public IActionResult ChangePassWord([FromBody] UserChangePassWordDto userData)
