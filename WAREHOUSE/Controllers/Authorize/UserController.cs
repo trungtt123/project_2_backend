@@ -135,7 +135,7 @@ namespace WareHouse
         }
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,
-        Roles = Constant.Administrator)]
+        Roles = Constant.Administrator + ", " + Constant.Manager + ", " + Constant.Stocker)]
         [HttpGet("get-all-users")]
         public IActionResult GetAllUsers()
         {
