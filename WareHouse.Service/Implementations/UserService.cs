@@ -85,7 +85,7 @@ namespace WareHouse.Service.Implementations
                 issuer: _iconfiguration["Jwt:Issuer"],
                 audience: _iconfiguration["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddDays(60),
+                expires: DateTime.UtcNow.AddDays(1),
                 notBefore: DateTime.UtcNow,
                 signingCredentials: new SigningCredentials(
                     new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_iconfiguration["Jwt:Key"])),

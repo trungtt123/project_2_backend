@@ -1,10 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WareHouse.Core.Utils;
+using Microsoft.Extensions.Configuration;
 namespace WareHouse.Core.Entities
 {
     public class MyDbContext : DbContext
     {
         // Khởi tạo bảng
+        private readonly IConfiguration _configuration;
+
         public DbSet<UserEntity> users { set; get; }
         public DbSet<RoleEntity> roles { set; get; }
         public DbSet<ProductTypeEntity> productTypes { set; get; } 
@@ -22,6 +25,7 @@ namespace WareHouse.Core.Entities
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
+            //Console.WriteLine(connectionString);
             optionsBuilder.UseSqlServer(connectionString);
         }
 
@@ -51,7 +55,9 @@ namespace WareHouse.Core.Entities
                 .WithMany(t => t.DeliverOutputInfo)
                 .HasForeignKey(m => m.SignatorId)
                 .OnDelete(DeleteBehavior.Restrict);
-
+            builder.Entity<UserEntity>()
+                .HasIndex(u => u.UserName)
+                .IsUnique();
         }
 
     }
