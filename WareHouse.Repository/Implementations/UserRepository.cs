@@ -5,21 +5,25 @@ using System.Text;
 using System.Threading.Tasks;
 using WareHouse.Repository.Interfaces;
 using WareHouse.Core.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace WareHouse.Repository.Implementations
 {
     public class UserRepository : IUserRepository
     {
-       
+        private readonly MyDbContext _dbcontext;
+      
+        public UserRepository()
+        {
+            _dbcontext = new MyDbContext();
+        }
         public UserEntity GetUser(string userName)
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
                 var user = new UserEntity();
 
-                user = dbcontext.users.FirstOrDefault(o => o.UserName == userName);
+                user = _dbcontext.Users.FirstOrDefault(o => o.UserName == userName);
 
                 //userDto = mapper.Map<UserEntity, UserDto>(user);
                 return user;
@@ -34,11 +38,10 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
 
                 var user = new UserEntity();
 
-                user = dbcontext.users.FirstOrDefault(o => o.UserId == userId);
+                user = _dbcontext.Users.FirstOrDefault(o => o.UserId == userId);
 
                 //userDto = mapper.Map<UserEntity, UserDto>(user);
                 return user;
@@ -53,11 +56,10 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
 
-                dbcontext.users.Add(userData);
+                _dbcontext.Users.Add(userData);
 
-                int number_rows = dbcontext.SaveChanges();
+                int number_rows = _dbcontext.SaveChanges();
 
                 if (number_rows > 0) return userData;
                 return null;
@@ -70,14 +72,12 @@ namespace WareHouse.Repository.Implementations
         public bool DeleteUser(int userId)
         {
             try
-            {
-                using var dbcontext = new MyDbContext();
+            {                
+                var user = _dbcontext.Users.FirstOrDefault(o => o.UserId == userId);
                 
-                var user = dbcontext.users.FirstOrDefault(o => o.UserId == userId);
-                
-                dbcontext.users.Remove(user);
+                _dbcontext.Users.Remove(user);
 
-                dbcontext.SaveChanges();
+                _dbcontext.SaveChanges();
                
                 return true;
             }
@@ -91,16 +91,15 @@ namespace WareHouse.Repository.Implementations
            
             try
             {
-                using var dbcontext = new MyDbContext();
 
-                var user = dbcontext.users.FirstOrDefault(o => o.UserId == newUserData.UserId);
+                var user = _dbcontext.Users.FirstOrDefault(o => o.UserId == newUserData.UserId);
 
                 if (user != null)
                 {
                     user.SurName = newUserData.SurName;
                     user.GivenName = newUserData.GivenName;
                     user.RoleId = newUserData.RoleId;
-                    dbcontext.SaveChanges();
+                    _dbcontext.SaveChanges();
                     return true;
                 }
                 else return false;
@@ -116,8 +115,7 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-                List<RoleEntity> arr = dbcontext.roles.ToList();
+                List<RoleEntity> arr = _dbcontext.Roles.ToList();
                 return arr;
             }
             catch(Exception ex)
@@ -129,8 +127,7 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-                List<UserEntity> arr = dbcontext.users.ToList();
+                List<UserEntity> arr = _dbcontext.Users.ToList();
                 return arr;
             }
             catch(Exception ex)
@@ -142,12 +139,11 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-                var user = dbcontext.users.FirstOrDefault(o => o.UserId == userId);
+                var user = _dbcontext.Users.FirstOrDefault(o => o.UserId == userId);
                 if (user != null)
                 {
                     user.Password = newPassword;
-                    dbcontext.SaveChanges();
+                    _dbcontext.SaveChanges();
                     return true;
                 }
                 else return false;

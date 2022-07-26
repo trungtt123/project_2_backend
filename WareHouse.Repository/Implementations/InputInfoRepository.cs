@@ -10,15 +10,20 @@ namespace WareHouse.Repository.Implementations
 {
     public class InputInfoRepository : IInputInfoRepository
     {
+        private readonly MyDbContext _dbcontext;
+
+        public InputInfoRepository()
+        {
+            _dbcontext = new MyDbContext();
+        }
         public InputInfoEntity GetInputInfo(int inputInfoId)
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
+               
                 var inputInfo = new InputInfoEntity();
 
-                inputInfo = dbcontext.inputInfo.FirstOrDefault(o => o.InputInfoId == inputInfoId);
+                inputInfo = _dbcontext.InputInfo.FirstOrDefault(o => o.InputInfoId == inputInfoId);
 
 
                 return inputInfo;
@@ -32,9 +37,8 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
-                var arr = dbcontext.productBatches.ToList().FindAll(o => o.InputInfoId == inputInfoId);
+                
+                var arr = _dbcontext.ProductBatches.ToList().FindAll(o => o.InputInfoId == inputInfoId);
 
                 return arr;
             }
@@ -48,19 +52,18 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
-                var productBatch = dbcontext.productBatches.FirstOrDefault(o => o.ProductBatchId == productBatchId);
+                
+                var productBatch = _dbcontext.ProductBatches.FirstOrDefault(o => o.ProductBatchId == productBatchId);
                 if (productBatch == null) return false;
 
 
                 if (productBatch.InputInfoId != 0 && productBatch.InputInfoId != null) return false;
                 productBatch.InputInfoId = inputInfoId;
-                dbcontext.SaveChanges();
+                _dbcontext.SaveChanges();
 
-                var inputInfo = dbcontext.inputInfo.FirstOrDefault(o => o.InputInfoId == inputInfoId);
+                var inputInfo = _dbcontext.InputInfo.FirstOrDefault(o => o.InputInfoId == inputInfoId);
                 inputInfo.InputUpdateTime = DateTime.Now;
-                dbcontext.SaveChanges();
+                _dbcontext.SaveChanges();
 
                 return true;
             }
@@ -74,21 +77,20 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
-                var productBatch = dbcontext.productBatches.FirstOrDefault(o => o.ProductBatchId == productBatchId);
+              
+                var productBatch = _dbcontext.ProductBatches.FirstOrDefault(o => o.ProductBatchId == productBatchId);
                 
                 if (productBatch == null) return false;
 
-                var inputInfo = dbcontext.inputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
+                var inputInfo = _dbcontext.InputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
                 if (inputInfo != null)
                 {
                     inputInfo.InputUpdateTime = DateTime.Now;
-                    dbcontext.SaveChanges();
+                    _dbcontext.SaveChanges();
                 }
 
                 productBatch.InputInfoId = null;
-                dbcontext.SaveChanges();
+                _dbcontext.SaveChanges();
 
                 
 
@@ -102,10 +104,9 @@ namespace WareHouse.Repository.Implementations
         public bool CreateInputInfo(InputInfoEntity inputInfo)
         {
             try
-            {
-                using var dbcontext = new MyDbContext();
-                dbcontext.inputInfo.Add(inputInfo);
-                dbcontext.SaveChanges();
+            {   
+                _dbcontext.InputInfo.Add(inputInfo);
+                _dbcontext.SaveChanges();
                 return true;
             }
             catch (Exception ex)
@@ -117,9 +118,8 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
-                var inputInfo = dbcontext.inputInfo.FirstOrDefault(o => o.InputInfoId == newInputInfo.InputInfoId);
+                
+                var inputInfo = _dbcontext.InputInfo.FirstOrDefault(o => o.InputInfoId == newInputInfo.InputInfoId);
 
                 if (inputInfo != null)
                 {
@@ -127,7 +127,7 @@ namespace WareHouse.Repository.Implementations
                     inputInfo.InputUpdateTime = newInputInfo.InputUpdateTime;
                     inputInfo.Shipper = newInputInfo.Shipper;
                     inputInfo.ReceiverUserId = newInputInfo.ReceiverUserId;
-                    dbcontext.SaveChanges();
+                    _dbcontext.SaveChanges();
                     return true;
                 }
                 else return false;
@@ -142,11 +142,10 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
+               
+                _dbcontext.InputInfo.Remove(inputInfo);
 
-                dbcontext.inputInfo.Remove(inputInfo);
-
-                dbcontext.SaveChanges();
+                _dbcontext.SaveChanges();
 
                 return true;
 
@@ -160,12 +159,10 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
-
+               
                 var listInputInfo = new List<InputInfoEntity>();
 
-                listInputInfo = dbcontext.inputInfo.ToList();
+                listInputInfo = _dbcontext.InputInfo.ToList();
 
                 return listInputInfo;
             }

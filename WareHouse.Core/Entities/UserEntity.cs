@@ -9,12 +9,12 @@ namespace WareHouse.Core.Entities
         [Required]
         public int UserId { get; set; }
 
-        [StringLength(100)]
         [Required]
+        [Column(TypeName = "varchar(100)")]
         public string UserName { get; set; }
         
-        [StringLength(100)]
         [Required]
+        [Column(TypeName = "varchar(100)")]
         public string Password { get; set; }
         
         [StringLength(100)]

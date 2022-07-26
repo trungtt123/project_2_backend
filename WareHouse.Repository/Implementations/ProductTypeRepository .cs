@@ -10,15 +10,20 @@ namespace WareHouse.Repository.Implementations
 {
     public class ProductTypeRepository : IProductTypeRepository
     {
+        private readonly MyDbContext _dbcontext;
+
+        public ProductTypeRepository()
+        {
+            _dbcontext = new MyDbContext();
+        }
         public List<ProductTypeEntity> GetListProductTypes()
         {
             try
             {
-                using var dbcontext = new MyDbContext();
 
                 var productTypes = new List<ProductTypeEntity>();
 
-                productTypes = dbcontext.productTypes.ToList();
+                productTypes = _dbcontext.ProductTypes.ToList();
 
                 return productTypes;
             }
@@ -31,11 +36,10 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
 
                 var productType = new ProductTypeEntity();
 
-                productType = dbcontext.productTypes.FirstOrDefault(o => o.ProductTypeId == productTypeId);
+                productType = _dbcontext.ProductTypes.FirstOrDefault(o => o.ProductTypeId == productTypeId);
 
                 return productType;
             }
@@ -47,10 +51,9 @@ namespace WareHouse.Repository.Implementations
         public bool CreateProductType(ProductTypeEntity productType)
         {
             try
-            {
-                using var dbcontext = new MyDbContext();
-                dbcontext.productTypes.Add(productType);
-                dbcontext.SaveChanges();
+            { 
+                _dbcontext.ProductTypes.Add(productType);
+                _dbcontext.SaveChanges();
                 return true;
             }
             catch (Exception ex)
@@ -62,14 +65,13 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
 
-                var productType = dbcontext.productTypes.FirstOrDefault(o => o.ProductTypeId == newProductType.ProductTypeId);
+                var productType = _dbcontext.ProductTypes.FirstOrDefault(o => o.ProductTypeId == newProductType.ProductTypeId);
 
                 if (productType != null)
                 {
                     productType.ProductTypeName = newProductType.ProductTypeName;
-                    dbcontext.SaveChanges();
+                    _dbcontext.SaveChanges();
                     return true;
                 }
                 else return false;
@@ -84,14 +86,11 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
-                dbcontext.productTypes.Remove(productType);
+                _dbcontext.ProductTypes.Remove(productType);
                 
-                dbcontext.SaveChanges();
+                _dbcontext.SaveChanges();
                 
                 return true;
-
             }
             catch (Exception ex)
             {

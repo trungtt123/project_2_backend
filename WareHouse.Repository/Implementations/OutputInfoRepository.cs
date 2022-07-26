@@ -10,15 +10,19 @@ namespace WareHouse.Repository.Implementations
 {
     public class OutputInfoRepository : IOutputInfoRepository
     {
+        private readonly MyDbContext _dbcontext;
+
+        public OutputInfoRepository()
+        {
+            _dbcontext = new MyDbContext();
+        }
         public OutputInfoEntity GetOutputInfo(int outputInfoId)
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
                 var outputInfo = new OutputInfoEntity();
 
-                outputInfo = dbcontext.outputInfo.FirstOrDefault(o => o.OutputInfoId == outputInfoId);
+                outputInfo = _dbcontext.OutputInfo.FirstOrDefault(o => o.OutputInfoId == outputInfoId);
 
 
                 return outputInfo;
@@ -32,9 +36,7 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
-                var arr = dbcontext.outputProduct.ToList().FindAll(o => o.OutputInfoId == outputInfoId);
+                var arr = _dbcontext.OutputProduct.ToList().FindAll(o => o.OutputInfoId == outputInfoId);
 
                 return arr;
             }
@@ -47,9 +49,8 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
-                var arr = dbcontext.outputProduct.ToList().FindAll(o => o.ProductBatchProductId == productBatchProductId);
+                
+                var arr = _dbcontext.OutputProduct.ToList().FindAll(o => o.ProductBatchProductId == productBatchProductId);
 
                 return arr;
             }
@@ -63,17 +64,16 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
-                var outputProduct = dbcontext.outputProduct.Add(outputProductEntity);
+               
+                var outputProduct = _dbcontext.OutputProduct.Add(outputProductEntity);
                 if (outputProduct == null) return false;
-                dbcontext.SaveChanges();
+                _dbcontext.SaveChanges();
 
-                var outputInfo = dbcontext.outputInfo.FirstOrDefault(o => o.OutputInfoId == outputProductEntity.OutputInfoId);
+                var outputInfo = _dbcontext.OutputInfo.FirstOrDefault(o => o.OutputInfoId == outputProductEntity.OutputInfoId);
                 if (outputInfo != null)
                 {
                     outputInfo.OutputUpdateTime = DateTime.Now;
-                    dbcontext.SaveChanges();
+                    _dbcontext.SaveChanges();
                 }
 
 
@@ -88,22 +88,20 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
-                var outputProduct = dbcontext.outputProduct
+                
+                var outputProduct = _dbcontext.OutputProduct
                     .FirstOrDefault(o => o.Id == newOutputProduct.Id);
                 if (outputProduct == null) return false;
                 outputProduct.ProductQuantity = newOutputProduct.ProductQuantity;
                 outputProduct.ProductBatchProductId = newOutputProduct.ProductBatchProductId;
-                dbcontext.SaveChanges();
+                _dbcontext.SaveChanges();
 
-                Console.WriteLine(newOutputProduct.OutputInfoId);
-                var outputInfo = dbcontext.outputInfo.FirstOrDefault(o => o.OutputInfoId == outputProduct.OutputInfoId);
+                var outputInfo = _dbcontext.OutputInfo.FirstOrDefault(o => o.OutputInfoId == outputProduct.OutputInfoId);
                 if (outputInfo != null)
                 {
                     Console.WriteLine("abc");
                     outputInfo.OutputUpdateTime = DateTime.Now;
-                    dbcontext.SaveChanges();
+                    _dbcontext.SaveChanges();
                 }
 
                 return true;
@@ -117,23 +115,22 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
-                var outputInfo = dbcontext.outputProduct
+               
+                var outputInfo = _dbcontext.OutputProduct
                     .FirstOrDefault(o => o.Id == id);
 
                 if (outputInfo == null) return false;
 
-                var outputInfoTmp = dbcontext.outputInfo.FirstOrDefault(o => o.OutputInfoId == outputInfo.OutputInfoId);
+                var outputInfoTmp = _dbcontext.OutputInfo.FirstOrDefault(o => o.OutputInfoId == outputInfo.OutputInfoId);
                 if (outputInfoTmp != null)
                 {
                     outputInfoTmp.OutputUpdateTime = DateTime.Now;
-                    dbcontext.SaveChanges();
+                    _dbcontext.SaveChanges();
                 }
 
-                dbcontext.outputProduct.Remove(outputInfo);
+                _dbcontext.OutputProduct.Remove(outputInfo);
 
-                dbcontext.SaveChanges();
+                _dbcontext.SaveChanges();
 
                 
 
@@ -148,9 +145,8 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-                dbcontext.outputInfo.Add(outputInfo);
-                dbcontext.SaveChanges();
+                _dbcontext.OutputInfo.Add(outputInfo);
+                _dbcontext.SaveChanges();
                 return true;
             }
             catch (Exception ex)
@@ -162,9 +158,7 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
-                var outputInfo = dbcontext.outputInfo.FirstOrDefault(o => o.OutputInfoId == newOutputInfo.OutputInfoId);
+                var outputInfo = _dbcontext.OutputInfo.FirstOrDefault(o => o.OutputInfoId == newOutputInfo.OutputInfoId);
 
                 if (outputInfo != null)
                 {
@@ -172,7 +166,7 @@ namespace WareHouse.Repository.Implementations
                     outputInfo.OutputUpdateTime = newOutputInfo.OutputUpdateTime;
                     outputInfo.PickerId = newOutputInfo.PickerId;
                     outputInfo.SignatorId = newOutputInfo.SignatorId;
-                    dbcontext.SaveChanges();
+                    _dbcontext.SaveChanges();
                     return true;
                 }
                 else return false;
@@ -187,11 +181,10 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
+                
+                _dbcontext.OutputInfo.Remove(outputInfo);
 
-                dbcontext.outputInfo.Remove(outputInfo);
-
-                dbcontext.SaveChanges();
+                _dbcontext.SaveChanges();
 
                 return true;
 
@@ -205,11 +198,9 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
                 var listOutputInfo = new List<OutputInfoEntity>();
 
-                listOutputInfo = dbcontext.outputInfo.ToList();
+                listOutputInfo = _dbcontext.OutputInfo.ToList();
 
                 return listOutputInfo;
             }

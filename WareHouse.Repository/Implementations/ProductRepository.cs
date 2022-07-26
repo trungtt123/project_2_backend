@@ -10,15 +10,19 @@ namespace WareHouse.Repository.Implementations
 {
     public class ProductRepository : IProductRepository
     {
+        private readonly MyDbContext _dbcontext;
+
+        public ProductRepository()
+        {
+            _dbcontext = new MyDbContext();
+        }
         public ProductEntity GetProduct(int productId)
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
                 var product = new ProductEntity();
 
-                product = dbcontext.products.FirstOrDefault(o => o.ProductId == productId);
+                product = _dbcontext.Products.FirstOrDefault(o => o.ProductId == productId);
 
                 return product;
             }
@@ -31,9 +35,8 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-                dbcontext.products.Add(product);
-                dbcontext.SaveChanges();
+                _dbcontext.Products.Add(product);
+                _dbcontext.SaveChanges();
                 return true;
             }
             catch (Exception ex)
@@ -45,9 +48,8 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
 
-                var product = dbcontext.products.FirstOrDefault(o => o.ProductId == newProduct.ProductId);
+                var product = _dbcontext.Products.FirstOrDefault(o => o.ProductId == newProduct.ProductId);
 
                 if (product != null)
                 {
@@ -57,7 +59,7 @@ namespace WareHouse.Repository.Implementations
                     product.ProductTypeId = newProduct.ProductTypeId;
                     product.ProductUnit = newProduct.ProductUnit;
 
-                    dbcontext.SaveChanges();
+                    _dbcontext.SaveChanges();
                     return true;
                 }
                 else return false;
@@ -72,11 +74,10 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
 
-                dbcontext.products.Remove(product);
+                _dbcontext.Products.Remove(product);
 
-                dbcontext.SaveChanges();
+                _dbcontext.SaveChanges();
 
                 return true;
 
@@ -90,12 +91,9 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
-
                 var products = new List<ProductEntity>();
 
-                products = dbcontext.products.ToList();
+                products = _dbcontext.Products.ToList();
 
                 return products;
             }

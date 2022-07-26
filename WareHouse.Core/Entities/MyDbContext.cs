@@ -3,22 +3,23 @@ using WareHouse.Core.Utils;
 using Microsoft.Extensions.Configuration;
 namespace WareHouse.Core.Entities
 {
+
     public class MyDbContext : DbContext
     {
         // Khởi tạo bảng
         private readonly IConfiguration _configuration;
 
-        public DbSet<UserEntity> users { set; get; }
-        public DbSet<RoleEntity> roles { set; get; }
-        public DbSet<ProductTypeEntity> productTypes { set; get; } 
+        public DbSet<UserEntity> Users { set; get; }
+        public DbSet<RoleEntity> Roles { set; get; }
+        public DbSet<ProductTypeEntity> ProductTypes { set; get; } 
 
-        public DbSet<ProductEntity> products { set; get; }
+        public DbSet<ProductEntity> Products { set; get; }
 
-        public DbSet<ProductBatchEntity> productBatches { set; get; }
-        public DbSet<InputInfoEntity> inputInfo { set; get; }
-        public DbSet<OutputInfoEntity> outputInfo { set; get; }
-        public DbSet<OutputProductEntity> outputProduct { set; get; }
-        public DbSet<ProductBatchProductEntity> productBatchProduct { set; get; }
+        public DbSet<ProductBatchEntity> ProductBatches { set; get; }
+        public DbSet<InputInfoEntity> InputInfo { set; get; }
+        public DbSet<OutputInfoEntity> OutputInfo { set; get; }
+        public DbSet<OutputProductEntity> OutputProduct { set; get; }
+        public DbSet<ProductBatchProductEntity> ProductBatchProduct { set; get; }
         // Chuỗi kết nối tới CSDL (MS SQL Server)
 
         private const string connectionString = Constant.CONNECTION_STRING;

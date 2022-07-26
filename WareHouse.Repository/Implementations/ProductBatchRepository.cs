@@ -10,15 +10,20 @@ namespace WareHouse.Repository.Implementations
 {
     public class ProductBatchRepository : IProductBatchRepository
     {
+        private readonly MyDbContext _dbcontext;
+
+        public ProductBatchRepository()
+        {
+            _dbcontext = new MyDbContext();
+        }
         public List<ProductBatchEntity> GetListProductBatches()
         {
             try
             {
-                using var dbcontext = new MyDbContext();
 
                 var productBatches = new List<ProductBatchEntity>();
 
-                productBatches = dbcontext.productBatches.ToList();
+                productBatches = _dbcontext.ProductBatches.ToList();
 
                 return productBatches;
             }
@@ -31,11 +36,10 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
 
                 var productBatch = new ProductBatchEntity();
 
-                productBatch = dbcontext.productBatches.FirstOrDefault(o => o.ProductBatchId == productBatchId);
+                productBatch = _dbcontext.ProductBatches.FirstOrDefault(o => o.ProductBatchId == productBatchId);
 
                 return productBatch;
             }
@@ -48,17 +52,16 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-                dbcontext.productBatches.Add(productBatch);
+                _dbcontext.ProductBatches.Add(productBatch);
 
-                var inputInfo = dbcontext.inputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
+                var inputInfo = _dbcontext.InputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
                 if (inputInfo != null)
                 {
                     inputInfo.InputUpdateTime = DateTime.Now;
-                    dbcontext.SaveChanges();
+                    _dbcontext.SaveChanges();
                 }
 
-                dbcontext.SaveChanges();
+                _dbcontext.SaveChanges();
                 return true;
             }
             catch (Exception ex)
@@ -70,20 +73,19 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
 
-                var productBatch = dbcontext.productBatches.FirstOrDefault(o => o.ProductBatchId == newProductBatch.ProductBatchId);
+                var productBatch = _dbcontext.ProductBatches.FirstOrDefault(o => o.ProductBatchId == newProductBatch.ProductBatchId);
 
                 if (productBatch != null)
                 {
                     productBatch.ProductBatchName = newProductBatch.ProductBatchName;
-                    dbcontext.SaveChanges();
+                    _dbcontext.SaveChanges();
 
-                    var inputInfo = dbcontext.inputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
+                    var inputInfo = _dbcontext.InputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
                     if (inputInfo != null)
                     {
                         inputInfo.InputUpdateTime = DateTime.Now;
-                        dbcontext.SaveChanges();
+                        _dbcontext.SaveChanges();
                     }
 
                     return true;
@@ -100,17 +102,15 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
-                dbcontext.productBatches.Remove(productBatch);
+                _dbcontext.ProductBatches.Remove(productBatch);
                 
-                dbcontext.SaveChanges();
+                _dbcontext.SaveChanges();
 
-                var inputInfo = dbcontext.inputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
+                var inputInfo = _dbcontext.InputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
                 if (inputInfo != null)
                 {
                     inputInfo.InputUpdateTime = DateTime.Now;
-                    dbcontext.SaveChanges();
+                    _dbcontext.SaveChanges();
                 }
 
                 return true;
@@ -127,9 +127,8 @@ namespace WareHouse.Repository.Implementations
             try
             {
                 var listProducts = new List<ProductBatchProductEntity>();
-                using var dbcontext = new MyDbContext();
-
-                listProducts = dbcontext.productBatchProduct.ToList().FindAll(o => o.ProductBatchId == productBatchId);
+                
+                listProducts = _dbcontext.ProductBatchProduct.ToList().FindAll(o => o.ProductBatchId == productBatchId);
 
                 return listProducts;
 
@@ -143,18 +142,17 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
 
-                dbcontext.productBatchProduct.Add(productBatchProduct);
+                _dbcontext.ProductBatchProduct.Add(productBatchProduct);
 
-                dbcontext.SaveChanges();
+                _dbcontext.SaveChanges();
 
-                var productBatch = dbcontext.productBatches.FirstOrDefault(o => o.ProductBatchId == productBatchProduct.ProductBatchId);
-                var inputInfo = dbcontext.inputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
+                var productBatch = _dbcontext.ProductBatches.FirstOrDefault(o => o.ProductBatchId == productBatchProduct.ProductBatchId);
+                var inputInfo = _dbcontext.InputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
                 if (inputInfo != null)
                 {
                     inputInfo.InputUpdateTime = DateTime.Now;
-                    dbcontext.SaveChanges();
+                    _dbcontext.SaveChanges();
                 }
                 return true;
 
@@ -168,9 +166,8 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
 
-                var row = dbcontext.productBatchProduct
+                var row = _dbcontext.ProductBatchProduct
                     .FirstOrDefault(o => o.Id == newProductBatchProduct.Id);
                 
                 if (row == null) return false;
@@ -180,14 +177,14 @@ namespace WareHouse.Repository.Implementations
                 row.ProductQuantity = newProductBatchProduct.ProductQuantity;
                 row.DateExpiry = newProductBatchProduct.DateExpiry;
 
-                dbcontext.SaveChanges();
+                _dbcontext.SaveChanges();
 
-                var productBatch = dbcontext.productBatches.FirstOrDefault(o => o.ProductBatchId == newProductBatchProduct.ProductBatchId);
-                var inputInfo = dbcontext.inputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
+                var productBatch = _dbcontext.ProductBatches.FirstOrDefault(o => o.ProductBatchId == newProductBatchProduct.ProductBatchId);
+                var inputInfo = _dbcontext.InputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
                 if (inputInfo != null)
                 {
                     inputInfo.InputUpdateTime = DateTime.Now;
-                    dbcontext.SaveChanges();
+                    _dbcontext.SaveChanges();
                 }
 
                 return true;
@@ -202,23 +199,22 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
 
-                var productBatchProduct = dbcontext.productBatchProduct
+                var productBatchProduct = _dbcontext.ProductBatchProduct
                     .FirstOrDefault(o => o.Id == id);
 
                 if (productBatchProduct == null) return false;
 
-                dbcontext.productBatchProduct.Remove(productBatchProduct);
+                _dbcontext.ProductBatchProduct.Remove(productBatchProduct);
                 
-                dbcontext.SaveChanges();
+                _dbcontext.SaveChanges();
 
-                var productBatch = dbcontext.productBatches.FirstOrDefault(o => o.ProductBatchId == productBatchProduct.ProductBatchId);
-                var inputInfo = dbcontext.inputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
+                var productBatch = _dbcontext.ProductBatches.FirstOrDefault(o => o.ProductBatchId == productBatchProduct.ProductBatchId);
+                var inputInfo = _dbcontext.InputInfo.FirstOrDefault(o => o.InputInfoId == productBatch.InputInfoId);
                 if (inputInfo != null)
                 {
                     inputInfo.InputUpdateTime = DateTime.Now;
-                    dbcontext.SaveChanges();
+                    _dbcontext.SaveChanges();
                 }
 
 
@@ -235,9 +231,8 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
-                var productBatchProduct = dbcontext.productBatchProduct.ToList();
+                
+                var productBatchProduct = _dbcontext.ProductBatchProduct.ToList();
                 return productBatchProduct;
 
             }
@@ -250,9 +245,8 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-                using var dbcontext = new MyDbContext();
-
-                var productBatchProduct = dbcontext.productBatchProduct.FirstOrDefault(o => o.Id == id);
+              
+                var productBatchProduct = _dbcontext.ProductBatchProduct.FirstOrDefault(o => o.Id == id);
                 return productBatchProduct;
 
             }
