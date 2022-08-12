@@ -109,68 +109,82 @@ namespace WareHouse.Service.Implementations
 
             var listProductBatchProduct = _productBatchRepository.GetListProductBatchProduct();
             listProducts = _productRepository.GetListProducts();
-
-            foreach (var product in listProducts)
+            if (listProducts != null)
             {
-                var inventory = new InventoryDto();
-                inventory.ProductId = product.ProductId;
-                var productBatchProduct = listProductBatchProduct
-                    .FindAll(o =>
-                    {
-                        var productBatchId = o.ProductBatchId;
-                        var productBatch = _productBatchRepository.GetProductBatch(productBatchId);
-                        return o.ProductId == product.ProductId && !(productBatch.InputInfoId == null || productBatch.InputInfoId == 0);
-                    });
-                var productBatches = mapper.Map<List<ProductBatchProductEntity>, List<ProductBatchInVentory>>(productBatchProduct);
-
-                var listIdProductsInBatch = listProductBatchProduct.FindAll(o => o.ProductId == product.ProductId);
-                var listOutputProductEntity = new List<OutputProductEntity>();
-                
-                foreach (var idProduct in listIdProductsInBatch)
+                foreach (var product in listProducts)
                 {
-                    var listOutputProduct = _outputInfoRepository.GetProductInOutputById(idProduct.Id);
-                    foreach(var outputProduct in listOutputProduct)
+                    var inventory = new InventoryDto();
+                    inventory.ProductId = product.ProductId;
+                    var productBatchProduct = listProductBatchProduct
+                        .FindAll(o =>
+                        {
+                            var productBatchId = o.ProductBatchId;
+                            var productBatch = _productBatchRepository.GetProductBatch(productBatchId);
+                            return o.ProductId == product.ProductId && !(productBatch.InputInfoId == null || productBatch.InputInfoId == 0);
+                        });
+                    var productBatches = mapper.Map<List<ProductBatchProductEntity>, List<ProductBatchInVentory>>(productBatchProduct);
+
+                    var listIdProductsInBatch = listProductBatchProduct.FindAll(o => o.ProductId == product.ProductId);
+                    var listOutputProductEntity = new List<OutputProductEntity>();
+                    if (listIdProductsInBatch != null)
                     {
-                     
-                        listOutputProductEntity.Add(outputProduct);
+                        foreach (var idProduct in listIdProductsInBatch)
+                        {
+                            var listOutputProduct = _outputInfoRepository.GetProductInOutputById(idProduct.Id);
+                            if (listOutputProduct != null)
+                            {
+                                foreach (var outputProduct in listOutputProduct)
+                                {
+
+                                    listOutputProductEntity.Add(outputProduct);
+                                }
+                            }
+                        }
                     }
-                    
-                }
-                
-                var listOutputProductDto = mapper.Map<List<OutputProductEntity>, List<OutputProductDto>>(listOutputProductEntity);
-                foreach (var outputProduct in listOutputProductDto)
-                {
-                    //outputProduct.ProductBatchId = _productBatchRepository.GetProductInProductBatch(outputProduct.ProductBatchProductId);
-                    var productData = _productBatchRepository.GetProductInProductBatch(outputProduct.ProductBatchProductId);
-                    if (productData != null)
+
+                    var listOutputProductDto = mapper.Map<List<OutputProductEntity>, List<OutputProductDto>>(listOutputProductEntity);
+                    if (listOutputProductDto != null)
                     {
-                        outputProduct.ProductId = productData.ProductId;
-                        outputProduct.ProductBatchId = productData.ProductBatchId;
-                        outputProduct.DateExpiry = productData.DateExpiry;
+                        foreach (var outputProduct in listOutputProductDto)
+                        {
+                            //outputProduct.ProductBatchId = _productBatchRepository.GetProductInProductBatch(outputProduct.ProductBatchProductId);
+                            var productData = _productBatchRepository.GetProductInProductBatch(outputProduct.ProductBatchProductId);
+                            if (productData != null)
+                            {
+                                outputProduct.ProductId = productData.ProductId;
+                                outputProduct.ProductBatchId = productData.ProductBatchId;
+                                outputProduct.DateExpiry = productData.DateExpiry;
+                            }
+                        }
+                        var exported = GetTotalExportedInProductBatch(listOutputProductDto);
+                        inventory.ListProductBatches = productBatches;
+                        inventory.Exported = exported;
+
+                        inventory.Total = GetTotalProductQuantityInProductBatch(productBatches);
+                        inventory.ListProductExported = listOutputProductDto;
+
+                        // deep clone
+                        var serialized = JsonConvert.SerializeObject(productBatches);
+                        var productInventories = JsonConvert.DeserializeObject<List<ProductBatchInVentory>>(serialized);
+
+                        if (productInventories != null)
+                        {
+                            foreach (var productInv in productInventories)
+                            {
+                                var productExported = listOutputProductDto.FindAll(o => o.ProductBatchProductId == productInv.Id);
+                                if (productExported != null)
+                                {
+                                    foreach (var item in productExported)
+                                    {
+                                        productInv.ProductQuantity -= item.ProductQuantity;
+                                    }
+                                }
+                            }
+                            inventory.ListInventories = productInventories;
+                            listInventories.Add(inventory);
+                        }
                     }
                 }
-                var exported = GetTotalExportedInProductBatch(listOutputProductDto);
-                inventory.ListProductBatches = productBatches;
-                inventory.Exported = exported;
-
-                inventory.Total = GetTotalProductQuantityInProductBatch(productBatches);
-                inventory.ListProductExported = listOutputProductDto;
-
-                // deep clone
-                var serialized = JsonConvert.SerializeObject(productBatches);
-                var productInventories = JsonConvert.DeserializeObject<List<ProductBatchInVentory>>(serialized);
-
-
-                foreach (var productInv in productInventories)
-                {
-                    var productExported = listOutputProductDto.FindAll(o => o.ProductBatchProductId == productInv.Id);
-                    foreach (var item in productExported)
-                    {
-                        productInv.ProductQuantity -= item.ProductQuantity;
-                    }
-                }
-                inventory.ListInventories = productInventories;
-                listInventories.Add(inventory);
             }
             return listInventories;
         }

@@ -38,10 +38,10 @@ namespace WareHouse.Repository.Implementations
         {
             try
             {
-
+                using var dbcontext = new MyDbContext();
                 var user = new UserEntity();
 
-                user = _dbcontext.Users.FirstOrDefault(o => o.UserId == userId);
+                user = dbcontext.Users.FirstOrDefault(o => o.UserId == userId);
 
                 //userDto = mapper.Map<UserEntity, UserDto>(user);
                 return user;
